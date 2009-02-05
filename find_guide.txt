@@ -1,0 +1,11 @@
+# list all the directories and subdirectories
+find .
+
+# find all the files ending with *.rhtml
+find . -name '*.rhtml'
+
+# list all the empty directories
+find . -type d -empty
+
+# list all the empty files
+find . -type f -empty

@@ -1,0 +1,9 @@
+# http://www.brunolinux.com/02-The_Terminal/Find_and%20Replace_with_Sed.html
+
+# find and replace in one file
+sed -i 's/ugly/beautiful/g' /tmp/foo.txt
+
+# find and replace in all files 
+find /tmp -type f -exec sed -i 's/ugly/beautiful/g' {} \;
+
+
