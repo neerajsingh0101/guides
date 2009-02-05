@@ -1,0 +1,374 @@
+======================
+CONFIGURATION COMMANDS 
+======================
+> git config --global user.name “Neeraj Singh”
+> git config --global user.email "neerajdotname@gmail.com" 
+> cat ~/.gitconfig
+
+# list the current configuration setting
+# if you are inside a git project then exceuting the below command will show extra information about that
+# project
+git config --list 
+
+# More information about a gig project can also be seen by
+> cat .git/config
+
+
+==================  
+BASIC COMMANDS 
+==================  
+
+# How to get the status
+> git status
+
+# How to do commit
+> git commit -m 'bug fixes for upload'
+
+# Reset all the local changes
+> git reset --hard HEAD
+
+# How do I revert a particular file (application.rb) which is not yet committed but has been locally changed
+> git checkout foo.txt
+
+# How to rename a file
+> git mv foo.txt bar.txt
+
+# add a new file called foo.txt and just commit this file
+> git add foo.txt
+> git commit -m 'adding foo.txt'
+
+# add multiple files at the same time
+> git add foo.txt, bar.txt
+
+# delete a file from git
+> git rm foo.txt
+
+# How do I get a project inside git for the first time
+> rails demo
+> cd demo
+> git init
+> touch .gitignore
+> git add . 
+> git status
+> git commit -m 'initial commit'
+
+
+# add and commit all files
+# It also includes the files that are there
+# in the filesystem but have not been added to git. Basically
+# this command will add files to git and then will commit them.
+> git commit -a 'commit any changes in this project'
+
+
+###########################################################################################
+# I have deleted a file but not yet committed. How do I retrieve the file.
+# there are two ways
+> git rm foo.txt
+
+# restore the foo.txt
+> git checkout foo.txt
+
+# checking out HEAD will bring back all the files deleted by command git rm . However
+# it will leave all the modified files as it is.
+> git checkout HEAD 
+
+###########################################################################################
+
+
+
+==================  
+BRANCH
+==================  
+
+# create a new branch called experiment
+> git branch experiment 
+
+# show branches and display more info about them
+> git show-branch 
+
+# show branches and display more info about them also lists directories from remote
+> git show-branch -a
+
+# create a new branch called experiment and switch to that branch
+> git checkout -b experiment
+
+# list all local branches and indicate which branch I am currently in
+> git branch 
+
+# list all local and remote branches
+> git branch -a
+
+# list all the remote branches ( does not include local branches)
+> git branch -r
+
+# switch to the master branch
+> git checkout master 
+
+# How do I see log of changes made in experiment branch over master branch
+> git log master..experiment
+> git log --stat master..experiment
+
+
+# How do I merge the changes from experiment to master branch
+> git branch master # make sure that I am in master branch
+> git merge experiment
+
+# delete the experiment branch
+> git branch -d experiment 
+
+
+# I have five commits I want to totally discard last two commits and start 
+# from third commit
+> git log
+it will display all the five logs
+
+>git reset --hard SHA1_HASH (SHA1-HASH of the third commit)
+both the commits after the 3rd commit will be gone permanently. In that sense it is different from
+revert where a reversal is another commit. In this case the last two commits were just deleted. They are gone.
+
+# push local branch to github
+> git checkout -b experiment
+> git push origin experiment
+> git push --all # it pushes all the branches 
+
+
+# github branch experiment has been updated by co-worker. I need to get all the changes to my local branch
+> git co experiment
+> git pull origin experiment
+
+# Revert a commit
+> git revert [commit-hash]
+Note that this commit will appear in the log as the revert. In the log the original commit 
+and the reversal of that commit both will appear . Before the revert if there were 5 logs
+then after the revert there will be 6 logs.
+
+# just committed and I wish I had written a different message for commit
+git commit --amend
+
+# forgot to add a file to the last commit
+> git add forgotten_file
+> git commit --amend # now this file is in the last commit
+
+
+# improve performance
+> git gc
+> git fsck
+
+# delete a remote branch experiment
+git push origin :experiment 
+
+
+##################################################################################
+# co-worked has put up a new branch called experiment. How do I pull that branch.
+> git branch -a # list all the branches ( local and remote)
+> git branch -a
+* master
+  origin/HEAD
+  origin/master
+  
+# Notice that in the above list origin/experiment did not appear. That is because you
+# need to do git pull to update the code base.
+> git pull
+> git branch -a
+* master
+  origin/HEAD
+  origin/experiment
+  origin/master
+# now in the list experiment branch appears  
+  
+> git checkout -b experiment origin/experiment
+##################################################################################
+
+
+==================  
+DIFF
+==================  
+# diff between master branch and experiment branch
+> git diff --stat master experiment
+> git diff master experiment
+
+
+# Use git diff to see the changes done before performing git add .
+# However after performing git add .  git diff comes up as empty.
+# If you want to see the diff after git add . then do this
+> git diff --cached
+
+
+# I have two files foo.txt and bar.txt
+# I made changes to both the files
+# now I added foo.txt to index ( git add foo.txt)
+# I want to see all the changes from the HEAD. It should incluce the changes incurred in foo.txt and 
+# bar.txt even though foo.txt has already been added to the index
+git diff HEAD
+
+
+# get the commit info about the 3rg grand parent
+git rev-prarse master~3
+
+# show difference between current state and the last three commits
+git diff master~3
+
+# show difference between current state and the last three commits for one single file
+git diff master~3 -- app/models/user.rb
+
+# show difference between current state and the last three commits for everything inside a directory
+git diff master~3 -- app/models
+
+
+# diff between two already committed commits
+git diff master~10 master~3 --stat
+
+# diff between two already committed commits for a single file
+git diff master~10 master~3 -- app/models/user.rb
+
+
+# give me just the names of the files and status(added, modified, delete) between committs
+git diff master~10 --name-status
+
+# by default the diff shows 2 lines above and below. to change that number use this
+git diff master~3 --unified=10
+==================  
+TAGGING
+==================  
+> git tag -a -m "tagging version 1.0" 1.0
+> git push --tags
+
+# tags list
+> git tag -l 
+
+# tags list
+> git tag
+
+# delete a remote tag
+git push origin :experiment 
+
+
+
+==================  
+VISUAL
+==================  
+gitk --all
+gitk --all &
+
+
+==================  
+GIT BROWSING
+==================  
+# show all the information about commit plus diff
+> git show [commit-hash] 
+
+# goes through all the lines of that file and finds out who introduced a change
+> git blame app/models/user.rb 
+
+
+==================  
+LOGGING
+==================  
+
+# information about each commit and the number of files changed
+> git log --stat
+
+# log information in one line
+git log --shortstat 
+
+# names of all files along with modified or added
+git log --name-status 
+
+# just the title
+git log --pretty=short 
+
+# one line log information
+git log --pretty=oneline
+
+git log --since="3 weeks ago"
+
+git log --pretty=oneline --since="2007-12-01" --until='two months ago'
+
+# do not list logs from merges 
+git log --no-merges 
+
+git log --pretty=oneline | wc -l
+
+git log --no-merges --pretty=oneline | wc -l
+
+
+# all the commits which had something to do with a file
+git log app/models/user.rb 
+
+# all the commits which had something to do with that file. limit the log to just 2 entries
+git log -n 2 app/models/user.rb 
+
+# to see what changed in a file
+git log -n 2 -p app/models/user.rb 
+
+
+
+
+
+====================
+MISC
+====================
+
+#########################################################
+> git count-objects
+36 objects
+
+# make change to a single file
+> git add foo.txt
+> git count-objects
+37 objects
+
+# commit this change
+> git commit -m 'adding foo.txt'
+39 objects
+# increate in two objects because one of them three and one is commit object
+#########################################################
+
+#########################################################
+# add a remote repository at github 
+git remote add origin git@github.com:neerajdotname/trashit.git
+
+#########################################################
+
+
+
+#########################################################
+# I want to change my user name and email address just for one single project. This change should
+# not be global but just for one git project
+> cd demo
+>  git config 
+> git config user.name 'John doe'
+> git config user.email 'john@doe.com'
+> git config --list
+user.name=Neeraj Singh
+user.email=neerajdotname@gmail.com
+alias.co=checkout
+apply.whitespace=nowarn
+color.diff=auto
+color.status=auto
+color.branch=auto
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+remote.origin.url=git@github.com:neerajdotname/demo.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+branch.master.remote=origin
+branch.master.merge=refs/heads/master
+branch.experiment.remote=origin
+branch.experiment.merge=refs/heads/experiment
+user.name=John doe
+user.email=john@doe.com
+
+# Notice that user.name and user.email lines at the bottom of the list.
+# this will supercede the user.email and user.email listed at the top
+# of the list
+#########################################################
+
+
+#########################################################
+# You want to find out if this git repository has been linked to github or not
+> git remote
+origin
+# if remote has not been setup then the output will be empty
+#########################################################

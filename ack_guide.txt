@@ -1,0 +1,86 @@
+# http://search.cpan.org/~petdance/ack/ack#FILE_SELECTION
+
+ack does not searches the file it does not know about. For example if I have a file called foo.bar then
+ack will ignore this file.
+
+# for ack to search all types of files
+ack neeraj -u
+
+# get the list of files ack will search through without actually doing the search
+ack -f
+ack -af
+
+
+# note here that -G accepts a regular expression 
+# ack creates full path along with file name and applies regex on that
+# since it applies regex on the director names also the result could be a bit different
+
+# search through all the test files
+ack neeraj -G test
+
+
+
+> ack -f -G script
+public/javascripts/application.js
+public/javascripts/controls.js
+public/javascripts/dragdrop.js
+public/javascripts/effects.js
+public/javascripts/prototype.js
+script/about
+script/console
+script/dbconsole
+script/destroy
+script/generate
+script/performance/benchmarker
+script/performance/profiler
+script/performance/request
+script/plugin
+script/process/inspector
+script/process/reaper
+script/process/spawner
+script/runner
+script/server
+
+
+# ignore case while searching
+ack -i neeraj
+
+
+# print line number 2 of every file
+ack --line=2
+ack --line=2-10
+ack --line=2,3,5
+
+
+
+# only print the file name of the matching files
+ack -li neeraj
+
+# stop reading a file after certain number of matches are found in that file
+# I don't want ack to search in a file after 2 matches are found in a file
+ack -i --max-count=2 neeraj
+
+
+# stop searching after 1 file is found matching the criteria. This is different from max-count in which case
+# search continues for all the files
+ack -i raj -1
+
+
+
+# Prints all lines, whether or not they match the expression. Highlighting will still work, though, 
+# so it can be used to highlight matches while still seeing the entire file
+tail -f development.log | ack --passthru neeraj
+
+
+
+# -v is to invert the search
+# get the list of all the files which do not have raj
+ack -ivl raj
+
+
+# search only through html files
+ack neeraj --type=html
+
+
+# do not print the filename in the result
+ack -h neeraj
