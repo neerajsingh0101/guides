@@ -372,3 +372,33 @@ user.email=john@doe.com
 origin
 # if remote has not been setup then the output will be empty
 #########################################################
+
+
+# a branch in git is nothing more than a file in .git/refs/heads
+
+# more infor about the git config for that project
+
+
+# current branch
+> cat .git/HEAD
+> cat .git/config
+
+# show the last commit info
+> git show master
+> git shoe master^
+
+
+# showing tree
+git ls-tree master^{tree}
+git ls-tree -r -t master^{tree} # -t makes also show the SHA1-s of subtrees
+
+# git cat-file to find out what kind of object it is 
+>git cat-file -t ae850bd698b2b5dfbac
+tree
+>git cat-file -t 569b350811
+blob
+
+# if it is a tree then contents can be seen by
+> git cat-file -p ae850bd698b2b5dfbac 
+
+# git cat-file -p ae850bd698b2b5dfbac  for a blob will list the content of the file
