@@ -1,0 +1,1 @@
+shift + G #=> Go to the end of the file

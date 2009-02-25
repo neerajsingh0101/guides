@@ -9,3 +9,7 @@ find . -type d -empty
 
 # list all the empty files
 find . -type f -empty
+
+find / - name "host*" 
+find / - user "alex" => search for files created by alex
+

@@ -1,0 +1,4 @@
+zip a file on mac
+# -c --stdout --to-stdout 
+# -c option puts the output to stdout
+gzip -c a.txt > a.txt.gz

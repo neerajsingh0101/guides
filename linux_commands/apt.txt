@@ -1,0 +1,12 @@
+apt => advanced packaging tools
+dpkg -l => lists all the installed packages
+dpkg -l "vi*" =>lists all packages with name 'vi*'
+
+sudo apt-get install package
+sudo apt-get remove package
+sudo apt-get remove --purge package-name
+
+To upgrade computer os
+sudo apt-get update => to get packages uptodate
+sudo apt-get dist-upgrade
+sudo shutdown -r now

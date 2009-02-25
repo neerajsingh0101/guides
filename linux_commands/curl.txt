@@ -1,0 +1,16 @@
+#checkout the header response 
+curl -I http://www.eventsinindia.com 
+
+# what the page looks like to a google bot
+curl --user-agent 'GoogleBot' http://www.eventsinindia.com 
+
+-L : if the initial web server response indicates that 
+the requested page has moved to a new 
+location (redirect), CURL’s default behavior is not 
+to request the page at that new location, but just 
+print the HTTP error message. This switch instructs 
+CURL to make another request asking for the page at 
+the new location whenever the web server returns 
+a 3xx HTTP code.
+
+curl -L http://eventsinindia.com

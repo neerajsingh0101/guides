@@ -1,0 +1,38 @@
+# truncate a running log file
+cat /dev/null > some_log_file.log
+
+# lists all variables defined in the shell
+env
+ 
+history
+
+# last command
+!! 
+!45
+
+# clear history
+history -c 
+
+cp #=> by default it doesn't copy hidden files. 
+cp ~/.out #=> to copy hidden files
+
+tail -10 a.out #=> last 10 lines
+head -10 a.out #=> top 10 lines
+
+touch * #=> change timestamp for all files
+
+STDIN  0
+STDOUT 1
+STDERR 2
+
+send all error messages to a file
+root * 2> error.txt
+
+send output to a file
+root * 1> out.txt
+
+# lists all services with port number
+cat /etc/services 
+
+# update this file to resolve a hostname to an IP address
+/etc/hosts 

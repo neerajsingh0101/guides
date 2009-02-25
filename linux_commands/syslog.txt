@@ -1,0 +1,10 @@
+/etc/syslog.conf
+edit syslog.conf and remove the comment before cron.* to
+have a log file just for cron jobs
+
+sudo /etc/init.d/sysklogd restart => to restart syslog
+
+/var/log/messages
+
+/etc/logrotate.conf
+/etc/logrotate.d

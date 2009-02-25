@@ -1,0 +1,28 @@
+INPUT OUTPUT FORWARD
+
+ACCEPT
+LOG
+DROP => silently discards the packet
+REJECT => a message is sent to the source of the packet
+
+default rule at the end must be to drop the packet
+
+-i => input interface ( not used in the output chain)
+-o => output interace ( not used in the input chain)
+
+-s/-d option for ip address
+-s 192.168.0.1
+-s 192.168.0.01/16 => all hosts that have a network address 
+starting with 192.168
+
+-p => protocol
+--dport => port number
+--sport 1024:65535 => port number in the range of 
+1024 to 65535
+example: -p TCP --dport 25
+
+-A => chain to which this rule should be added
+-j => jump to
+
+Do not turn on LOG for incoming packets because of 
+heavy logging Turn on LOG for output dropped packets

@@ -1,0 +1,17 @@
+# xargs: Newbies often us loops or variables when xargs would suffice. 
+# xargs reads standard input, splits the input by whitepsace (spaces and newlines) and then 
+# executes the command you specify with the processed input. The three examples below all 
+# delete files in the current working directory matching ‘mess*’ which contain the 
+# word ‘Synergy’. However, the third is the simplest and most concise. Its the UNIX 
+# solution.Using a variable:
+
+[root@mojito ~]# export FILES=`find . -type f -name 'mess*' -exec grep -q 'Synergy' {} \; -print`
+[root@mojito ~]# rm -f $FILES
+Using a loop:
+
+[root@mojito ~]# for FILE in `find . -type f -name 'mess*' -exec grep -q 'Synergy' {} \; -print`
+do rm -f $FILE; done
+Using xargs:
+
+[root@mojito ~]# find . -type f -name 'mess*' -exec grep -q 'Synergy' {} \; -print | xargs rm -f 
+
