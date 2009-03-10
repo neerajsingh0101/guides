@@ -4,3 +4,10 @@ if method_sym.to_s =~ /^find_by_(.*)$/
 else 
   super 
 end
+
+
+# fine everything within double quotes
+#   id: "hello" 
+tmp = '  id: "hello" '
+puts Regexp.new('"(.*)"').match(tmp)[0]
+
