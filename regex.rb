@@ -9,5 +9,6 @@ end
 # fine everything within double quotes
 #   id: "hello" 
 tmp = '  id: "hello" '
-puts Regexp.new('"(.*)"').match(tmp)[0]
+puts Regexp.new('"(.*)"').match(tmp)[0] # will give you the string with the double quotes
+puts Regexp.new('"(.*)"').match(tmp)[1] # will give you the string without the double quotes
 
