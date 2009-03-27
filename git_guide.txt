@@ -158,6 +158,12 @@ git commit --amend
 git push origin :experiment 
 
 
+# How to get production branch on a friend's macine
+> you are in the master branch
+> git co -b production
+> git pull origin production
+
+
 ##################################################################################
 # co-worked has put up a new branch called experiment. How do I pull that branch.
 > git branch -a # list all the branches ( local and remote)
@@ -376,7 +382,7 @@ origin
 
 # a branch in git is nothing more than a file in .git/refs/heads
 
-# more infor about the git config for that project
+# more info about the git config for that project
 
 
 # current branch
