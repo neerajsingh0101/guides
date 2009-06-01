@@ -1,5 +1,13 @@
+# --url just indicates that it is url. nothing important.
+# -d pass extra parameters
+# because of -d option the data will be send in POST as oppossed to GET
+curl --url http://neeraj.name -d foo=1 -d bar=rocks
+
+
+
+
 #checkout the header response 
-curl -I http://www.eventsinindia.com 
+curl -I http://www.neeraj.name 
 
 # what the page looks like to a google bot
 curl --user-agent 'GoogleBot' http://www.eventsinindia.com 
