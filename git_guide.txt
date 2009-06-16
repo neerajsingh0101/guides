@@ -158,7 +158,7 @@ git commit --amend
 git push origin :experiment 
 
 
-# How to get production branch on a friend's macine
+# How to get production branch on a friend's machine
 > you are in the master branch
 > git co -b production
 > git pull origin production
@@ -184,6 +184,28 @@ git push origin :experiment
   
 > git checkout -b experiment origin/experiment
 ##################################################################################
+
+
+##################################################################################
+Branching
+
+first cd into the target branch ( the branch in which merging will be done)
+cd branch_a
+
+# straight merge from branch_b
+git merge branch_b 
+
+# squashed merge from branch_b. In squashed merge all the commits in branch_b would appear as
+# single commit in branch_a. Note that for squashed merge the changes are applied as staged (not committed)
+git merge --squash branch_b
+
+# cherry-picking to apply one commit from source to the target
+# in this case #ABCDEFG is the SHA-1 of the commit hash. One can
+# stage multiple cherry-pickekd merges by adding the -n argument
+git cherry-pick #ABCDEFG
+##################################################################################
+
+
 
 
 ==================  
@@ -248,6 +270,8 @@ TAGGING
 # delete a remote tag
 git push origin :experiment 
 
+# make a branch from your tag
+git checkout -b <tag name>
 
 
 ==================  

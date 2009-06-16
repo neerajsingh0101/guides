@@ -22,3 +22,7 @@ the new location whenever the web server returns
 a 3xx HTTP code.
 
 curl -L http://eventsinindia.com
+
+
+#download a file
+curl -o http://neeraj.name/file1.txt
