@@ -1,4 +1,12 @@
+
 # http://search.cpan.org/~petdance/ack/ack#FILE_SELECTION
+
+# I want to search for clean? . Notice the question mark at the end. I don't want 
+# to search for clean. only words matching clean? should be in the result
+ack --literal clean?
+
+# search only through html files
+ack neeraj --type=html
 
 ack does not searches the file it does not know about. For example if I have a file called foo.bar then
 ack will ignore this file.
@@ -76,10 +84,6 @@ tail -f development.log | ack --passthru neeraj
 # -v is to invert the search
 # get the list of all the files which do not have raj
 ack -ivl raj
-
-
-# search only through html files
-ack neeraj --type=html
 
 
 # do not print the filename in the result
