@@ -19,6 +19,10 @@ ack -f
 ack -af
 
 
+# search only through ruby test files and make the search case insensitive
+ack -i puts --type=rb -G test
+
+
 # note here that -G accepts a regular expression 
 # ack creates full path along with file name and applies regex on that
 # since it applies regex on the director names also the result could be a bit different
@@ -75,7 +79,7 @@ ack -i raj -1
 
 
 
-# Prints all lines, whether or not they match the expression. Highlighting will still work, though, 
+# Prints all lines, whether or not they mgatch the expression. Highlighting will still work, though, 
 # so it can be used to highlight matches while still seeing the entire file
 tail -f development.log | ack --passthru neeraj
 

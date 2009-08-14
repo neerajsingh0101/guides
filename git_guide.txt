@@ -74,6 +74,15 @@ BASIC COMMANDS
 
 ###########################################################################################
 
+==================  
+GETTING TO OLD DATA
+================== 
+# this will output the -1 version of admin_controller.rb
+git show HEAD^:app/controllers/admin_controller.rb 
+
+# if you want to replace the current content with the old one then do this
+# note that there is no colon before app in this case
+git checkout HEAD^ app/controllers/admin_controller.rb
 
 
 ==================  
