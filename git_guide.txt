@@ -60,6 +60,13 @@ BASIC COMMANDS
 > git commit -a 'commit any changes in this project'
 
 
+######################
+undo the last commit and keep the changes in the working tree
+git reset --soft HEAD^
+######################
+
+
+
 ###########################################################################################
 # I have deleted a file but not yet committed. How do I retrieve the file.
 # there are two ways
