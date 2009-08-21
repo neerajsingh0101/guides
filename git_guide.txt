@@ -502,3 +502,14 @@ diff for staged content
 remove a file from index
 >git rm --cached index.html
 ##############################
+
+############
+recover a deleted file
+>git add foo.txt
+>git commit -m 'adding foo.txt'
+>git rm foo.txt
+oops I need the file back
+>git co HEAD -- foo.txt
+############
+
+
