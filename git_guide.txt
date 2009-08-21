@@ -490,3 +490,15 @@ $ git cherry master
 + c3481fd0d6279f5bd45c455b915e0b4b1c0d8909
 
 #########################################################
+
+
+##################################
+add files to index and now you want to see all the contents of stage
+>git ls-files --stage
+
+diff for staged content
+>git diff --cached
+
+remove a file from index
+>git rm --cached index.html
+##############################
