@@ -513,3 +513,29 @@ oops I need the file back
 ############
 
 
+#####################################
+renaming a file and tracing its history
+>git add foo.txt
+>git commit -m 'adding foo.txt'
+>git mv foo.txt bar.txt
+>git commit -m 'renaming file from foo.txt to bar.txt'
+>git log bar.txt
+# you will see only one line output
+to trace the history all the way back to the original file
+>git log --follow bar.txt
+# now you will see 2 log records
+##################################
+
+
+#################
+git blame tells you about each line of the current file.
+it tells who last committed each line of the file
+git blame app/models/article.rb 
+##################
+
+######
+git log -Sstring searches 
+back through the history of a file’s diffs for the given string. By searching the actual 
+diffs between revisions, this command can find commits that perform a change in both 
+additions and deletions. 
+###############

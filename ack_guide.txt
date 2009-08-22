@@ -1,23 +1,62 @@
+-l, --files-with-matches  Only print filenames containing matches
+-L, --files-without-match Only print filenames with no match
+--passthru  Print all lines, whether matching or not
+
+File finding:
+  -f                    Only print the files found, without searching.
+                        The PATTERN must not be specified.
+  -g REGEX              Same as -f, but only print files matching REGEX.
+
+
+# ignore case while searching
+>ack -i neeraj
+
+
+# print line number 2 of every file
+>ack --line=2
+>ack --line=2-10
+>ack --line=2,3,5
+
+# only print the file name of the matching files
+>ack -li neeraj
+
+# stop reading a file after certain number of matches are found in that file
+# I don't want ack to search in a file after 2 matches are found in a file
+>ack -i --max-count=2 neeraj
+
+# stop searching after 1 file is found matching the criteria. This is different from max-count in which case
+# search continues for all the files
+>ack -i raj -1
+
+# Prints all lines, whether or not they match the expression. Highlighting will still work, though, 
+# so it can be used to highlight matches while still seeing the entire file
+>tail -f development.log | ack --passthru neeraj
+
+# -v is to invert the search
+# get the list of all the files which do not have raj
+>ack -ivl raj
+
+# do not print the filename in the result
+>ack -h neeraj
 
 # http://search.cpan.org/~petdance/ack/ack#FILE_SELECTION
 
 # I want to search for clean? . Notice the question mark at the end. I don't want 
 # to search for clean. only words matching clean? should be in the result
-ack --literal clean?
+>ack --literal clean?
 
 # search only through html files
-ack neeraj --type=html
+>ack neeraj --type=html
 
 ack does not searches the file it does not know about. For example if I have a file called foo.bar then
 ack will ignore this file.
 
 # for ack to search all types of files
-ack neeraj -u
+>ack neeraj -u
 
 # get the list of files ack will search through without actually doing the search
-ack -f
-ack -af
-
+>ack -f
+>ack -af
 
 # search only through ruby test files and make the search case insensitive
 ack -i puts --type=rb -G test
@@ -26,10 +65,9 @@ ack -i puts --type=rb -G test
 # note here that -G accepts a regular expression 
 # ack creates full path along with file name and applies regex on that
 # since it applies regex on the director names also the result could be a bit different
-
+#
 # search through all the test files
-ack neeraj -G test
-
+>ack neeraj -G test
 
 
 > ack -f -G script
@@ -54,41 +92,3 @@ script/runner
 script/server
 
 
-# ignore case while searching
-ack -i neeraj
-
-
-# print line number 2 of every file
-ack --line=2
-ack --line=2-10
-ack --line=2,3,5
-
-
-
-# only print the file name of the matching files
-ack -li neeraj
-
-# stop reading a file after certain number of matches are found in that file
-# I don't want ack to search in a file after 2 matches are found in a file
-ack -i --max-count=2 neeraj
-
-
-# stop searching after 1 file is found matching the criteria. This is different from max-count in which case
-# search continues for all the files
-ack -i raj -1
-
-
-
-# Prints all lines, whether or not they mgatch the expression. Highlighting will still work, though, 
-# so it can be used to highlight matches while still seeing the entire file
-tail -f development.log | ack --passthru neeraj
-
-
-
-# -v is to invert the search
-# get the list of all the files which do not have raj
-ack -ivl raj
-
-
-# do not print the filename in the result
-ack -h neeraj
