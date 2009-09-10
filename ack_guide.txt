@@ -1,3 +1,13 @@
+list all javascript files
+>ack -f --js
+
+list all the file names matching this expression. It will not look into the content
+>ack -g form
+
+list all the file names matching the expression. It will look at both the content and the filenames
+>ack -l form
+
+
 -l, --files-with-matches  Only print filenames containing matches
 -L, --files-without-match Only print filenames with no match
 --passthru  Print all lines, whether matching or not

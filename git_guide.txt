@@ -6,7 +6,7 @@ CONFIGURATION COMMANDS
 > cat ~/.gitconfig
 
 # list the current configuration setting
-# if you are inside a git project then exceuting the below command will show extra information about that
+# if you are inside a git project then executing the below command will show extra information about that
 # project
 git config --list 
 
@@ -83,13 +83,14 @@ git reset --soft HEAD^
 
 ==================  
 GETTING TO OLD DATA
-================== 
+
 # this will output the -1 version of admin_controller.rb
 git show HEAD^:app/controllers/admin_controller.rb 
 
 # if you want to replace the current content with the old one then do this
 # note that there is no colon before app in this case
 git checkout HEAD^ app/controllers/admin_controller.rb
+================== 
 
 
 ==================  
