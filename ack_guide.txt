@@ -1,3 +1,7 @@
+search for .git
+>ack '\.git'
+
+
 list all javascript files
 >ack -f --js
 
