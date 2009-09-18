@@ -540,3 +540,9 @@ back through the history of a file’s diffs for the given string. By searching 
 diffs between revisions, this command can find commits that perform a change in both 
 additions and deletions. 
 ###############
+
+
+####
+How to accept a patch
+git remote add snaury git://github.com/snaury/admin_data.git && git pull snaury master
+###
