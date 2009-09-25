@@ -71,9 +71,76 @@ puts /\d+?/.match('there is a digit 3456 here') #=> 3
 
 
 
+# number of repetitions
+m =  /(\d{3})-(\d{3})-(\d{4})/.match('123-456-7890')
+puts m.to_a.inspect #=> ["123-456-7890", "123", "456", "7890"]
+#you can also specify
+#\d{1,10} between a and 10 digits
+#\d{7,} 7 ore more digits
+
+
+# edge case
+m = /([A-Z]){5}/.match('David BLACK')
+puts m.to_a.inspect #=> ["BLACK", "K"]
+
+m = /([A-Z]{5})/.match('David BLACK')
+puts m.to_a.inspect #=> ["BLACK", "BLACK"]
+# In the first case the captured value is K. In the second case captured value is BLACK. So pay close
+# attention if braces are inside the capture or outside the capture.
 
 
 
+# anchors
+# ^ matches beginning of line
+puts /^rocks/.match('ruby rocks') #=> nil
+puts /^ruby/.match('ruby rocks') #=> ruby
+
+# $ matches end of line
+puts /rocks$/.match('ruby rocks') #=> rocks
+puts /ruby$/.match('ruby rocks') #=> nil
+
+
+# look ahead assertion
+# look ahead means that you want to look ahead to match something but that look ahead should not be part
+# counted as a match.
+# take following case. In this case I want consecutive digits only if it is ending with a dot. However the dot
+# itself should not be part of the counted. What it means is that if I want I can add more regex expression to
+# check for dot since it is not counted. Technically this is called zero-width look ahead. zero width means
+# that is not counted.
+s = '123 456. 789'
+m = /\d+(?=\.)/.match(s)
+puts m.to_a.inspect
+# ruby 1.8 does not support look behind. Ruby 1.9 does.
+
+
+# case sensitive search by default
+s = 'Abc'
+puts /abc/.match(s) #=> nil
+puts /abc/i.match(s) #=> Abc
+
+# multitline option if the string spans across multiline
+# you want to capture everything inside () but the closing ) is on next line
+s = %Q{ capture starts here ( ruby on rails \nrocks ) }
+m = /\(.*?\)/.match(s)
+puts m.to_a.inspect #=> []
+
+m = /\(.*?\)/m.match(s)
+puts m.to_a.inspect #=> ["( ruby on rails \nrocks )"]
+
+
+
+# x modifier is used to split complex regex into multiline
+# previous example could be written like
+s = %Q{ capture starts here ( ruby on rails \nrocks ) }
+
+r = /
+     \(  # start of (
+     .*? # capture everything inside
+     \)  # end of )
+    /xm
+
+m = r.match(s)
+puts m.to_a.inspect #=> ["( ruby on rails \nrocks )"]
 
 
 
