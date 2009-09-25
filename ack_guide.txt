@@ -1,108 +1,82 @@
-search for .git
->ack '\.git'
-
-
-list all javascript files
+List all javascript files
 >ack -f --js
 
-list all the file names matching this expression. It will not look into the content
+List all the file names matching given string . This process will not look into the content of the files.
 >ack -g form
 
-list all the file names matching the expression. It will look at both the content and the filenames
+List all the file names where the either the file name or the content has given string. 
+It will look at both the content and the filenames.
 >ack -l form
 
 
--l, --files-with-matches  Only print filenames containing matches
--L, --files-without-match Only print filenames with no match
---passthru  Print all lines, whether matching or not
-
-File finding:
-  -f                    Only print the files found, without searching.
-                        The PATTERN must not be specified.
-  -g REGEX              Same as -f, but only print files matching REGEX.
-
-
-# ignore case while searching
+Ignore case while searching
 >ack -i neeraj
 
 
-# print line number 2 of every file
+Print line number 2 of every file
 >ack --line=2
+
+Print line 2 to 10 of every file
 >ack --line=2-10
+
+Pring line 2 3 and 5 of every file
 >ack --line=2,3,5
 
-# only print the file name of the matching files
->ack -li neeraj
+Stop reading a file after certain number of matches are found in that file
+I don't want ack to search in a file after 2 matches are found in a file
+>ack --max-count=2 neeraj
 
-# stop reading a file after certain number of matches are found in that file
-# I don't want ack to search in a file after 2 matches are found in a file
->ack -i --max-count=2 neeraj
+Stop searching after 1 file is found matching the criteria. This is different from max-count 
+in which case search continues for all the files
+>ack neeraj -1
 
-# stop searching after 1 file is found matching the criteria. This is different from max-count in which case
-# search continues for all the files
->ack -i raj -1
-
-# Prints all lines, whether or not they match the expression. Highlighting will still work, though, 
-# so it can be used to highlight matches while still seeing the entire file
+Prints all lines, whether or not they match the expression. Highlighting will still work, though, 
+so it can be used to highlight matches while still seeing the entire file
 >tail -f development.log | ack --passthru neeraj
 
-# -v is to invert the search
-# get the list of all the files which do not have raj
->ack -ivl raj
+-v is to invert the search. Get the list of all the files which do not have neeraj 
+>ack -ivl neeraj
 
-# do not print the filename in the result
+Do not print the filename in the result
 >ack -h neeraj
 
-# http://search.cpan.org/~petdance/ack/ack#FILE_SELECTION
 
-# I want to search for clean? . Notice the question mark at the end. I don't want 
-# to search for clean. only words matching clean? should be in the result
+I want to search for clean? . Notice the question mark at the end. I don't want 
+to search for clean. only words matching clean? should be in the result
 >ack --literal clean?
+>ack --literal .git
 
-# search only through html files
+
+Search only through html files
 >ack neeraj --type=html
 
-ack does not searches the file it does not know about. For example if I have a file called foo.bar then
-ack will ignore this file.
+Search all file types including a file called foo.bar. Note that it will still ignore files like .svn etc.
+>ack -a neeraj
 
-# for ack to search all types of files
+Search all types of files including files like .svn . In this case all files residing in that directory
+will be searched through.
 >ack neeraj -u
 
-# get the list of files ack will search through without actually doing the search
+Get list of files ack will search through without actually doing the search
 >ack -f
+
+Get list of files ack will search through if  
 >ack -af
 
-# search only through ruby test files and make the search case insensitive
-ack -i puts --type=rb -G test
 
-
-# note here that -G accepts a regular expression 
-# ack creates full path along with file name and applies regex on that
-# since it applies regex on the director names also the result could be a bit different
-#
-# search through all the test files
+Note here that -G accepts a regular expression 
+ack creates full path along with file name and applies regex on that
+since it applies regex on the directory names also the result could be a bit different
+search through all the test files
 >ack neeraj -G test
 
 
+Search through only .rb files and make the search case insensitive and file name or directory name
+should have test string.
+ack -i neeraj --type=rb -G test
+
+
+List all files which has script name either in the file name or in the directory name
 > ack -f -G script
-public/javascripts/application.js
-public/javascripts/controls.js
-public/javascripts/dragdrop.js
-public/javascripts/effects.js
-public/javascripts/prototype.js
-script/about
-script/console
-script/dbconsole
-script/destroy
-script/generate
-script/performance/benchmarker
-script/performance/profiler
-script/performance/request
-script/plugin
-script/process/inspector
-script/process/reaper
-script/process/spawner
-script/runner
-script/server
 
 
