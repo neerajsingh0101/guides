@@ -1,19 +1,14 @@
-crontabl -l => list all jobs that are scheduled for the use
+list all jobs that are scheduled for the use
+>crontabl -l 
 
-cron jobs output to a file
-cmd >> logfile 2>&1
-Explanation: normal standar outputs (STDOUT(1)) will 
-go to logfile. The error messages(2) are being 
-redirected to STDOUT(&1) which in turn is being 
-redirectted to log files. It means both standard 
-output as well as standard error messages are being 
-sent to the log file.
+Cron jobs output to a file
+Normal standar outputs (STDOUT(1)) will go to logfile. The error messages(2) are being 
+redirected to STDOUT(&1) which in turn is being redirectted to log files. It means both standard 
+output as well as standard error messages are being sent to the log file.
+>cmd >> logfile 2>&1
 
-crontab -e => create/edit cron job for the user who 
-executes this command
+create/edit cron job for the user who executes this command
+>crontab -e 
 
-crotab -r => delete all jobs for this user
-
-0 17 * * * root /sbin/shutdown -r now => between time 
-setting and the command put the user who should be 
-executing that command
+delete all jobs for this user
+>crotab -r 

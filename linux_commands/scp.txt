@@ -1,11 +1,9 @@
 # copy a file from localhost to remote server
-# the goal is to copy file 2008-12-17-11-38-28.sql.gz from mac to slicehost
-slice.
+# the goal is to copy file 2008-12-17-11-38-28.sql.gz from mac to slicehost slice.
 # the ssh port is running on 30000
 # the file is being copied to /home/nkumar/tmp 
 scp -P 30000 2008-12-17-11-38-28.sql.gz nkumar@67.207.136.78:/home/nkumar/tmp 
 
 # copy a file from remote server to localhost
-# file is being copied from /home/neeraj/tmp/2008-12-23-09-44-21.sql.gz to
-current directory
+# file is being copied from /home/neeraj/tmp/2008-12-23-09-44-21.sql.gz to current directory
 scp -P 30000 neeraj@67.207.132.88:/home/neeraj/tmp/2008-12-23-09-44-21.sql.gz  .

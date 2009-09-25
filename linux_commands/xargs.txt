@@ -5,13 +5,14 @@
 # word ‘Synergy’. However, the third is the simplest and most concise. Its the UNIX 
 # solution.Using a variable:
 
-[root@mojito ~]# export FILES=`find . -type f -name 'mess*' -exec grep -q 'Synergy' {} \; -print`
-[root@mojito ~]# rm -f $FILES
+>export FILES=`find . -type f -name 'mess*' -exec grep -q 'Synergy' {} \; -print`
+>rm -f $FILES
+
 Using a loop:
 
-[root@mojito ~]# for FILE in `find . -type f -name 'mess*' -exec grep -q 'Synergy' {} \; -print`
+>for FILE in `find . -type f -name 'mess*' -exec grep -q 'Synergy' {} \; -print`
 do rm -f $FILE; done
 Using xargs:
 
-[root@mojito ~]# find . -type f -name 'mess*' -exec grep -q 'Synergy' {} \; -print | xargs rm -f 
+>find . -type f -name 'mess*' -exec grep -q 'Synergy' {} \; -print | xargs rm -f 
 

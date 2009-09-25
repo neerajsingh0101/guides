@@ -1,5 +1,2 @@
-sudo httpd -t => test configuration without starting it.
-It does syntax check
-
-sudo httpd -v => version info
-sudo httpd -V => more verbose info
+Perform syntax check of configuration file without restarting
+>sudo httpd -t

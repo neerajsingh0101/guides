@@ -1,15 +1,16 @@
-# list all the directories and subdirectories
-find .
+list all the directories and subdirectories
+>find .
 
-# find all the files ending with *.rhtml
-find . -name '*.rhtml'
+find all the files ending with *.rhtml
+>find . -name '*.rhtml'
 
-# list all the empty directories
-find . -type d -empty
+list all the empty directories
+>find . -type d -empty
 
-# list all the empty files
-find . -type f -empty
+list all the empty files
+>find . -type f -empty
 
-find / - name "host*" 
-find / - user "alex" => search for files created by alex
+>find / - name "host*" 
 
+search for files created by alex
+>find / - user "alex"

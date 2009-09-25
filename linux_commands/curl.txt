@@ -1,28 +1,20 @@
-# --url just indicates that it is url. nothing important.
-# -d pass extra parameters
-# because of -d option the data will be send in POST as oppossed to GET
-curl --url http://neeraj.name -d foo=1 -d bar=rocks
+--url just indicates that it is url. nothing important.
+-d pass extra parameters
+because of -d option the data will be send in POST as oppossed to GET
+>curl --url http://neeraj.name -d foo=1 -d bar=rocks
 
+checkout the header response 
+>curl -I http://www.neeraj.name 
 
+what the page looks like to a google bot
+>curl --user-agent 'GoogleBot' http://www.eventsinindia.com 
 
+-L : if the initial web server response indicates that the requested page has moved to a new 
+location (redirect), CURL’s default behavior is not to request the page at that new location, but just 
+print the HTTP error message. This switch instructs CURL to make another request asking for the page at 
+the new location whenever the web server returns a 3xx HTTP code.
 
-#checkout the header response 
-curl -I http://www.neeraj.name 
+>curl -L http://neeraj.name
 
-# what the page looks like to a google bot
-curl --user-agent 'GoogleBot' http://www.eventsinindia.com 
-
--L : if the initial web server response indicates that 
-the requested page has moved to a new 
-location (redirect), CURL’s default behavior is not 
-to request the page at that new location, but just 
-print the HTTP error message. This switch instructs 
-CURL to make another request asking for the page at 
-the new location whenever the web server returns 
-a 3xx HTTP code.
-
-curl -L http://eventsinindia.com
-
-
-#download a file
-curl -o http://neeraj.name/file1.txt
+download a file
+>curl -o http://neeraj.name/file1.txt

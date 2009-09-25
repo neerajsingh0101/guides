@@ -5,5 +5,3 @@ sed -i 's/ugly/beautiful/g' /tmp/foo.txt
 
 # find and replace in all files 
 find /tmp -type f -exec sed -i 's/ugly/beautiful/g' {} \;
-
-
