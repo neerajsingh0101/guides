@@ -1,3 +1,6 @@
+Search for 'Completed On' without the quotes
+>ack --literal 'Completed on'
+
 List all javascript files
 >ack -f --js
 
