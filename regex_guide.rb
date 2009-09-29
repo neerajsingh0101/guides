@@ -143,6 +143,21 @@ m = r.match(s)
 puts m.to_a.inspect #=> ["( ruby on rails \nrocks )"]
 
 
+# \b matched word boundary
+# $` returns the part of string before the matc
+s = 'rubyrails rocks. rails rocks'
+/rails/.match(s)
+puts $` #=> ruby
+/\brails/.match(s)
+puts $` #=> rubyrails rocks.
 
 
+# ruby supports POISIX character classes. Following two statements are same
+s =~ /[\s]/
+s =~ /[[:digit:]]/
+
+
+# \1 \2 \n can be used in sub and gsub to get the nth matched valued
+s = 'Mike:Smith'
+puts s.sub(/(\w+):(\w+)/,'\2, \1') #=> Smith, Mike
 
