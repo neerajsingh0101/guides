@@ -64,7 +64,7 @@ puts /\d+/.match('there is a digit 3456 here') #=> 3456
 #
 # Because they are greedy, it has consequences.
 puts /.+!/.match('abc!def!ghi!') #=> abc!def!ghi!
-# In the above case I wanted to extrac just abc but because + is greedy it gobbled up whole string. 
+# In the above case I wanted to extract just abc but because + is greedy it gobbled up whole string. 
 # There is away to tell engine to not to be greedy
 puts /.+?!/.match('abc!def!ghi!') #=> abc!
 puts /\d+?/.match('there is a digit 3456 here') #=> 3
@@ -107,10 +107,35 @@ puts /ruby$/.match('ruby rocks') #=> nil
 # itself should not be part of the counted. What it means is that if I want I can add more regex expression to
 # check for dot since it is not counted. Technically this is called zero-width look ahead. zero width means
 # that is not counted.
+# (?=pattern) positive look-ahead
+# (?!pattern) negative look-ahead
 s = '123 456. 789'
 m = /\d+(?=\.)/.match(s)
 puts m.to_a.inspect
 # ruby 1.8 does not support look behind. Ruby 1.9 does.
+
+# negative look-ahed is done like this
+# find last foo. means find foo that is not followed by another foo
+s = 'my first foo foo blah blah'
+/foo(?!.*foo)/
+
+# capture all text between foo and bar.
+foo((?:(?!baz).)*)bar
+
+/foo  # Match starting at foo
+ (         # Capture
+ (?:       # Complex expression:
+   (?!baz) #   make sure we're not at the beginning of baz 
+   .       #   accept any character
+ )*        # any number of times
+ )         # End capture
+ bar  # and ending at bar
+/x
+
+
+
+
+
 
 
 # case sensitive search by default
@@ -160,4 +185,17 @@ s =~ /[[:digit:]]/
 # \1 \2 \n can be used in sub and gsub to get the nth matched valued
 s = 'Mike:Smith'
 puts s.sub(/(\w+):(\w+)/,'\2, \1') #=> Smith, Mike
+
+
+
+# detect html tag
+/(<(\w+)\s*>)/
+<div>Hello World</div>
+<div >Hello World</div>
+
+#capture string within the html tag
+/<\w+\s*>(.*)<\/\w+\s*>/
+<div>Hello World</div>
+<div >Hello World</div>
+
 

@@ -546,3 +546,7 @@ additions and deletions.
 How to accept a patch
 git remote add snaury git://github.com/snaury/admin_data.git && git pull snaury master
 ###
+
+###
+git clean -f -X
+git clean -f -d
