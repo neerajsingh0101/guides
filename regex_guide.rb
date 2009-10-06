@@ -13,7 +13,7 @@ puts m.to_a
 # dynamic find_by methods in ActiveRecord
 if method_sym.to_s =~ /^find_by_(.*)$/ 
 
-# extract phone numbers out of string
+# extract phone numbers from given string
 s = %Q{  (123) 555-1234. }
 r = /\((\d{3})\)\s+(\d{3})-(\d{4})/
 m = r.match(s)
@@ -134,14 +134,11 @@ foo((?:(?!baz).)*)bar
 
 
 
-
-
-
-
-# case sensitive search by default
+# case sensitive search by default. /i makes it case insensitive
 s = 'Abc'
 puts /abc/.match(s) #=> nil
 puts /abc/i.match(s) #=> Abc
+
 
 # multitline option if the string spans across multiline
 # you want to capture everything inside () but the closing ) is on next line
@@ -197,5 +194,16 @@ puts s.sub(/(\w+):(\w+)/,'\2, \1') #=> Smith, Mike
 /<\w+\s*>(.*)<\/\w+\s*>/
 <div>Hello World</div>
 <div >Hello World</div>
+
+
+
+
+# usage of look ahead in actionpack. simple_format method uses following regex to
+# replace all double line breaks into <p>. It converts single line breaks into
+# <br /> however it preserves line break for them. And the very first line break is not
+# converted into <br />
+text = "\nhello \n\n world \n "
+puts text.gsub(/([^\n]\n)(?=[^\n])/, '\1<br />')
+
 
 
