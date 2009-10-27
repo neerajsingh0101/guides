@@ -1,3 +1,10 @@
+# two simple ways to handle string and regex
+s = 'total: 3'
+# in the following case if there is no match then it will throw an error
+puts s.match(/(total): (\d+)/)[2] #=> 3
+#this one will not throw error. It will return nil if there is no match.
+puts s[/(total): (\d+)/,2] #=> 3
+
 # fine everything within double quotes
 s = %Q{  id: "hello" }
 puts /"(.*)"/.match(s)[0] # will give you the string with the double quotes
@@ -8,6 +15,12 @@ puts /"(.*)"/.match(s)[1] # will give you the string without the double quotes
 s = %Q{Clinton,Bill,USA,President}
 m = /([A-Za-z]+),([A-Za-z]+),([A-Za-z]+),([A-Za-z]+)/.match(s)
 puts m.to_a
+#Clinton,Bill,USA,President
+#Clinton
+#Bill
+#USA
+#President
+
 
 
 # dynamic find_by methods in ActiveRecord
@@ -204,6 +217,4 @@ puts s.sub(/(\w+):(\w+)/,'\2, \1') #=> Smith, Mike
 # converted into <br />
 text = "\nhello \n\n world \n "
 puts text.gsub(/([^\n]\n)(?=[^\n])/, '\1<br />')
-
-
-
+text.gsub!(/\n\n+/, "</p>\n\n#{start_tag}")
