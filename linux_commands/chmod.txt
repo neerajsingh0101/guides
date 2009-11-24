@@ -1,0 +1,11 @@
+# If you get a new mac then you need to move all the ssh keys from one machine to another
+# if you copy all the ssh keys from one machine to another then permission gets lost
+# and private keys must have permission like this
+# -rw-------   1 nkumar  staff  1675 Aug 29  2008 github
+
+# after copy this is what I got
+# -rw-r--r--   1 nkumar  staff  1675 Aug 29  2008 github
+
+# In order to get rid of read permission for group and others just do this
+
+chmode g-r,o-r

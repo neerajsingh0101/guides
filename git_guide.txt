@@ -1,3 +1,10 @@
+=======================
+add a file to a commit afterwards
+$ git commit -m 'initial commit'
+$ git add forgotten_file
+$ git commit --amend
+=======================
+
 ======================
 CONFIGURATION COMMANDS 
 ======================
@@ -85,11 +92,11 @@ git reset --soft HEAD^
 GETTING TO OLD DATA
 
 # this will output the -1 version of admin_controller.rb
-git show HEAD^:app/controllers/admin_controller.rb 
+> git show HEAD^:app/controllers/admin_controller.rb 
 
 # if you want to replace the current content with the old one then do this
 # note that there is no colon before app in this case
-git checkout HEAD^ app/controllers/admin_controller.rb
+> git checkout HEAD^ app/controllers/admin_controller.rb
 ================== 
 
 
@@ -121,9 +128,15 @@ BRANCH
 # switch to the master branch
 > git checkout master 
 
+
 # How do I see log of changes made in experiment branch over master branch
-> git log master..experiment
-> git log --stat master..experiment
+> git log master..staging
+> git log --stat master..staging
+# note that if staging is has some changes over master then git log the other way round does not work
+> git log staging..master #=> nil
+
+
+
 
 
 # How do I merge the changes from experiment to master branch
@@ -171,7 +184,7 @@ git commit --amend
 > git gc
 > git fsck
 
-# delete a remote branch experiment
+# delete a branch remote branch experiment
 git push origin :experiment 
 
 
@@ -247,7 +260,7 @@ DIFF
 git diff HEAD
 
 
-# get the commit info about the 3rg grand parent
+# get the commit info about the 3rd grand parent
 git rev-prarse master~3
 
 # show difference between current state and the last three commits
@@ -272,6 +285,7 @@ git diff master~10 --name-status
 
 # by default the diff shows 2 lines above and below. to change that number use this
 git diff master~3 --unified=10
+
 ==================  
 TAGGING
 ==================  
