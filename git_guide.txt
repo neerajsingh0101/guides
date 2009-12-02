@@ -1,3 +1,79 @@
+>git branch --no-merged
+
+
+>git branch -v
+
+>git push origin --tags
+
+git allows to create tags for commits which were done in way past
+>git tag -a v1.2 87ghyfg
+
+
+
+
+>git remote show origin
+
+> git remote -v
+
+
+unstaging a staged file
+>git reset HEAD README
+
+
+
+
+show all the diff from last two log messages
+> git log -p -2
+
+
+
+git blame provides the current snapshot. If you want to search through the old log
+files including the actual diff then use -Sxxxx
+>git log -Spackage --pretty=oneline apt.txt
+
+> git blame -L 2,5 apt.txt
+
+
+How to view a remote file
+>git show origin/master:README
+
+>git log -p abcdefg
+
+>git show abcdef
+
+if you are getting merge error while rebasing then try 
+> git rebase -i
+This will make rebasing operation interactive. leave out the code that is causing merge error.
+
+
+> git cat-file -p 16ffbb1d57bfbf28a5b4da9ea71faf1c73b92272
+-p is for pretty print the data
+
+
+>git cat-file -t ae850bd698b2b5dfbac
+-t is for type. it could be blob or tree
+
+>git ls-tree -r -t master^{tree}
+
+
+How does Git actually retrieve these objects in practice? Well, it gets the 
+initial SHA-1 of the starting commit object by looking in the .git/ refs 
+directory for the branch, tag or remote you specify.
+
+A branch in Git is nothing more than a file in the .git/refs/heads/ directory that 
+contains the SHA-1 of the most recent commit of that branch.
+
+>git ls-files -s
+
+The index is found in .git/index and keeps track of file pathnames and corresponding blobs. Each time you run commands such as git add, git rm, or git mv, Git updates the index with the new pathname and blob information.
+
+> git rev-parse 54dedfd
+54dedfd8e1c5bc00f3dfabfd77f87286c04901f2
+
+>find .git/objects
+
+>git config -l
+
 =======================
 add a file to a commit afterwards
 $ git commit -m 'initial commit'
@@ -17,7 +93,7 @@ CONFIGURATION COMMANDS
 # project
 git config --list 
 
-# More information about a gig project can also be seen by
+# More information about a git project can also be seen by
 > cat .git/config
 
 
@@ -34,7 +110,8 @@ BASIC COMMANDS
 # Reset all the local changes
 > git reset --hard HEAD
 
-# How do I revert a particular file (application.rb) which is not yet committed but has been locally changed
+# How do I revert a particular file (application.rb) which is not yet committed but 
+has been locally changed
 > git checkout foo.txt
 
 # How to rename a file
@@ -137,10 +214,8 @@ BRANCH
 
 
 
-
-
 # How do I merge the changes from experiment to master branch
-> git branch master # make sure that I am in master branch
+> git co master # make sure that I am in master branch
 > git merge experiment
 
 # delete the experiment branch
@@ -261,7 +336,7 @@ git diff HEAD
 
 
 # get the commit info about the 3rd grand parent
-git rev-prarse master~3
+git rev-prase master~3
 
 # show difference between current state and the last three commits
 git diff master~3
@@ -402,7 +477,7 @@ git remote add origin git@github.com:neerajdotname/trashit.git
 # I want to change my user name and email address just for one single project. This change should
 # not be global but just for one git project
 > cd demo
->  git config 
+> git config 
 > git config user.name 'John doe'
 > git config user.email 'john@doe.com'
 > git config --list
@@ -461,6 +536,7 @@ git ls-tree -r -t master^{tree} # -t makes also show the SHA1-s of subtrees
 # git cat-file to find out what kind of object it is 
 >git cat-file -t ae850bd698b2b5dfbac
 tree
+
 >git cat-file -t 569b350811
 blob
 
@@ -503,7 +579,6 @@ $ git cherry master
 + 956f4cec5684544066a0d261ff8ac80aff7a57ea
 + 6c6cdb4342ed935f8fbd38f48f51dec469dd1823
 + c3481fd0d6279f5bd45c455b915e0b4b1c0d8909
-
 #########################################################
 
 
@@ -549,7 +624,7 @@ git blame app/models/article.rb
 ##################
 
 ######
-git log -Sstring searches 
+>git log -Sstring searches 
 back through the history of a file’s diffs for the given string. By searching the actual 
 diffs between revisions, this command can find commits that perform a change in both 
 additions and deletions. 
@@ -558,7 +633,7 @@ additions and deletions.
 
 ####
 How to accept a patch
-git remote add snaury git://github.com/snaury/admin_data.git && git pull snaury master
+>git remote add snaury git://github.com/snaury/admin_data.git && git pull snaury master
 ###
 
 ###
