@@ -4,12 +4,15 @@ whole world search. I am looking for create_tab. However it should NOT match cre
 Search for 'Completed On' without the quotes
 >ack --literal 'Completed on'
 
+list all files
+>ack -f
+
 List all javascript files
 >ack -f --js
 
 List all the file names matching given string . This process will not look into the content of the files.
 Search through files and not through file contents. 
-Get full path to all the files and then apply search to file names
+Get full path to all the files and then apply search to file names. Note that the output is path to a file.
 >ack -g form
 >ack -g routes
 
@@ -61,10 +64,6 @@ Search all file types including a file called foo.bar. Note that it will still i
 Search all types of files including files like .svn . In this case all files residing in that directory
 will be searched through.
 >ack neeraj -u
-
-
-list all files
->ack -f
 
 list all files with extension haml
 >ack -f --type=haml
