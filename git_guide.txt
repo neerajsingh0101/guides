@@ -1,5 +1,11 @@
->git branch --no-merged
+git delete deleted files
+-n is for the dry run
+>git add -n -u 
 
+delete untracked files
+>git clean -n -d
+
+>git branch --no-merged
 
 >git branch -v
 
@@ -8,31 +14,21 @@
 git allows to create tags for commits which were done in way past
 >git tag -a v1.2 87ghyfg
 
-
-
-
 >git remote show origin
 
 > git remote -v
 
-
 unstaging a staged file
 >git reset HEAD README
 
-
-
-
 show all the diff from last two log messages
 > git log -p -2
-
-
 
 git blame provides the current snapshot. If you want to search through the old log
 files including the actual diff then use -Sxxxx
 >git log -Spackage --pretty=oneline apt.txt
 
 > git blame -L 2,5 apt.txt
-
 
 How to view a remote file
 >git show origin/master:README
@@ -45,16 +41,13 @@ if you are getting merge error while rebasing then try
 > git rebase -i
 This will make rebasing operation interactive. leave out the code that is causing merge error.
 
-
 > git cat-file -p 16ffbb1d57bfbf28a5b4da9ea71faf1c73b92272
 -p is for pretty print the data
-
 
 >git cat-file -t ae850bd698b2b5dfbac
 -t is for type. it could be blob or tree
 
 >git ls-tree -r -t master^{tree}
-
 
 How does Git actually retrieve these objects in practice? Well, it gets the 
 initial SHA-1 of the starting commit object by looking in the .git/ refs 
@@ -136,20 +129,16 @@ has been locally changed
 > git status
 > git commit -m 'initial commit'
 
-
 # add and commit all files
 # It also includes the files that are there
 # in the filesystem but have not been added to git. Basically
 # this command will add files to git and then will commit them.
 > git commit -a 'commit any changes in this project'
 
-
 ######################
 undo the last commit and keep the changes in the working tree
 git reset --soft HEAD^
 ######################
-
-
 
 ###########################################################################################
 # I have deleted a file but not yet committed. How do I retrieve the file.

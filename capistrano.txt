@@ -1,0 +1,8 @@
+invoke date function on remote server
+>cap production invoke COMMAND='date'
+
+tail the log file
+>cap production invoke COMMAND='tail -f /home/nsingh/apps/kite_runner_production/current/log/production.log'
+
+invoke a rake task remotely
+>cap production invoke COMMAND='cd /home/nsingh/apps/kite_runner_production/current; /usr/bin/rake foo:run RAILS_ENV=production'
