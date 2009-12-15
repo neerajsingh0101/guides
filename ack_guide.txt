@@ -2,6 +2,10 @@ Search only through .erb files
 # for the below solution to work setup .ackrc file with erb type
 # http://github.com/neerajdotname/dotfiles/blob/master/ackrc
 >ack foo --type=erb
+>ack foo --erb
+
+ignore .erb files but search through all other file types
+>ack foo --noerb
 
 Search only through html files
 >ack foo --type=html
