@@ -1,3 +1,6 @@
+# checkout production branch of a project
+>git co -b production origin/production
+
 git delete deleted files
 -n is for the dry run
 >git add -n -u 

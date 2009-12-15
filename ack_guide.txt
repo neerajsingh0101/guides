@@ -1,3 +1,12 @@
+Search only through .erb files
+# for the below solution to work setup .ackrc file with erb type
+# http://github.com/neerajdotname/dotfiles/blob/master/ackrc
+>ack foo --type=erb
+
+Search only through html files
+>ack foo --type=html
+
+
 whole world search. I am looking for create_tab. However it should NOT match create_table.
 >ack -w create_tab
 
@@ -55,8 +64,6 @@ to search for clean. only words matching clean? should be in the result
 >ack --literal clean?
 >ack --literal .git
 
-Search only through html files
->ack neeraj --type=html
 
 Search all file types including a file called foo.bar. Note that it will still ignore files like .svn etc.
 >ack -a neeraj
