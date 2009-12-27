@@ -5,7 +5,8 @@ puts s.match(/(total): (\d+)/)[2] #=> 3
 #this one will not throw error. It will return nil if there is no match.
 puts s[/(total): (\d+)/,2] #=> 3
 
-# fine everything within double quotes
+
+# find everything within double quotes
 s = %Q{  id: "hello" }
 puts /"(.*)"/.match(s)[0] # will give you the string with the double quotes
 puts /"(.*)"/.match(s)[1] # will give you the string without the double quotes
@@ -203,12 +204,16 @@ puts s.sub(/(\w+):(\w+)/,'\2, \1') #=> Smith, Mike
 <div>Hello World</div>
 <div >Hello World</div>
 
-#capture string within the html tag
+#capture string within html tag
 /<\w+\s*>(.*)<\/\w+\s*>/
 <div>Hello World</div>
 <div >Hello World</div>
 
 
+# turning a greedy match into non greedy match
+s = ', 1 , 2 , 3 , 4'
+puts s[/,(.*),/,1] #=> 1 , 2, 3
+puts s[/,(.*?),/,1] #=> 1
 
 
 # usage of look ahead in actionpack. simple_format method uses following regex to
