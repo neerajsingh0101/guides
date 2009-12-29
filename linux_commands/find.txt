@@ -1,3 +1,21 @@
+
+
+All three statements are same
+>find . -print
+>find -print
+>find .
+
+
+The "-print" action lists the names of files separated by a newline.  But it is common to pipe the output of find into xargs, which uses a space to separate file names.  This can lead to a problem if any found files contain spaces in their names, as the output doesn't use any quoting.  In such cases, when the output of find contains a file name such as "foo bar" and is piped into another command, that command "sees" two file names, not one file name containing a space.  Even without using xargs you could have a problem if the file name contains a newline character.
+
+In such cases you can specify the action "-print0" instead.  This lists the found files separated not with a newline but with a null (or "NUL") character, which is not a legal character in Unix or Linux file names.  Of course the command that reads the output of find must be able to handle such a list of file names.  Many commands commonly used with find (such as tar or cpio) have special options to read in file names separated with NULs instead of spaces.
+
+
+
+
+
+
+
 list all the directories and subdirectories
 >find .
 
@@ -10,7 +28,33 @@ list all the empty directories
 list all the empty files
 >find . -type f -empty
 
->find / - name "host*" 
-
 search for files created by alex
 >find / - user "alex"
+
+search for file named foo. Result will display the full pathname
+>find / -name	foo
+
+
+If you don't run this command as root, find will display a error message for each directory on which you don't have read permission.  This can be a lot of messages, and the matching files that are found may scroll right off your screen.  A good way to deal with this problem is to redirect the error messages so you don't have to see them at all:
+>find / -name foo 2>/dev/null
+
+
+You can specify as many places to search as you wish:
+>find /tmp /var/tmp . $HOME -name foo
+
+
+look for file names starting with foo and ending with bar. Note that wildcards in the name argument must be quoted so the shell doesn't expand them before passing them to find.
+>find . -name foo\*bar
+
+
+delete all files named core from your system. Both the commands do the same thing.
+>find / -name core | xargs /bin/rm -f
+>find / -name core -exec /bin/rm -f '{}' \; # same thing
+
+
+list all the directories
+>find . -type d
+
+
+list all the symbolic links
+>find . -type l

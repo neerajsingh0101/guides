@@ -10,7 +10,6 @@ ignore .erb files but search through all other file types
 Search only through html files
 >ack foo --type=html
 
-
 whole world search. I am looking for create_tab. However it should NOT match create_table.
 >ack -w create_tab
 
