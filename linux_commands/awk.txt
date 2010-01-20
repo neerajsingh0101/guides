@@ -1,0 +1,3 @@
+List of all authors on a git repo
+>git log --pretty=short | grep Author: | awk '{print $2}' | sort | uniq
+

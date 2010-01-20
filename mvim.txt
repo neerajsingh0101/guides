@@ -131,7 +131,7 @@ Fd
 # find the first character d but stop one character short of it. called search till
 td
 
-# find the first occurence of character 'd' going backward
+# find the first occurrence of character 'd' going backward
 shift t d
 shift f d
 

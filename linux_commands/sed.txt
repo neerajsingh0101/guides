@@ -1,7 +1,35 @@
 # http://www.brunolinux.com/02-The_Terminal/Find_and%20Replace_with_Sed.html
 
 # find and replace in one file
-sed -i 's/ugly/beautiful/g' /tmp/foo.txt
+# s is for substitute
+# g is for global
+# I is for ignore case
+# -i will update the file itself
+# -n option suppress automatic printing of pattern space
+sed -i 's/ugly/beautiful/gI' /tmp/foo.txt
+
+# find README and ruplace foo with bar and create another file called README2
+sed "s/foo/bar/g" README > README2
+
+
+find the text between the strings FOO and BAR inclusive
+>sed -n '/FOO/,/BAR/p' test.txt
+
+
+find out all virtual host entries from httpd.conf
+>sed -n '/<VirtualHost*/,/<\/VirtualHost>/p' /etc/httpd/conf/httpd.conf
+
+
+Deleting the first line in the input file
+> sed '1d' textfile.txt
+
+Deleting the last line in the input file
+> sed '$d' textfile.txt
+
+
+Delete lines 2 through 4 in the file
+> sed '2,4d' textfile.txt
+
 
 # find and replace in all files 
 find /tmp -type f -exec sed -i 's/ugly/beautiful/g' {} \;

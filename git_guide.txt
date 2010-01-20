@@ -1,11 +1,15 @@
 # checkout production branch of a project
 >git co -b production origin/production
 
-git delete deleted files
 -n is for the dry run
 >git add -n -u 
 
-delete untracked files
+delete untracked files. 
+-d removes untracked directories in addition to untracked files.
+-f force
+-q quiet
+-x do not use ignore rules. This allows removing all untracked files
+-X remove only files ignored by git
 >git clean -n -d
 
 >git branch --no-merged
@@ -61,7 +65,9 @@ contains the SHA-1 of the most recent commit of that branch.
 
 >git ls-files -s
 
-The index is found in .git/index and keeps track of file pathnames and corresponding blobs. Each time you run commands such as git add, git rm, or git mv, Git updates the index with the new pathname and blob information.
+The index is found in .git/index and keeps track of file pathnames and corresponding blobs. Each time 
+you run commands such as git add, git rm, or git mv, Git updates the index with the new pathname 
+and blob information.
 
 > git rev-parse 54dedfd
 54dedfd8e1c5bc00f3dfabfd77f87286c04901f2

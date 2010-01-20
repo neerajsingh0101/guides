@@ -1,0 +1,11 @@
+git config --global user.name "John Doe"
+
+git config --global user.email johndoe@example.com
+
+git config --global core.editor mate
+
+git config --global color.ui "auto"
+
+git config alias.co checkout
+
+git config --list

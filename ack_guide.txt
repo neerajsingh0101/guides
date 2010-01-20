@@ -13,8 +13,6 @@ Search only through html files
 whole world search. I am looking for create_tab. However it should NOT match create_table.
 >ack -w create_tab
 
-Search for 'Completed On' without the quotes
->ack --literal 'Completed on'
 
 list all files
 >ack -f
@@ -46,26 +44,29 @@ Pring line 2 3 and 5 of every file
 
 Stop reading a file after certain number of matches are found in that file
 I don't want ack to search in a file after 2 matches are found in a file
->ack --max-count=2 neeraj
+>ack --max-count=2 foo
 
 Stop searching after 1 file is found matching the criteria. This is different from max-count 
 in which case search continues for all the files
->ack neeraj -1
+>ack foo -1
 
-Prints all lines, whether or not they match the expression. Highlighting will still work, though, 
-so it can be used to highlight matches while still seeing the entire file
->tail -f development.log | ack --passthru neeraj
+Prints all lines, whether or not they match the expression. It can be used to highlight matches 
+while still seeing the entire file
+>tail -f development.log | ack --passthru foo
 
--v is to invert the search. Get the list of all the files which do not have neeraj 
->ack -ivl neeraj
+-v is to invert the search. Get the list of all the files which do not have foo
+>ack -ivl foo
 
 Do not print the filename in the result
->ack -h neeraj
+>ack -h foo
 
 I want to search for clean? . Notice the question mark at the end. I don't want 
 to search for clean. only words matching clean? should be in the result
 >ack --literal clean?
 >ack --literal .git
+
+Search for 'Completed On' without the quotes
+>ack --literal 'Completed on'
 
 
 Search all file types including a file called foo.bar. Note that it will still ignore files like .svn etc.
