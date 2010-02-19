@@ -58,3 +58,7 @@ list all the directories
 
 list all the symbolic links
 >find . -type l
+
+
+find all empty directories
+>find . -type d -empty

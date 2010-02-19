@@ -404,6 +404,8 @@ GIT BROWSING
 LOGGING
 ==================  
 
+git log --stat production..master
+
 # figure out which branch is where
 git log --pretty=oneline --graph --all
 
@@ -642,3 +644,16 @@ How to accept a patch
 ###
 git clean -f -X
 git clean -f -d
+
+####
+find out all the commits that have not been pushed to remote server
+git cherry -v origin/master
+####
+
+
+
+
+####
+I have some local changes that I want to throwaway and I want to get back to branch master
+git co -f master
+####

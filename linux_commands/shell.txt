@@ -33,3 +33,6 @@ lists all services with port number
 
 update this file to resolve a hostname to an IP address
 >/etc/hosts 
+
+# at the end of file add 'Hello World'
+echo "Hello World" > file
