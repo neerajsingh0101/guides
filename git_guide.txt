@@ -1,3 +1,33 @@
+git creates new objects all the time. If a single line is added to a file then git will create a brand
+new object. However one can ask git to use previous object and to store only incremental difference.
+this is called packing.
+>git gc
+
+After the packing is done one can verify packing by running following command 
+git verify-pack -v .git/objects/pack/pack-108ebf6abb50656e7aa5695314a47c3fc1e23f90.idx 
+
+
+.git/HEAD contains the reference to the current branch
+.git/HEAD => refs/heads/production ( in production branch)
+.git/HEAD => refs/heads/master ( in master branch)
+> git symbolic-ref HEAD
+
+
+show current tree
+> git cat-file -p master^{tree}
+
+
+After a successful merge operation if you want to discard the merge operation then just do 
+> git reset --hard ORIG_HEAD
+
+If a git merge is failing then use following technique to get more log info
+> git log --merge --left-right -p
+
+get a list of all files in merge conflict state
+> git ls-files -s
+notice the number 1 or 2 or 3. this would depict the number of files that are being maintained by git.
+If merge issue is resolved then git ls-files -s should produce listing with value 0.
+
 git stores the 40 digit SHA1_HASH of the content. for foo.txt if the 40 char hash is
 16ffbb1d57bfbf28a5b4da9ea71faf1c73b92272 then this content would be stored at
 .git/objects/16/ffbb1d57bfbf28a5b4da9ea71faf1c73b92272 . If you cat this file then
@@ -29,6 +59,21 @@ tracking changes after renaming a file
 > git mv foo1 foo2
 > git log foo2 # this will display all the log messages associated with foo2 but none with foo1
 > git log --follow foo2 #this will also display log messages associated with foo1 since foo1 and foo2 are same
+
+
+show all the diff between the current and last two version for all files under app directory
+> git diff master~2 master app
+
+create a branch from one commit prior to master branch
+> git co -b staging master^
+
+when a merge conflict happens then find all unmerged files using git diff
+> git diff
+all the changes compared to ours can ben seen as
+> git diff --ours
+all the changes compared to theirs can be seen as
+> git diff --theirs
+
 
 When a commit occurs, Git records a snapshot of the index and places that snapshot 
 in the object store.  This snapshot does not contain a copy of every file and 
@@ -66,7 +111,7 @@ HEAD is nothing else but refers to a commit. find out the commit HEAD points to
 > git reset --hard HEAD
 
 # How do I revert a particular file which is not yet committed but has been locally changed
-> git checkout foo.txt
+> git co foo.txt
 
 # How to rename a file
 > git mv foo.txt bar.txt
@@ -81,7 +126,7 @@ HEAD is nothing else but refers to a commit. find out the commit HEAD points to
 # delete a file from git
 > git rm foo.txt
 
-# I have deleted a file but not yet committed. How do I retrieve the file.
+# I have deleted a file using rm but not yet committed. How do I retrieve the file.
 >git co foo.txt
 
 # get list of all the files deleted using rm. Note it is not git rm
@@ -168,7 +213,8 @@ http://bradlyfeeley.com/2008/09/03/update-a-github-fork-from-the-original-repo/
 # info about a commit
 >git show SHA1_HASH
 
-# if you are getting merge error while rebasing then try interactive rebase and leave out the code that is causing merge error.
+# if you are getting merge error while rebasing then try interactive rebase and leave out the code 
+that is causing merge error.
 > git rebase -i master
 
 # find out if a commit is of type commit or tree
@@ -189,13 +235,12 @@ http://bradlyfeeley.com/2008/09/03/update-a-github-fork-from-the-original-repo/
 >git add forgotten_file
 >git commit --amend
 
-# global case
+# global settings
 >git config --global user.name “Neeraj Singh”
 >git config --global user.email "neerajdotname@gmail.com" 
 
 # use --unset option to remove a setting
 >git config --unset --global user.name
-
 
 # just for this project
 > git config 
@@ -204,13 +249,11 @@ http://bradlyfeeley.com/2008/09/03/update-a-github-fork-from-the-original-repo/
 
 >cat ~/.gitconfig
 
-
 # list the current configuration setting
 >git config --list 
 
 # More information about a git project can also be seen by
 >cat .git/config
-
 
 # log of changes made in staging branch over master branch
 > git log master..staging
@@ -244,7 +287,8 @@ http://bradlyfeeley.com/2008/09/03/update-a-github-fork-from-the-original-repo/
 > git commit --amend # now this file is in the last commit
 
 # I have five commits I want to totally discard last two commits and start from third commit
-# both the commits after the 3rd commit will be gone permanently. It is different from revert where a reversal is another 
+# both the commits after the 3rd commit will be gone permanently. It is different from revert 
+# where a reversal is another 
 # commit. In this case the last two commits were just deleted. They are gone.
 >git log -n 5 #it will display all the five logs
 >git reset --hard SHA1_HASH (SHA1-HASH of the third commit)
@@ -261,11 +305,9 @@ http://bradlyfeeley.com/2008/09/03/update-a-github-fork-from-the-original-repo/
 # You need to commit the changes yourself.
 git merge --squash staging
 
-
 # diff between master branch and experiment branch
 > git diff --stat master experiment
 > git diff master experiment
-
 > git diff --cached
 
 
@@ -274,7 +316,7 @@ git merge --squash staging
 # now I added foo.txt to index ( git add foo.txt)
 # I want to see all the changes from the HEAD. It should incluce the changes incurred in foo.txt and 
 # bar.txt even though foo.txt has already been added to the index
-git diff HEAD
+> git diff HEAD
 
 > git tag 'filter work done'
 > git push --tags
@@ -323,13 +365,13 @@ git checkout -b <tag name>
 >git log --no-merges --pretty=oneline | wc -l
 
 # all the commits which had something to do with a file
-git log --pretty=oneline db/schema.rb
+>git log --pretty=oneline db/schema.rb
 
 # all the commits which had something to do with that file. limit the log to just 2 entries
-git log -n 2 app/models/user.rb 
+>git log -n 2 app/models/user.rb 
 
 # lists all the diffs for every commit of that file
-git log -p app/models/user.rb 
+>git log -p app/models/user.rb 
 
 
 # I want to change my user name and email address just for one single project. This change should
@@ -347,7 +389,6 @@ git log -p app/models/user.rb
 
 # find all the commits that have not been pushed to remote server
 git cherry -v origin/master
-
 
 >git tag
 
@@ -410,20 +451,13 @@ git cherry-pick SHA1_HASH
 
 > git remote -v
 
-
-
-
-
-
-
-
+> git ls-remote origin
 
 >git ls-files -s
 
 The index is found in .git/index and keeps track of file pathnames and corresponding blobs. Each time 
 you run commands such as git add, git rm, or git mv, Git updates the index with the new pathname 
 and blob information.
-
 
 >find .git/objects
 
@@ -590,3 +624,8 @@ to trace the history all the way back to the original file
 How to accept a patch
 >git remote add snaury git://github.com/snaury/admin_data.git && git pull snaury master
 ###
+
+git does not allow to switch to a different branch is a file that is being tracked is modified. However
+-m option tells git to checkout the other branch and then merge with the local changes. In this way
+your current branch is left as it is and all the changes are in different branch.
+> git co -m staging
