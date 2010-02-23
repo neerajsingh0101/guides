@@ -10,7 +10,6 @@ list all the items in a directory with line break
 delete all the files listed in foo.txt
 >cat foo.txt | xargs rm
 
-
 delete all the directories with name abc*
 >rm abc*
 rm: arg list too long if there are too many directories. xargs can help by processing 20 directories at a time

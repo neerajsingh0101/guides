@@ -1,112 +1,60 @@
-How to update a fork from the original branch
-http://bradlyfeeley.com/2008/09/03/update-a-github-fork-from-the-original-repo/
-
-
-
-# checkout production branch of a project
->git co -b production origin/production
-
--n is for the dry run
->git add -n -u 
-
-delete untracked files. 
--d removes untracked directories in addition to untracked files.
--f force
--q quiet
--x do not use ignore rules. This allows removing all untracked files
--X remove only files ignored by git
->git clean -n -d
-
->git branch --no-merged
-
->git branch -v
-
->git push origin --tags
-
-git allows to create tags for commits which were done in way past
->git tag -a v1.2 87ghyfg
-
->git remote show origin
-
-> git remote -v
-
-unstaging a staged file
->git reset HEAD README
-
-show all the diff from last two log messages
-> git log -p -2
-
-git blame provides the current snapshot. If you want to search through the old log
-files including the actual diff then use -Sxxxx
->git log -Spackage --pretty=oneline apt.txt
-
-> git blame -L 2,5 apt.txt
-
-How to view a remote file
->git show origin/master:README
-
->git log -p abcdefg
-
->git show abcdef
-
-if you are getting merge error while rebasing then try 
-> git rebase -i
-This will make rebasing operation interactive. leave out the code that is causing merge error.
-
+git stores the 40 digit SHA1_HASH of the content. for foo.txt if the 40 char hash is
+16ffbb1d57bfbf28a5b4da9ea71faf1c73b92272 then this content would be stored at
+.git/objects/16/ffbb1d57bfbf28a5b4da9ea71faf1c73b92272 . If you cat this file then
+you will see garbage. However you can  run below command to see the content
 > git cat-file -p 16ffbb1d57bfbf28a5b4da9ea71faf1c73b92272
--p is for pretty print the data
-
->git cat-file -t ae850bd698b2b5dfbac
--t is for type. it could be blob or tree
-
->git ls-tree -r -t master^{tree}
-
-How does Git actually retrieve these objects in practice? Well, it gets the 
-initial SHA-1 of the starting commit object by looking in the .git/ refs 
-directory for the branch, tag or remote you specify.
 
 A branch in Git is nothing more than a file in the .git/refs/heads/ directory that 
 contains the SHA-1 of the most recent commit of that branch.
 
->git ls-files -s
+Every single time something is added using git add, a new blob object is created at
+.git/objects. The path information about this blob at index. If user ends up not commiting
+the file after adding it then that blob stay there unless a cleanup action is done. That is how
+the number of blobs keep growing.
 
-The index is found in .git/index and keeps track of file pathnames and corresponding blobs. Each time 
-you run commands such as git add, git rm, or git mv, Git updates the index with the new pathname 
-and blob information.
+A tree contains the information that maps a blob to a file. The tree itself is also stored
+at .git/objects .
 
-> git rev-parse 54dedfd
-54dedfd8e1c5bc00f3dfabfd77f87286c04901f2
+A commit blob contains the name of tree that identifies it.
+>git cat-file -p SHA1_HASH
 
->find .git/objects
+get list of all files in the index and their SHA1_HASH
+>git ls-files --stage
 
->git config -l
+compute the hash of a file. This hash value will be same as the hash value that is shown
+in git ls-files --stage
+>git hash-object Rakefile
 
-=======================
-add a file to a commit afterwards
-$ git commit -m 'initial commit'
-$ git add forgotten_file
-$ git commit --amend
-=======================
+tracking changes after renaming a file
+> git mv foo1 foo2
+> git log foo2 # this will display all the log messages associated with foo2 but none with foo1
+> git log --follow foo2 #this will also display log messages associated with foo1 since foo1 and foo2 are same
 
-======================
-CONFIGURATION COMMANDS 
-======================
-> git config --global user.name “Neeraj Singh”
-> git config --global user.email "neerajdotname@gmail.com" 
-> cat ~/.gitconfig
-
-# list the current configuration setting
-# if you are inside a git project then executing the below command will show extra information about that
-# project
-git config --list 
-
-# More information about a git project can also be seen by
-> cat .git/config
+When a commit occurs, Git records a snapshot of the index and places that snapshot 
+in the object store.  This snapshot does not contain a copy of every file and 
+directory in the index. Instead, Git compares the current state of the index to 
+the previous snapshot and so derives a list of affected files and directories. 
+Git creates new blobs for any file that has changed and new trees for any directory 
+that has changed, and it reuses any blob or tree object that has not changed.
 
 
-==================  
-BASIC COMMANDS 
-==================  
+caret is used to select a different parent. Given a commit, C, C^1 is the first parent,
+C^2 is the second parent, C^3 is the third parent
+
+
+tilde is used to go back before an ancestral parent and select a preceding generation. 
+Again, given the commit C, C~1 is the first parent, C~2 is the first grandparent, and 
+C~3 is the first great-grandparent.
+
+> git rev-parse master
+
+> git log master
+
+HEAD is nothing else but refers to a commit. find out the commit HEAD points to
+> git show HEAD
+
+# .gitignore file can be any directory
+# if you want to ignore something local to youself then use .git/info/exclude
 
 # How to get the status
 > git status
@@ -117,8 +65,7 @@ BASIC COMMANDS
 # Reset all the local changes
 > git reset --hard HEAD
 
-# How do I revert a particular file (application.rb) which is not yet committed but 
-has been locally changed
+# How do I revert a particular file which is not yet committed but has been locally changed
 > git checkout foo.txt
 
 # How to rename a file
@@ -134,55 +81,14 @@ has been locally changed
 # delete a file from git
 > git rm foo.txt
 
-# How do I get a project inside git for the first time
-> rails demo
-> cd demo
-> git init
-> touch .gitignore
-> git add . 
-> git status
-> git commit -m 'initial commit'
-
-# add and commit all files
-# It also includes the files that are there
-# in the filesystem but have not been added to git. Basically
-# this command will add files to git and then will commit them.
-> git commit -a 'commit any changes in this project'
-
-######################
-undo the last commit and keep the changes in the working tree
-git reset --soft HEAD^
-######################
-
-###########################################################################################
 # I have deleted a file but not yet committed. How do I retrieve the file.
-# there are two ways
-> git rm foo.txt
+>git co foo.txt
 
-# restore the foo.txt
-> git checkout foo.txt
+# get list of all the files deleted using rm. Note it is not git rm
+>git ls-files --delete (-d)
 
-# checking out HEAD will bring back all the files deleted by command git rm . However
-# it will leave all the modified files as it is.
-> git checkout HEAD 
-
-###########################################################################################
-
-==================  
-GETTING TO OLD DATA
-
-# this will output the -1 version of admin_controller.rb
-> git show HEAD^:app/controllers/admin_controller.rb 
-
-# if you want to replace the current content with the old one then do this
-# note that there is no colon before app in this case
-> git checkout HEAD^ app/controllers/admin_controller.rb
-================== 
-
-
-==================  
-BRANCH
-==================  
+# checkout production branch of a project
+>git co -b production origin/production
 
 # create a new branch called experiment
 > git branch experiment 
@@ -202,37 +108,130 @@ BRANCH
 # list all local and remote branches
 > git branch -a
 
-# list all the remote branches ( does not include local branches)
+# list only the remote branches ( does not include local branches)
 > git branch -r
 
 # switch to the master branch
 > git checkout master 
 
 
-# How do I see log of changes made in experiment branch over master branch
+How to update a fork from the original branch
+http://bradlyfeeley.com/2008/09/03/update-a-github-fork-from-the-original-repo/
+
+
+# delete untracked files. 
+# -d removes untracked directories in addition to untracked files.
+# -f force
+# -x do not use ignore rules. This allows removing all untracked files
+# -X remove only files ignored by git
+>git clean -n -d
+
+# show all the branches from which merge is yet to be done
+>git branch --no-merged
+
+# all branch info
+>git branch
+
+# all branch info with last commit
+>git branch -v
+
+# all branch info including remote branches
+>git branch -a
+
+# push tags to remote server
+>git push origin --tags
+
+# create a tag for a commit which was done in the past
+>git tag -a v1.2 xxxxxxx
+
+# unstaging a staged file
+>git reset HEAD README
+
+# show all the diff from last two log messages
+> git log -p -n 2
+
+# git log in oneline
+>git log --oneline
+
+# show all log messages for foo.txt
+> git log foo.txt
+
+# view a remote file
+>git show origin/master:README
+
+# show each line and the commit that last changed that line
+> git blame foo.txt
+
+# show git blame only for certain number of lines
+>git blame -L 2,25 foo.txt
+
+# info about a commit
+>git show SHA1_HASH
+
+# if you are getting merge error while rebasing then try interactive rebase and leave out the code that is causing merge error.
+> git rebase -i master
+
+# find out if a commit is of type commit or tree
+# -t is for type. it could be blob or tree
+>git cat-file -t ae850bd698b2b5dfbac 
+
+
+# find longer version of the commit name
+> git rev-parse 54dedfd
+54dedfd8e1c5bc00f3dfabfd77f87286c04901f2
+
+# rev-parse also works with tag names
+>git rev-prase version_1
+54dedfd8e1c5bc00f3dfabfd77f87286c04901f2
+
+# add a file to a commit afterwards
+>git commit -m 'initial commit'
+>git add forgotten_file
+>git commit --amend
+
+# global case
+>git config --global user.name “Neeraj Singh”
+>git config --global user.email "neerajdotname@gmail.com" 
+
+# use --unset option to remove a setting
+>git config --unset --global user.name
+
+
+# just for this project
+> git config 
+> git config user.name 'John doe'
+> git config user.email 'john@doe.com'
+
+>cat ~/.gitconfig
+
+
+# list the current configuration setting
+>git config --list 
+
+# More information about a git project can also be seen by
+>cat .git/config
+
+
+# log of changes made in staging branch over master branch
 > git log master..staging
 > git log --stat master..staging
 # note that if staging is has some changes over master then git log the other way round does not work
 > git log staging..master #=> nil
 
 
-
-# How do I merge the changes from experiment to master branch
+# merge the changes from staging to master branch
 > git co master # make sure that I am in master branch
-> git merge experiment
+> git merge staging
 
-# delete the experiment branch
-> git branch -d experiment 
+# delete the staging branch
+> git branch -d staging 
 
+# Revert a commit
+# Note that this commit will appear in the log as the revert. In the log the original commit 
+# and the reversal of that commit both will appear . Before the revert if there were 5 logs
+# then after the revert there will be 6 logs.
+> git revert SHA1_HASH
 
-# I have five commits I want to totally discard last two commits and start 
-# from third commit
-> git log
-it will display all the five logs
-
->git reset --hard SHA1_HASH (SHA1-HASH of the third commit)
-both the commits after the 3rd commit will be gone permanently. In that sense it is different from
-revert where a reversal is another commit. In this case the last two commits were just deleted. They are gone.
 
 # push local branch to github
 > git checkout -b experiment
@@ -240,37 +239,193 @@ revert where a reversal is another commit. In this case the last two commits wer
 > git push --all # it pushes all the branches 
 
 
-# github branch experiment has been updated by co-worker. I need to get all the changes to my local branch
-> git co experiment
-> git pull origin experiment
-
-# Revert a commit
-> git revert [commit-hash]
-Note that this commit will appear in the log as the revert. In the log the original commit 
-and the reversal of that commit both will appear . Before the revert if there were 5 logs
-then after the revert there will be 6 logs.
-
-# just committed and I wish I had written a different message for commit
-git commit --amend
-
 # forgot to add a file to the last commit
 > git add forgotten_file
 > git commit --amend # now this file is in the last commit
 
+# I have five commits I want to totally discard last two commits and start from third commit
+# both the commits after the 3rd commit will be gone permanently. It is different from revert where a reversal is another 
+# commit. In this case the last two commits were just deleted. They are gone.
+>git log -n 5 #it will display all the five logs
+>git reset --hard SHA1_HASH (SHA1-HASH of the third commit)
 
 # improve performance
 > git gc
 > git fsck
 
-# delete a branch remote branch experiment
+# delete remote branch experiment
+>git push origin :experiment 
+
+# squashed merge from staging. In squashed merge all the commits in staging would appear as
+# single commit in master. Note that squash merge operations leaves the changes in working directory. 
+# You need to commit the changes yourself.
+git merge --squash staging
+
+
+# diff between master branch and experiment branch
+> git diff --stat master experiment
+> git diff master experiment
+
+> git diff --cached
+
+
+# I have two files foo.txt and bar.txt
+# I made changes to both the files
+# now I added foo.txt to index ( git add foo.txt)
+# I want to see all the changes from the HEAD. It should incluce the changes incurred in foo.txt and 
+# bar.txt even though foo.txt has already been added to the index
+git diff HEAD
+
+> git tag 'filter work done'
+> git push --tags
+
+# tags list
+> git tag
+
+# delete a remote tag
 git push origin :experiment 
 
+# make a branch from your tag
+git checkout -b <tag name>
 
-# How to get production branch on a friend's machine
-> you are in the master branch
-> git co -b production
-> git pull origin production
+>gitk
+>gitk &
 
+>git log --stat production..master
+
+# figure out which branch is where
+>git log --pretty=oneline --graph --all
+
+# information about each commit and the number of files changed
+> git log --stat
+
+# log information in one line
+>git log --shortstat 
+
+# names of all files along with modified or added
+>git log --name-status 
+
+# just the title
+>git log --pretty=short 
+
+# one line log information
+>git log --pretty=oneline
+
+>git log --since="3 weeks"
+
+>git log --pretty=oneline --since="2007-12-01" --until='two months ago'
+
+# do not list logs from merges 
+>git log --no-merges 
+
+>git log --pretty=oneline | wc -l
+
+>git log --no-merges --pretty=oneline | wc -l
+
+# all the commits which had something to do with a file
+git log --pretty=oneline db/schema.rb
+
+# all the commits which had something to do with that file. limit the log to just 2 entries
+git log -n 2 app/models/user.rb 
+
+# lists all the diffs for every commit of that file
+git log -p app/models/user.rb 
+
+
+# I want to change my user name and email address just for one single project. This change should
+# not be global but just for one git project
+> cd demo
+> git config --list
+# Notice that user.name and user.email lines at the bottom of the list.
+# this will supercede the user.email and user.email listed at the top
+# of the list
+
+
+# looking for string ror_rocks in the diff. It was there in the file and then it got deleted.
+>git log -Sror_rocks
+>git log -Sror_rocks README
+
+# find all the commits that have not been pushed to remote server
+git cherry -v origin/master
+
+
+>git tag
+
+>git rm log/\*.log
+
+# LATER
+
+####
+I have some local changes that I want to throwaway and I want to get back to branch master
+git co -f master
+####
+
+see the tree and the parent info too
+>git show -s --pretty=raw abcdefgi
+
+I don't want to track REAME however I want this file in my working directory.
+>git diff --cached README
+
+in the log show the diff
+>git log -p
+
+>git remote show origin
+
+d921970^2 means “the second parent of d921970.” This syntax is only useful for merge 
+commits, which have more than one parent. The first parent is the branch you were on 
+when you merged, and the second is the commit on the branch that you merged in:
+>git show d921970^
+>git show d921970^2
+
+
+-n is for the dry run
+>git add -n -u 
+
+>git ls-tree -r -t master^{tree}
+
+######################
+undo the last commit and keep the changes in the working tree
+git reset --soft HEAD^
+######################
+
+==================  
+GETTING TO OLD DATA
+
+# this will output the -1 version of admin_controller.rb
+> git show HEAD^:app/controllers/admin_controller.rb 
+
+# if you want to replace the current content with the old one then do this
+# note that there is no colon before app in this case
+> git checkout HEAD^ app/controllers/admin_controller.rb
+================== 
+
+##################################################################################
+# cherry-picking to apply one commit from source to the target
+# in this case #ABCDEFG is the SHA-1 of the commit hash. One can
+# stage multiple cherry-pickekd merges by adding the -n argument
+git cherry-pick SHA1_HASH
+##################################################################################
+
+>git remote show origin
+
+> git remote -v
+
+
+
+
+
+
+
+
+
+>git ls-files -s
+
+The index is found in .git/index and keeps track of file pathnames and corresponding blobs. Each time 
+you run commands such as git add, git rm, or git mv, Git updates the index with the new pathname 
+and blob information.
+
+
+>find .git/objects
 
 ##################################################################################
 # co-worked has put up a new branch called experiment. How do I pull that branch.
@@ -292,51 +447,6 @@ git push origin :experiment
   
 > git checkout -b experiment origin/experiment
 ##################################################################################
-
-
-##################################################################################
-Branching
-
-first cd into the target branch ( the branch in which merging will be done)
-cd branch_a
-
-# straight merge from branch_b
-git merge branch_b 
-
-# squashed merge from branch_b. In squashed merge all the commits in branch_b would appear as
-# single commit in branch_a. Note that for squashed merge the changes are applied as staged (not committed)
-git merge --squash branch_b
-
-# cherry-picking to apply one commit from source to the target
-# in this case #ABCDEFG is the SHA-1 of the commit hash. One can
-# stage multiple cherry-pickekd merges by adding the -n argument
-git cherry-pick #ABCDEFG
-##################################################################################
-
-
-
-
-==================  
-DIFF
-==================  
-# diff between master branch and experiment branch
-> git diff --stat master experiment
-> git diff master experiment
-
-
-# Use git diff to see the changes done before performing git add .
-# However after performing git add .  git diff comes up as empty.
-# If you want to see the diff after git add . then do this
-> git diff --cached
-
-
-# I have two files foo.txt and bar.txt
-# I made changes to both the files
-# now I added foo.txt to index ( git add foo.txt)
-# I want to see all the changes from the HEAD. It should incluce the changes incurred in foo.txt and 
-# bar.txt even though foo.txt has already been added to the index
-git diff HEAD
-
 
 # get the commit info about the 3rd grand parent
 git rev-prase master~3
@@ -364,97 +474,6 @@ git diff master~10 --name-status
 # by default the diff shows 2 lines above and below. to change that number use this
 git diff master~3 --unified=10
 
-==================  
-TAGGING
-==================  
-> git tag -a -m "tagging version 1.0" 1.0
-> git push --tags
-
-# tags list
-> git tag -l 
-
-# tags list
-> git tag
-
-# delete a remote tag
-git push origin :experiment 
-
-# make a branch from your tag
-git checkout -b <tag name>
-
-
-==================  
-VISUAL
-==================  
-gitk --all
-gitk --all &
-
-
-==================  
-GIT BROWSING
-==================  
-# show all the information about commit plus diff
-> git show [commit-hash] 
-
-# goes through all the lines of that file and finds out who introduced a change
-> git blame app/models/user.rb 
-
-
-==================  
-LOGGING
-==================  
-
-git log --stat production..master
-
-# figure out which branch is where
-git log --pretty=oneline --graph --all
-
-
-# information about each commit and the number of files changed
-> git log --stat
-
-# log information in one line
-git log --shortstat 
-
-# names of all files along with modified or added
-git log --name-status 
-
-# just the title
-git log --pretty=short 
-
-# one line log information
-git log --pretty=oneline
-
-git log --since="3 weeks"
-
-git log --pretty=oneline --since="2007-12-01" --until='two months ago'
-
-# do not list logs from merges 
-git log --no-merges 
-
-git log --pretty=oneline | wc -l
-
-git log --no-merges --pretty=oneline | wc -l
-
-
-# all the commits which had something to do with a file
-git log --pretty=oneline db/schema.rb
-
-# all the commits which had something to do with that file. limit the log to just 2 entries
-git log -n 2 app/models/user.rb 
-
-# lists all the diffs for every commit of that file
-git log -p app/models/user.rb 
-
-
-# SHA1, author,time, line changed
-git blame db/schema.rb
-
-
-====================
-MISC
-====================
-
 #########################################################
 > git count-objects
 36 objects
@@ -473,57 +492,16 @@ MISC
 #########################################################
 # add a remote repository at github 
 git remote add origin git@github.com:neerajdotname/trashit.git
-
 #########################################################
 
 
-
-#########################################################
-# I want to change my user name and email address just for one single project. This change should
-# not be global but just for one git project
-> cd demo
-> git config 
-> git config user.name 'John doe'
-> git config user.email 'john@doe.com'
-> git config --list
-user.name=Neeraj Singh
-user.email=neerajdotname@gmail.com
-alias.co=checkout
-apply.whitespace=nowarn
-color.diff=auto
-color.status=auto
-color.branch=auto
-core.repositoryformatversion=0
-core.filemode=true
-core.bare=false
-core.logallrefupdates=true
-remote.origin.url=git@github.com:neerajdotname/demo.git
-remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
-branch.master.remote=origin
-branch.master.merge=refs/heads/master
-branch.experiment.remote=origin
-branch.experiment.merge=refs/heads/experiment
-user.name=John doe
-user.email=john@doe.com
-
-# Notice that user.name and user.email lines at the bottom of the list.
-# this will supercede the user.email and user.email listed at the top
-# of the list
-#########################################################
-
-
-#########################################################
 # You want to find out if this git repository has been linked to github or not
+# if remote has not been setup then the output will be empty
 > git remote
 origin
-# if remote has not been setup then the output will be empty
-#########################################################
 
 
 # a branch in git is nothing more than a file in .git/refs/heads
-
-# more info about the git config for that project
-
 
 # current branch
 > cat .git/HEAD
@@ -591,22 +569,9 @@ $ git cherry master
 add files to index and now you want to see all the contents of stage
 >git ls-files --stage
 
-diff for staged content
->git diff --cached
-
 remove a file from index
 >git rm --cached index.html
 ##############################
-
-############
-recover a deleted file
->git add foo.txt
->git commit -m 'adding foo.txt'
->git rm foo.txt
-oops I need the file back
->git co HEAD -- foo.txt
-############
-
 
 #####################################
 renaming a file and tracing its history
@@ -621,39 +586,7 @@ to trace the history all the way back to the original file
 # now you will see 2 log records
 ##################################
 
-
-#################
-git blame tells you about each line of the current file.
-it tells who last committed each line of the file
-git blame app/models/article.rb 
-##################
-
-######
->git log -Sstring searches 
-back through the history of a file’s diffs for the given string. By searching the actual 
-diffs between revisions, this command can find commits that perform a change in both 
-additions and deletions. 
-###############
-
-
 ####
 How to accept a patch
 >git remote add snaury git://github.com/snaury/admin_data.git && git pull snaury master
 ###
-
-###
-git clean -f -X
-git clean -f -d
-
-####
-find out all the commits that have not been pushed to remote server
-git cherry -v origin/master
-####
-
-
-
-
-####
-I have some local changes that I want to throwaway and I want to get back to branch master
-git co -f master
-####
