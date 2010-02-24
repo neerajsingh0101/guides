@@ -13,14 +13,11 @@ whole world search. I am looking for create_tab. However it should NOT match cre
 list all files
 >ack -f
 
+list all files with extension haml
+>ack -f --type=haml
+
 List all javascript files
 >ack -f --js
-
-List all the file names matching given string . This process will not look into the content of the files.
-Search through files and not through file contents. 
-Get full path to all the files and then apply search to file names. Note that the output is path to a file.
->ack -g form
->ack -g routes
 
 List all the file names where the either the file name or the content has given string. 
 It will look at both the content and the filenames.
@@ -64,7 +61,6 @@ to search for clean. only words matching clean? should be in the result
 Search for 'Completed On' without the quotes
 >ack --literal 'Completed on'
 
-
 Search all file types including a file called foo.bar. Note that it will still ignore files like .svn etc.
 >ack -a neeraj
 
@@ -72,18 +68,9 @@ Search all types of files including files like .svn . In this case all files res
 will be searched through.
 >ack neeraj -u
 
-list all files with extension haml
->ack -f --type=haml
-
-Note here that -G accepts a regular expression 
-ack creates full path along with file name and applies regex on that
-since it applies regex on the directory names also the result could be a bit different
-search through all the test files
->ack neeraj -G test
-
 Search through only .rb files and make the search case insensitive and file name or directory name
 should have test string.
-ack -i neeraj --type=rb -G test
+>ack -i neeraj --type=rb -G test
 
 List all files which has script name either in the file name or in the directory name
 > ack -f -G script

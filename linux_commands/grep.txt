@@ -1,4 +1,0 @@
-grep #=> by default the search is case sensitive
-grep -i #=> case insensitive search
-grep -r #=> search subdirectory also
-

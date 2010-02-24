@@ -1,9 +1,7 @@
 apt stands for advanced packaging tools
 
-
 lists all the installed packages
 >dpkg -l 
-
 
 lists all packages with name 'vi*'
 >dpkg -l "vi*" 
