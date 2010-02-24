@@ -8,6 +8,15 @@ How to find if a file has merge issue
 > git ls-files --stage # notice number greater than zero close to end
 > git mergetool # it will list files that need merging
 
+If a git merge is failing then use following technique to get more log info
+> git log --merge --left-right -p
+
+when a merge conflict happens then find all unmerged files using git diff
+> git diff
+all the changes compared to ours can ben seen as
+> git diff --ours
+all the changes compared to theirs can be seen as
+> git diff --theirs
 
 git creates new objects all the time. If a single line is added to a file then git will create a brand
 new object. However one can ask git to use previous object and to store only incremental difference.
@@ -15,7 +24,7 @@ this is called packing.
 >git gc
 
 After the packing is done one can verify packing by running following command 
-git verify-pack -v .git/objects/pack/pack-108ebf6abb50656e7aa5695314a47c3fc1e23f90.idx 
+>git verify-pack -v .git/objects/pack/pack-108ebf6abb50656e7aa5695314a47c3fc1e23f90.idx 
 
 
 .git/HEAD contains the reference to the current branch
@@ -27,17 +36,9 @@ git verify-pack -v .git/objects/pack/pack-108ebf6abb50656e7aa5695314a47c3fc1e23f
 show current tree
 > git cat-file -p master^{tree}
 
-
 After a successful merge operation if you want to discard the merge operation then just do 
 > git reset --hard ORIG_HEAD
 
-If a git merge is failing then use following technique to get more log info
-> git log --merge --left-right -p
-
-get a list of all files in merge conflict state
-> git ls-files -s
-notice the number 1 or 2 or 3. this would depict the number of files that are being maintained by git.
-If merge issue is resolved then git ls-files -s should produce listing with value 0.
 
 git stores the 40 digit SHA1_HASH of the content. for foo.txt if the 40 char hash is
 16ffbb1d57bfbf28a5b4da9ea71faf1c73b92272 then this content would be stored at
@@ -53,11 +54,10 @@ Every single time something is added using git add, a new blob object is created
 the file after adding it then that blob stay there unless a cleanup action is done. That is how
 the number of blobs keep growing.
 
+A commit blob contains the name of tree that identifies it.
+
 A tree contains the information that maps a blob to a file. The tree itself is also stored
 at .git/objects .
-
-A commit blob contains the name of tree that identifies it.
->git cat-file -p SHA1_HASH
 
 get list of all files in the index and their SHA1_HASH
 >git ls-files --stage
@@ -72,18 +72,11 @@ tracking changes after renaming a file
 > git log --follow foo2 #this will also display log messages associated with foo1 since foo1 and foo2 are same
 
 
-show all the diff between the current and last two version for all files under app directory
+show all the diff between the current and master~2 version for all files under app directory
 > git diff master~2 master app
 
 create a branch from one commit prior to master branch
 > git co -b staging master^
-
-when a merge conflict happens then find all unmerged files using git diff
-> git diff
-all the changes compared to ours can ben seen as
-> git diff --ours
-all the changes compared to theirs can be seen as
-> git diff --theirs
 
 
 When a commit occurs, Git records a snapshot of the index and places that snapshot 
@@ -93,16 +86,13 @@ the previous snapshot and so derives a list of affected files and directories.
 Git creates new blobs for any file that has changed and new trees for any directory 
 that has changed, and it reuses any blob or tree object that has not changed.
 
-
 caret is used to select a different parent. Given a commit, C, C^1 is the first parent,
 C^2 is the second parent, C^3 is the third parent
-
 
 tilde is used to go back before an ancestral parent and select a preceding generation. 
 Again, given the commit C, C~1 is the first parent, C~2 is the first grandparent, and 
 C~3 is the first great-grandparent.
 
-> git rev-parse master
 
 > git log master
 
@@ -170,11 +160,6 @@ HEAD is nothing else but refers to a commit. find out the commit HEAD points to
 # switch to the master branch
 > git checkout master 
 
-
-How to update a fork from the original branch
-http://bradlyfeeley.com/2008/09/03/update-a-github-fork-from-the-original-repo/
-
-
 # delete untracked files. 
 # -d removes untracked directories in addition to untracked files.
 # -f force
@@ -237,6 +222,8 @@ that is causing merge error.
 > git rev-parse 54dedfd
 54dedfd8e1c5bc00f3dfabfd77f87286c04901f2
 
+> git rev-parse master
+
 # rev-parse also works with tag names
 >git rev-prase version_1
 54dedfd8e1c5bc00f3dfabfd77f87286c04901f2
@@ -257,6 +244,14 @@ that is causing merge error.
 > git config 
 > git config user.name 'John doe'
 > git config user.email 'john@doe.com'
+
+# I want to change my user name and email address just for one single project. This change should
+# not be global but just for one git project
+> cd demo
+> git config --list
+# Notice that user.name and user.email lines at the bottom of the list.
+# this will supercede the user.email and user.email listed at the top
+# of the list
 
 >cat ~/.gitconfig
 
@@ -321,7 +316,6 @@ git merge --squash staging
 > git diff master experiment
 > git diff --cached
 
-
 # I have two files foo.txt and bar.txt
 # I made changes to both the files
 # now I added foo.txt to index ( git add foo.txt)
@@ -336,10 +330,10 @@ git merge --squash staging
 > git tag
 
 # delete a remote tag
-git push origin :experiment 
+>git push origin :experiment 
 
-# make a branch from your tag
-git checkout -b <tag name>
+# make a branch from a tag
+>git checkout -b <tag name>
 
 >gitk
 >gitk &
@@ -385,15 +379,6 @@ git checkout -b <tag name>
 >git log -p app/models/user.rb 
 
 
-# I want to change my user name and email address just for one single project. This change should
-# not be global but just for one git project
-> cd demo
-> git config --list
-# Notice that user.name and user.email lines at the bottom of the list.
-# this will supercede the user.email and user.email listed at the top
-# of the list
-
-
 # looking for string ror_rocks in the diff. It was there in the file and then it got deleted.
 >git log -Sror_rocks
 >git log -Sror_rocks README
@@ -403,14 +388,8 @@ git cherry -v origin/master
 
 >git tag
 
->git rm log/\*.log
-
-# LATER
-
-####
-I have some local changes that I want to throwaway and I want to get back to branch master
+# have some local changes that I want to throwaway and I want to get back to branch master
 git co -f master
-####
 
 in the log show the diff
 >git log -p
