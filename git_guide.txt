@@ -3,6 +3,7 @@ git does not allow to switch to a different branch is a file that is being track
 your current branch is left as it is and all the changes are in different branch.
 > git co -m staging
 
+-----------------------------------------------------------------------------------
 How to find if a file has merge issue
 > git diff # it will list diff with <<<< or >>>>
 > git ls-files --stage # notice number greater than zero close to end
@@ -18,6 +19,16 @@ all the changes compared to ours can ben seen as
 all the changes compared to theirs can be seen as
 > git diff --theirs
 
+After a successful merge operation if you want to discard the merge operation then just use
+ORIG_HEAD to rollback changes. If you use HEAD then it will have no impact. Also note that
+reset --hard ORIG_HEAD should be the very first operation after the merge if you want to
+discard it.
+> git reset --hard ORIG_HEAD
+
+Instead of --hard if you say --soft then all the changes will be removed from commit but
+those changed would be left staged.
+-----------------------------------------------------------------------------------
+
 git creates new objects all the time. If a single line is added to a file then git will create a brand
 new object. However one can ask git to use previous object and to store only incremental difference.
 this is called packing.
@@ -26,18 +37,10 @@ this is called packing.
 After the packing is done one can verify packing by running following command 
 >git verify-pack -v .git/objects/pack/pack-108ebf6abb50656e7aa5695314a47c3fc1e23f90.idx 
 
-
 .git/HEAD contains the reference to the current branch
 .git/HEAD => refs/heads/production ( in production branch)
 .git/HEAD => refs/heads/master ( in master branch)
 > git symbolic-ref HEAD
-
-
-show current tree
-> git cat-file -p master^{tree}
-
-After a successful merge operation if you want to discard the merge operation then just do 
-> git reset --hard ORIG_HEAD
 
 
 git stores the 40 digit SHA1_HASH of the content. for foo.txt if the 40 char hash is
@@ -48,6 +51,10 @@ you will see garbage. However you can  run below command to see the content
 
 A branch in Git is nothing more than a file in the .git/refs/heads/ directory that 
 contains the SHA-1 of the most recent commit of that branch.
+
+The index is found in .git/index and keeps track of file pathnames and corresponding blobs. Each time 
+you run commands such as git add, git rm, or git mv, Git updates the index with the new pathname 
+and blob information.
 
 Every single time something is added using git add, a new blob object is created at
 .git/objects. The path information about this blob at index. If user ends up not commiting
@@ -92,6 +99,12 @@ C^2 is the second parent, C^3 is the third parent
 tilde is used to go back before an ancestral parent and select a preceding generation. 
 Again, given the commit C, C~1 is the first parent, C~2 is the first grandparent, and 
 C~3 is the first great-grandparent.
+
+If you got your repository by cloning it, rather than initializing it, you should have a remote 
+branch of where you copied it from automatically added as origin by default.
+
+The tilde character, followed by a number, refers to the Nth genera- tion grandparent of that commit. 
+
 
 
 > git log master
@@ -139,23 +152,35 @@ HEAD is nothing else but refers to a commit. find out the commit HEAD points to
 # create a new branch called experiment
 > git branch experiment 
 
-# show branches and display more info about them
-> git show-branch 
-
-# show branches and display more info about them also lists directories from remote
-> git show-branch -a
-
 # create a new branch called experiment and switch to that branch
 > git checkout -b experiment
 
 # list all local branches and indicate which branch I am currently in
 > git branch 
 
+# all branch info with last commit
+>git branch -v
+
 # list all local and remote branches
 > git branch -a
 
 # list only the remote branches ( does not include local branches)
 > git branch -r
+
+# have some local changes that I want to throwaway and I want to get back to branch master
+>git co -f master
+
+# show all the branches from which merge is yet to be done
+>git branch --no-merged
+
+# delete the staging branch
+> git branch -d staging 
+
+# show branches and display more info about them
+> git show-branch 
+
+# show branches and display more info about them also lists directories from remote
+> git show-branch -a
 
 # switch to the master branch
 > git checkout master 
@@ -166,18 +191,6 @@ HEAD is nothing else but refers to a commit. find out the commit HEAD points to
 # -x do not use ignore rules. This allows removing all untracked files
 # -X remove only files ignored by git
 >git clean -n -d
-
-# show all the branches from which merge is yet to be done
->git branch --no-merged
-
-# all branch info
->git branch
-
-# all branch info with last commit
->git branch -v
-
-# all branch info including remote branches
->git branch -a
 
 # push tags to remote server
 >git push origin --tags
@@ -225,7 +238,7 @@ that is causing merge error.
 > git rev-parse master
 
 # rev-parse also works with tag names
->git rev-prase version_1
+>git rev-prase tag_1
 54dedfd8e1c5bc00f3dfabfd77f87286c04901f2
 
 # add a file to a commit afterwards
@@ -249,14 +262,12 @@ that is causing merge error.
 # not be global but just for one git project
 > cd demo
 > git config --list
+> git config -l
 # Notice that user.name and user.email lines at the bottom of the list.
 # this will supercede the user.email and user.email listed at the top
 # of the list
 
 >cat ~/.gitconfig
-
-# list the current configuration setting
->git config --list 
 
 # More information about a git project can also be seen by
 >cat .git/config
@@ -267,13 +278,10 @@ that is causing merge error.
 # note that if staging is has some changes over master then git log the other way round does not work
 > git log staging..master #=> nil
 
-
 # merge the changes from staging to master branch
 > git co master # make sure that I am in master branch
 > git merge staging
 
-# delete the staging branch
-> git branch -d staging 
 
 # Revert a commit
 # Note that this commit will appear in the log as the revert. In the log the original commit 
@@ -286,11 +294,6 @@ that is causing merge error.
 > git checkout -b experiment
 > git push origin experiment
 > git push --all # it pushes all the branches 
-
-
-# forgot to add a file to the last commit
-> git add forgotten_file
-> git commit --amend # now this file is in the last commit
 
 # I have five commits I want to totally discard last two commits and start from third commit
 # both the commits after the 3rd commit will be gone permanently. It is different from revert 
@@ -309,11 +312,12 @@ that is causing merge error.
 # squashed merge from staging. In squashed merge all the commits in staging would appear as
 # single commit in master. Note that squash merge operations leaves the changes in working directory. 
 # You need to commit the changes yourself.
-git merge --squash staging
+>git merge --squash staging
 
 # diff between master branch and experiment branch
 > git diff --stat master experiment
 > git diff master experiment
+
 > git diff --cached
 
 # I have two files foo.txt and bar.txt
@@ -378,7 +382,6 @@ git merge --squash staging
 # lists all the diffs for every commit of that file
 >git log -p app/models/user.rb 
 
-
 # looking for string ror_rocks in the diff. It was there in the file and then it got deleted.
 >git log -Sror_rocks
 >git log -Sror_rocks README
@@ -388,13 +391,9 @@ git cherry -v origin/master
 
 >git tag
 
-# have some local changes that I want to throwaway and I want to get back to branch master
-git co -f master
 
 in the log show the diff
 >git log -p
-
->git remote show origin
 
 d921970^2 means “the second parent of d921970.” This syntax is only useful for merge 
 commits, which have more than one parent. The first parent is the branch you were on 
@@ -402,15 +401,11 @@ when you merged, and the second is the commit on the branch that you merged in:
 >git show d921970^
 >git show d921970^2
 
-
 -n is for the dry run
 >git add -n -u 
 
->git ls-tree -r -t master^{tree}
-
 undo the last commit and keep the changes in the working tree
 >git reset --soft HEAD^
-
 
 # show the -1 version of admin_controller.rb
 > git show HEAD^:app/controllers/admin_controller.rb 
@@ -419,19 +414,12 @@ undo the last commit and keep the changes in the working tree
 # note that there is no colon before app in this case
 > git checkout HEAD^ app/controllers/admin_controller.rb
 
+
+>git remote
+>git remote -v
 >git remote show origin
 
->git remote -v
-
 >git ls-remote origin
-
->git ls-files -s
-
-The index is found in .git/index and keeps track of file pathnames and corresponding blobs. Each time 
-you run commands such as git add, git rm, or git mv, Git updates the index with the new pathname 
-and blob information.
-
->find .git/objects
 
 # co-worked has put up a new branch called experiment. How do I pull that branch.
 > git checkout -b experiment origin/experiment
@@ -475,12 +463,6 @@ and blob information.
 # increase in two objects because one of them is tree and other one is commit object
 --------------------------------------------------------------------------------------
 
-# You want to find out if this git repository has been linked to github or not
-# if remote has not been setup then the output will be empty
-> git remote
-origin
-
-
 # a branch in git is nothing more than a file in .git/refs/heads
 
 # current branch
@@ -492,45 +474,42 @@ origin
 > git show master^
 
 
-# showing tree
-git ls-tree master^{tree}
-git ls-tree -r -t master^{tree} # -t makes also show the SHA1-s of subtrees
-
-
-#########################################################
-git cherry. This does exactly what we want: tells us which commits aren’t in the branch 
-specified. So if I was on the master branch and I ran:
-
-$ git cherry -v master 42-adding-replies
-+ a4d0f79fccbbc12a53e8f0e5c2a4ef960ad69ba2 Adding posts in
-+ 7e71afd1faf36f17a0ff506e63cd2ca51496dad3 Revert "Adding posts in"
-+ 5e815ece05d8813354e60ca1affb8cdb8c5d78fc Adding the right model
-+ 956f4cec5684544066a0d261ff8ac80aff7a57ea Cleaning up model
-+ 6c6cdb4342ed935f8fbd38f48f51dec469dd1823 Who needs tests?
-+ c3481fd0d6279f5bd45c455b915e0b4b1c0d8909 Wrapping this up. Ship it.
-
-
-So what we just did was asked Git what’s not in master that’s in 42-adding-replies branch. Just like in the images above it’s simple to see what needs to get merged in still. The -v option will print out the commit message along with the SHA hash so it’s easier to figure out what exactly you’re looking at. This command also takes in a third, optional argument for picking a starting point or limit. So, if we wanted to just check everything after commit 7e71af, you’d get this:
-
-$ git cherry -v master 42-adding-replies 7e71af
-+ 5e815ece05d8813354e60ca1affb8cdb8c5d78fc Adding the right model
-+ 956f4cec5684544066a0d261ff8ac80aff7a57ea Cleaning up model
-+ 6c6cdb4342ed935f8fbd38f48f51dec469dd1823 Who needs tests?
-+ c3481fd0d6279f5bd45c455b915e0b4b1c0d8909 Wrapping this up. Ship it.
-
-As you can see, that skipped the first two commits in our topic branch. If you wanted to check what hasn’t been merged into an upstream branch when not actually on the upstream branch, it’s a little simpler:
-
-$ git checkout 42-adding-replies
-$ git cherry master
-+ a4d0f79fccbbc12a53e8f0e5c2a4ef960ad69ba2
-+ 7e71afd1faf36f17a0ff506e63cd2ca51496dad3
-+ 5e815ece05d8813354e60ca1affb8cdb8c5d78fc
-+ 956f4cec5684544066a0d261ff8ac80aff7a57ea
-+ 6c6cdb4342ed935f8fbd38f48f51dec469dd1823
-+ c3481fd0d6279f5bd45c455b915e0b4b1c0d8909
-#########################################################
-
-# cherry-picking to apply one commit from source to the target
+# cherry-picking is to apply one commit from source to the target
 # in this case #ABCDEFG is the SHA-1 of the commit hash. One can
 # stage multiple cherry-pickekd merges by adding the -n argument
-git cherry-pick SHA1_HASH
+>git cherry-pick SHA1_HASH
+
+Any time you add a ^{tree} to any commit-ish, it resolves to its tree.
+>git ls-tree -r -t master^{tree} #displays current tree
+>git cat-file -p master^{tree}
+>git ls-tree master^{tree}
+>git ls-tree -r -t master^{tree} # -t makes also show the SHA1-s of subtrees
+
+>git pull == git fetch + git merge
+
+>git rebase --continue
+>git rebase --abort
+>git rebase --skip
+
+# make the commit name short
+>git log --abbrev-commit
+
+# get the names of all commits for HEAD
+>git reflog
+
+>git stash
+>git stash list
+>git stash apply #applies the most recent one
+>git stash apply stash@{2}
+>git stash apply --index #applies changes to index
+
+#create a branch off of stash and if branch is successfully created then stash is dropped.
+#in this way one can work on stashed data in a branch
+>git stash branch filterWork
+
+# rebase is useful not only for rebasing stuff from other branches but also squashing various
+# commits into a single commit in a branch
+>git rebase -i HEAD~2 will let merge last two commits into a single commit.
+
+Also note that rebase provides and option to edit a commit where a single commit can be split
+into multiple commits.
