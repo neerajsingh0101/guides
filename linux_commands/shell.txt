@@ -36,3 +36,10 @@ update this file to resolve a hostname to an IP address
 
 # at the end of file add 'Hello World'
 echo "Hello World" >> file
+
+create a file with three lines
+> cat > foo.txt
+line1
+line2
+line3
+^D

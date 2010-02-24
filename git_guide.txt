@@ -1,3 +1,14 @@
+git does not allow to switch to a different branch is a file that is being tracked is modified. However
+-m option tells git to checkout the other branch and then merge with the local changes. In this way
+your current branch is left as it is and all the changes are in different branch.
+> git co -m staging
+
+How to find if a file has merge issue
+> git diff # it will list diff with <<<< or >>>>
+> git ls-files --stage # notice number greater than zero close to end
+> git mergetool # it will list files that need merging
+
+
 git creates new objects all the time. If a single line is added to a file then git will create a brand
 new object. However one can ask git to use previous object and to store only incremental difference.
 this is called packing.
@@ -401,12 +412,6 @@ I have some local changes that I want to throwaway and I want to get back to bra
 git co -f master
 ####
 
-see the tree and the parent info too
->git show -s --pretty=raw abcdefgi
-
-I don't want to track REAME however I want this file in my working directory.
->git diff --cached README
-
 in the log show the diff
 >git log -p
 
@@ -424,34 +429,22 @@ when you merged, and the second is the commit on the branch that you merged in:
 
 >git ls-tree -r -t master^{tree}
 
-######################
 undo the last commit and keep the changes in the working tree
-git reset --soft HEAD^
-######################
+>git reset --soft HEAD^
 
-==================  
-GETTING TO OLD DATA
 
-# this will output the -1 version of admin_controller.rb
+# show the -1 version of admin_controller.rb
 > git show HEAD^:app/controllers/admin_controller.rb 
 
 # if you want to replace the current content with the old one then do this
 # note that there is no colon before app in this case
 > git checkout HEAD^ app/controllers/admin_controller.rb
-================== 
-
-##################################################################################
-# cherry-picking to apply one commit from source to the target
-# in this case #ABCDEFG is the SHA-1 of the commit hash. One can
-# stage multiple cherry-pickekd merges by adding the -n argument
-git cherry-pick SHA1_HASH
-##################################################################################
 
 >git remote show origin
 
-> git remote -v
+>git remote -v
 
-> git ls-remote origin
+>git ls-remote origin
 
 >git ls-files -s
 
@@ -461,54 +454,34 @@ and blob information.
 
 >find .git/objects
 
-##################################################################################
 # co-worked has put up a new branch called experiment. How do I pull that branch.
-> git branch -a # list all the branches ( local and remote)
-> git branch -a
-* master
-  origin/HEAD
-  origin/master
-  
-# Notice that in the above list origin/experiment did not appear. That is because you
-# need to do git pull to update the code base.
-> git pull
-> git branch -a
-* master
-  origin/HEAD
-  origin/experiment
-  origin/master
-# now in the list experiment branch appears  
-  
 > git checkout -b experiment origin/experiment
-##################################################################################
 
-# get the commit info about the 3rd grand parent
-git rev-prase master~3
+# get the commit info about the 3rd grandparent
+>git rev-prase master~3
 
 # show difference between current state and the last three commits
-git diff master~3
+>git diff master~3
 
-# show difference between current state and the last three commits for one single file
-git diff master~3 -- app/models/user.rb
-
-# show difference between current state and the last three commits for everything inside a directory
-git diff master~3 -- app/models
-
+# show difference between current state and master~3 for everything inside a directory
+>git diff master~3 app/models
 
 # diff between two already committed commits
-git diff master~10 master~3 --stat
+>git diff master~10 master~3 --stat
+
+# show difference between current state and the last three commits for one single file
+>git diff master~3 app/models/user.rb
 
 # diff between two already committed commits for a single file
-git diff master~10 master~3 -- app/models/user.rb
+>git diff master~10 master~3 app/models/user.rb
 
-
-# give me just the names of the files and status(added, modified, delete) between committs
-git diff master~10 --name-status
+# show just the names of the files and status(added, modified, delete) between committs
+>git diff master~10 --name-status
 
 # by default the diff shows 2 lines above and below. to change that number use this
-git diff master~3 --unified=10
+>git diff master~3 --unified=10
 
-#########################################################
+--------------------------------------------------------------------------------------
 > git count-objects
 36 objects
 
@@ -520,14 +493,8 @@ git diff master~3 --unified=10
 # commit this change
 > git commit -m 'adding foo.txt'
 39 objects
-# increate in two objects because one of them three and one is commit object
-#########################################################
-
-#########################################################
-# add a remote repository at github 
-git remote add origin git@github.com:neerajdotname/trashit.git
-#########################################################
-
+# increase in two objects because one of them is tree and other one is commit object
+--------------------------------------------------------------------------------------
 
 # You want to find out if this git repository has been linked to github or not
 # if remote has not been setup then the output will be empty
@@ -543,26 +510,12 @@ origin
 
 # show the last commit info
 > git show master
-> git shoe master^
+> git show master^
 
 
 # showing tree
 git ls-tree master^{tree}
 git ls-tree -r -t master^{tree} # -t makes also show the SHA1-s of subtrees
-
-# git cat-file to find out what kind of object it is 
->git cat-file -t ae850bd698b2b5dfbac
-tree
-
->git cat-file -t 569b350811
-blob
-
-# if it is a tree then contents can be seen by
-> git cat-file -p ae850bd698b2b5dfbac 
-
-# git cat-file -p ae850bd698b2b5dfbac  for a blob will list the content of the file
-
-
 
 
 #########################################################
@@ -598,34 +551,7 @@ $ git cherry master
 + c3481fd0d6279f5bd45c455b915e0b4b1c0d8909
 #########################################################
 
-
-##################################
-add files to index and now you want to see all the contents of stage
->git ls-files --stage
-
-remove a file from index
->git rm --cached index.html
-##############################
-
-#####################################
-renaming a file and tracing its history
->git add foo.txt
->git commit -m 'adding foo.txt'
->git mv foo.txt bar.txt
->git commit -m 'renaming file from foo.txt to bar.txt'
->git log bar.txt
-# you will see only one line output
-to trace the history all the way back to the original file
->git log --follow bar.txt
-# now you will see 2 log records
-##################################
-
-####
-How to accept a patch
->git remote add snaury git://github.com/snaury/admin_data.git && git pull snaury master
-###
-
-git does not allow to switch to a different branch is a file that is being tracked is modified. However
--m option tells git to checkout the other branch and then merge with the local changes. In this way
-your current branch is left as it is and all the changes are in different branch.
-> git co -m staging
+# cherry-picking to apply one commit from source to the target
+# in this case #ABCDEFG is the SHA-1 of the commit hash. One can
+# stage multiple cherry-pickekd merges by adding the -n argument
+git cherry-pick SHA1_HASH
