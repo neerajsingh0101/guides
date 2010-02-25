@@ -4,9 +4,9 @@ if (/regex pattern/.test(subject)) {
   log('Match attempt failed');
 }
 
-//To make a regular ex- pression case-insensitive in JavaScript, set the /i flag when creating it.
-//A dot (.) matches any character except a line break.
-// JavaScript unlinke ruby uses ^ to signifiy both the start of sentence and start of word.
+// To make a regular ex-pression case-insensitive in JavaScript, set the /i flag when creating it.
+// A dot (.) matches any character except a line break.
+// JavaScript unlike ruby uses ^ to signifiy both the start of sentence and start of word.
 // JavaScript does not have \A equivalent from Ruby.
 regex = /^hello/;
 
@@ -19,13 +19,6 @@ regex = new RegExp(userinput, "im");
 //Caret and dollar match at line breaks: /m
 //Case insensitive: /i
 //global: /g
-
-
-if (/^regex pattern$/.test(subject)) {
-  log('Successful match');
-} else {
-  log('Match attempt failed');
-}
 
 var result = subject.match(/\d+/);
 if (result) {
@@ -65,5 +58,3 @@ result = subject.replace(/\d+/g, function(match) { return match * 2; });
 //  should become
 //  hello <b> i am boo </b> world
 result = subject.replace(/<b>.*?<\/b>/g, function(match) { return match.replace(/foo/g, "boo"); } );
-
-
