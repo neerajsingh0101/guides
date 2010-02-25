@@ -227,4 +227,30 @@ puts  m.begin(2)   #=> 2
 puts m[3] #=> 113
 puts  m.begin(3) #=> 3
 
+# Ruby uses ‹(?m)› to turn on “dot matches line breaks” mode. By default a dot matches any character except a line break. 
+
+# Match hello only if it appears at the beginning of subject
+regex = /\Ahello/
+
+# Match hello only if it appears at the beginning of line
+regex = /^hello/
+
+# Match only for but not california. word boundary.
+regex = /\bfor\b/
+
+# ^ $ \A \z are called anchors. They do not match any characters. They match the position.
+
+# Her name is Janet. Regex is /Jane|Janet/ . In this case Jane will be a match note Janet. That is because
+# regex engine tries the first word and it matches.
+
+
+# sentence: my friends are mary, jane and sue . 
+# I want to find if the sentence has mary or jane or sue.
+regex = /\bmary\b|\bjane\b|\bsue\b/
+# Above regex will work however it can be written better.
+regex = /\b(mary|jane|sue)\b/
+# Above refex will work however regex engine has to do extra work to capture groups. Better solution will be
+# to use non capturing block
+regex = /\b(?:mary|jane|sue)\b/
+
 
