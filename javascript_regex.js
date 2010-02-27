@@ -44,8 +44,6 @@ var text = 'hello #1234 world #5678';
 while ((match = regex.exec(text)) !== null) {
   matches.push(match[1]);
 }
-//match can get all data in one swoop
-matches = text.match(regex);
 
 // replace
 result = subject.replace(/before/g, "after");

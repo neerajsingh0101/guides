@@ -1,3 +1,6 @@
+get rid of last commit
+>git reset --hard HEAD^
+
 git does not allow to switch to a different branch is a file that is being tracked is modified. However
 -m option tells git to checkout the other branch and then merge with the local changes. In this way
 your current branch is left as it is and all the changes are in different branch.
