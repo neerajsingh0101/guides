@@ -1,5 +1,56 @@
+reflog keeps track of every single object created. In case you have done something like
+git reset --hard HEAD^ accidentally and now you want to recover the last commit then 
+reflog will come in handy. That's all for now.
+>git reflog
+>git reflog --all
+
+
+$ git branch -d docs
+error: The branch 'docs' is not an ancestor of your current HEAD.
+If you are sure you want to delete it, run 'git branch -D docs'
+# you get this error because branch docs is not merged into the branch
+you are currently in . git is just trying to make sure that data is not lost
+
+
+
+find all the commits that are in staging but not in master
+>git cherry -v master staging
+
+
+revert everything
+>git reset --hard HEAD
+>git co -f
+
+revert a file in staging area
+>git co lab
+above command will fail if there is branch named lab. To enforce that lab is a file not 
+a branch do this
+>git co -- lab
+>git co ./lab
+
+
+
+Directed Acyclic Graph
+http://en.wikipedia.org/wiki/Directed_acyclic_graph
+
+
+remove a file from repository but keep it in the working directory
+>git rm --cached foo.txt
+
+
+better stash messages
+>git stash save 'writing test for user model'
+>git stash list # this list will have better messages
+
+diff with stashed items
+>git diff stash@{3}
+
 get rid of last commit
 >git reset --hard HEAD^
+
+get rid of last commit but leave all the changes in the working tree
+http://henrik.nyh.se/2009/02/git-reset-soft-as-stash-replacement-and-undo
+>git reset --soft HEAD^
 
 git does not allow to switch to a different branch is a file that is being tracked is modified. However
 -m option tells git to checkout the other branch and then merge with the local changes. In this way
@@ -198,8 +249,6 @@ HEAD is nothing else but refers to a commit. find out the commit HEAD points to
 # push tags to remote server
 >git push origin --tags
 
-# create a tag for a commit which was done in the past
->git tag -a v1.2 xxxxxxx
 
 # unstaging a staged file
 >git reset HEAD README
@@ -292,6 +341,9 @@ that is causing merge error.
 # then after the revert there will be 6 logs.
 > git revert SHA1_HASH
 
+# revert a commit but do not commit the revert commit
+>git revert --no-commit SHA1_HASH
+
 
 # push local branch to github
 > git checkout -b experiment
@@ -333,8 +385,14 @@ that is causing merge error.
 > git tag 'filter work done'
 > git push --tags
 
+# create a tag for a commit which was done in the past
+>git tag -a v1.2 xxxxxxx
+
 # tags list
 > git tag
+
+# checkout a branch from a tag
+>git checkout -b v1.0
 
 # delete a remote tag
 >git push origin :experiment 
@@ -391,9 +449,6 @@ that is causing merge error.
 
 # find all the commits that have not been pushed to remote server
 git cherry -v origin/master
-
->git tag
-
 
 in the log show the diff
 >git log -p
@@ -481,6 +536,10 @@ undo the last commit and keep the changes in the working tree
 # in this case #ABCDEFG is the SHA-1 of the commit hash. One can
 # stage multiple cherry-pickekd merges by adding the -n argument
 >git cherry-pick SHA1_HASH
+
+ls-tree accepts both commit and tree. if it is a commit then it shows
+the tree to which it belongs.
+>git ls-tree HEAD
 
 Any time you add a ^{tree} to any commit-ish, it resolves to its tree.
 >git ls-tree -r -t master^{tree} #displays current tree
