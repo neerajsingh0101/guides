@@ -1,0 +1,9 @@
+this command will not work in mac but try it in linux. It lists all the 
+listening services.
+# -n : ip addresses 
+# -p program or PID information
+# -l, --listening Show only listening sockets. 
+# -T --notrim Stop trimming long addresses.
+# -t tcp connections
+# -u udp connections
+>netstat -tlnp

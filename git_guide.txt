@@ -1,9 +1,22 @@
+# remote tags and branches
+>git ls-remote origin
+
+when a commit is done then HEAD is changed. One can manually change the HEAD like this
+>echo 5f1bc85745dcccce6121494fdd37658cb4ad441f > .git/refs/heads/master
+>git update-ref refs/heads/master 5f1bc857
+
+One can also manually change the branch from master to staging like this
+.git/HEAD contains the reference to the current branch
+.git/HEAD => refs/heads/production ( in production branch)
+.git/HEAD => refs/heads/master ( in master branch)
+>git symbolic-ref HEAD refs/heads/staging
+
+
 reflog keeps track of every single object created. In case you have done something like
 git reset --hard HEAD^ accidentally and now you want to recover the last commit then 
 reflog will come in handy. That's all for now.
 >git reflog
 >git reflog --all
-
 
 $ git branch -d docs
 error: The branch 'docs' is not an ancestor of your current HEAD.
@@ -11,11 +24,8 @@ If you are sure you want to delete it, run 'git branch -D docs'
 # you get this error because branch docs is not merged into the branch
 you are currently in . git is just trying to make sure that data is not lost
 
-
-
 find all the commits that are in staging but not in master
 >git cherry -v master staging
-
 
 revert everything
 >git reset --hard HEAD
@@ -28,15 +38,11 @@ a branch do this
 >git co -- lab
 >git co ./lab
 
-
-
 Directed Acyclic Graph
 http://en.wikipedia.org/wiki/Directed_acyclic_graph
 
-
 remove a file from repository but keep it in the working directory
 >git rm --cached foo.txt
-
 
 better stash messages
 >git stash save 'writing test for user model'
@@ -66,8 +72,6 @@ How to find if a file has merge issue
 If a git merge is failing then use following technique to get more log info
 > git log --merge --left-right -p
 
-when a merge conflict happens then find all unmerged files using git diff
-> git diff
 all the changes compared to ours can ben seen as
 > git diff --ours
 all the changes compared to theirs can be seen as
@@ -90,12 +94,6 @@ this is called packing.
 
 After the packing is done one can verify packing by running following command 
 >git verify-pack -v .git/objects/pack/pack-108ebf6abb50656e7aa5695314a47c3fc1e23f90.idx 
-
-.git/HEAD contains the reference to the current branch
-.git/HEAD => refs/heads/production ( in production branch)
-.git/HEAD => refs/heads/master ( in master branch)
-> git symbolic-ref HEAD
-
 
 git stores the 40 digit SHA1_HASH of the content. for foo.txt if the 40 char hash is
 16ffbb1d57bfbf28a5b4da9ea71faf1c73b92272 then this content would be stored at
@@ -139,7 +137,6 @@ show all the diff between the current and master~2 version for all files under a
 create a branch from one commit prior to master branch
 > git co -b staging master^
 
-
 When a commit occurs, Git records a snapshot of the index and places that snapshot 
 in the object store.  This snapshot does not contain a copy of every file and 
 directory in the index. Instead, Git compares the current state of the index to 
@@ -159,9 +156,7 @@ branch of where you copied it from automatically added as origin by default.
 
 The tilde character, followed by a number, refers to the Nth genera- tion grandparent of that commit. 
 
-
-
-> git log master
+t s> git log master
 
 HEAD is nothing else but refers to a commit. find out the commit HEAD points to
 > git show HEAD
@@ -344,7 +339,6 @@ that is causing merge error.
 # revert a commit but do not commit the revert commit
 >git revert --no-commit SHA1_HASH
 
-
 # push local branch to github
 > git checkout -b experiment
 > git push origin experiment
@@ -476,8 +470,6 @@ undo the last commit and keep the changes in the working tree
 >git remote
 >git remote -v
 >git remote show origin
-
->git ls-remote origin
 
 # co-worked has put up a new branch called experiment. How do I pull that branch.
 > git checkout -b experiment origin/experiment
