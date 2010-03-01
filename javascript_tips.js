@@ -9,15 +9,12 @@ var t2 = +new Date;
 // it returns the version of firebug
 window.console && console.firebug; //=> 1.5.2
 
-// a plugin binds a number of event handlers. Later get rid of all of them in one fell swoop
+// use a plugin to bind a number of event handlers. Later get rid of all of them in one fell swoop
 $('a').bind('click.myplugin',  fn );
 $('p').bind('mouserover.myplugin', fn);
-// to get of all these bindings
 jQuery.fn.clearMyPlugin = function(){
   return this.unbind('.myplugin');
 };
-
-
 // safely trigger just the click and not click.myplugin
 $('a').bind('click', fn);
 $('a').bind('click.myplugin', fn);

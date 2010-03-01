@@ -41,13 +41,23 @@ if (match) {
 var matches = [];
 var regex = /#(\d+)/g;
 var text = 'hello #1234 world #5678';
+
+// first solution using exec
 while ((match = regex.exec(text)) !== null) {
   matches.push(match[1]);
 }
 
+// second solution using replace
+text.replace(regex, function(_,f){
+    matches.push(f);
+});
+
+//third solution using match
+matches = text.match(regex);
+
+//-----------------------------------------------------------------------------------------------------
 // replace
 result = subject.replace(/before/g, "after");
-
 
 // you want to replace all numbers in a string with the number multiplied by two
 result = subject.replace(/\d+/g, function(match) { return match * 2; });
@@ -56,3 +66,4 @@ result = subject.replace(/\d+/g, function(match) { return match * 2; });
 //  should become
 //  hello <b> i am boo </b> world
 result = subject.replace(/<b>.*?<\/b>/g, function(match) { return match.replace(/foo/g, "boo"); } );
+//-----------------------------------------------------------------------------------------------------
