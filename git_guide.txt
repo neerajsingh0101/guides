@@ -1,3 +1,16 @@
+# bring all the changes from experiment branch in file app.js to master
+> git co experiment -- app.js
+
+# other varieties
+> git checkout v1.2.3 -- filename         # tag v1.2.3
+> git checkout stable -- filename         # stable branch
+> git checkout origin/master -- filename  # upstream master
+> git checkout HEAD -- filename           # the version from the most recent commit
+> git checkout HEAD^ -- filename          # the version before the most recent commit
+
+
+
+
 # remote tags and branches
 >git ls-remote origin
 
@@ -65,8 +78,10 @@ your current branch is left as it is and all the changes are in different branch
 
 -----------------------------------------------------------------------------------
 How to find if a file has merge issue
+> git ls-files --unmerged
 > git diff # it will list diff with <<<< or >>>>
 > git ls-files --stage # notice number greater than zero close to end
+> git ls-files -t #notice M next to files yet to be merged
 > git mergetool # it will list files that need merging
 
 If a git merge is failing then use following technique to get more log info
