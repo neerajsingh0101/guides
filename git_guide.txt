@@ -212,6 +212,7 @@ HEAD is nothing else but refers to a commit. find out the commit HEAD points to
 
 # checkout production branch of a project
 >git co -b production origin/production
+>git co --track -b production origin/production
 
 # create a new branch called experiment
 > git branch experiment 
