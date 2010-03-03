@@ -1,3 +1,76 @@
+" get rid of carriage return ^M. You can't type carriage return directly. type
+" Ctrl v m
+:1,$s/^M//g
+:%s/^M//g
+
+" move 10 lines from where you are
+10$
+
+" show all lines containing ruby
+:g/ruby
+:g/ruby/p
+
+" delete lines matching ruby
+:g/ruby/d
+
+" delete all blank lines
+:g/^$/d
+
+" replaces ruby with rails
+" g - global
+" i - ignorcase
+" c - confirmation
+:%s/ruby/rails/gic
+
+" replace what you last searched for with rails
+:%s//rails/gic
+
+" find an empty line
+:/^\n
+
+" find three consecutive blank lines. notice the weirdness about escaping only
+" the first curly brace
+:/^\n\{3}
+
+" search for ruby and set the cursor to the last letter of ruby
+/ruby/e
+
+" search for ruby and set the cursor to one letter after last letter of ruby
+/ruby/e+1
+
+" search for ruby and set the cursor to the two letters before the start or
+" ruby
+/ruby/s-2
+
+" search for ruby and move cursor three cursors down
+/ruby/+3
+
+" delete three consecutive blank lines
+:%s/^\n\{3}//
+
+" search for index or show
+/index\|show/
+
+" highlight all terms and then search for all occurrences of word under the
+" cursor. Hit n to go to next occurence
+*
+
+" highlight all terms and then search for all occurrences of word under the
+" cursor in reverse order. Hit n to go to next occurence
+#
+
+
+
+" visually select everything inside single quotes
+vi'y
+
+" create a new directory called foo
+:! mkdir foo
+
+" create a file called bar.txt
+:! touch foo/bar.txt
+
+
 " add something to the beginning of line. Beginning of line means the first
 " non blank character
 shift i
@@ -6,20 +79,12 @@ shift i
 " be at current line and hit
 d'q
 
+" yank lines into register. create a mark q. be at current line and hit
+y'q
+
 " add something at the end of line
 shift a
 
-" show invisible characters
-:set list
-
-" hide invisible characters
-:set nolist
-
-" toggle between visible and invisible characters
-:set list!
-
-" shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
 
 
 " show all the indentation rules mvim is shipped with
@@ -41,12 +106,6 @@ zj
 
 " moves the cursor to the previous fold
 zk 
-
-" decrease the foldlevel by one
-zr 
-
-" decrease the foldlevel to zero
-zR 
 
 " opens a fold at the cursor
 zo 
@@ -71,4 +130,195 @@ ctags -R -exclude=*.js
 " move the cursor over to a method and hit ctrl ] . Hit ctrl t to go backward
 
 
+" show invisible characters
+:set list
+
+" hide invisible characters
+:set nolist
+
+" toggle between visible and invisible characters
+:set list!
+
+:set ignorecase 
+
+:set noignorecase 
+
+:set wrap
+
+:set nowrap
+
+" highlight search result
+:set hlsearch
+
+" set line numbers in the left margin
+:set nu 
+
+" remove line numbers from the left margin
+:set nonu 
+
+" no highlight search
+:set nohlsearch
+
+:set number
+
+:set nonumber
+
+" get rid of highlighted text after search
+:noh 
+
+
+" insert above/before
+P
+
+" inserts below/after
+p 
+
+" insert a line after the current one
+o 
+
+" insert before the current line
+O 
+
+" delete lines from 10 to 12. including line numbers 10 and 12. total 3 lines will be deleted
+:10,12 delete
+
+" go to the top of the document
+gg 
+
+" go to the bottom of the document
+shift g 
+
+"  find the end of a class or method or the end of a curly brace
+shift  %
+
+" Increment a number under the cursor. 99 becomes 100
+CTRL a
+
+" Decrement a number under the cursor. 100 becomes 99
+CTRL x
+
+" move to the first non blank character of the current line
+shift ^ 
+
+" search the first character 'h' in line 
+fh
+
+" repeat the command
+;
+
+" search backward
+Fd
+
+" find 5th 'h' in the current line
+5fh 
+
+" split horizontally
+Ctrl w s 
+
+" split vertically
+Ctrl w v 
+
+" Uppercase the current line
+gUU 
+
+" lowercase the current line
+guu 
+
+" join the current line with the next line with a single space
+shift j 
+
+" join 3 lines with a single space
+3(shift j)
+
+" change the case of the letter
+~
+
+" delete from cursor to the end of the word
+de
+
+" delete from cursor to the end of the word and all the blank spaces after the word
+dw 
+
+" delete until next dot
+dt. 
+
+" yank text from here to the end of the word
+ye
+
+
+" copy current word. put cursor on a word
+bye 
+
+" if you want to replace all occurrences in a file then instead of :1,$s just say :%s
+
+" set a mark called q
+mq 
+
+" go to mark q
+`q 
+
+" marks a–z are local to the file. In other words, you can place a mark a in file one.c and 
+" another mark a infiletwo.c.These marks are separate and have nothing to do with each other. 
+" If you execute a go-to-mark command, such as‘a, you will jump within that file to the given mark. 
+" The uppercase marks (A–Z) differ.They are global.They mark not only the location within the file, but also the file itself. 
+" You are editing the file one.c and place the mark A in it. You then go on to edit filetwo.c. 
+" When you execute the jump to mark A command (‘A), theVim editor will switch you from filetwo.c to file one.c and 
+" position the cursor on the mark. 
+
+" delete a word and type in a new one
+cw
+
+" show number of lines in file and the file name
+ctrl g
+
+" page up
+ctrl u 
+
+" page down
+ctrl d 
+
+" delete rest of line from the point of cursor
+d$ 
+
+" delete the entire line and then go into insert mode
+cc 
+
+" replace first five characters with a
+5ra 
+
+" move current line one row down
+ddp 
+
+" move current character one position to the right
+xp 
+
+" delete the current word
+bde
+
+" delete a word and then go into insert mode
+cw
+
+" go to end of word
+e
+
+" go to next starting of word
+w
+
+" delete two words
+d2w
+
+" delete upto second ,
+d2t,
+
+" insert a blank line before the current line
+shift o
+
+"  paste above the current line
+shift p
+  
+" delete until :
+dt:
+
+" delete until : but also delete :
+df:
 
