@@ -4,7 +4,7 @@
 
 
 get all the file names
->ls -l | cut -c 48-100
+>ls -l | cut -c 50-100
 
 ls -l looks like this
 -rw-r--r--  1 nsingh  staff   495 Dec  6 19:34 admin.css
