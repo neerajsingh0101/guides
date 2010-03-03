@@ -28,6 +28,12 @@
 " find an empty line
 :/^\n
 
+" search for ruby. Hit n to go to next occurrence
+/ruby
+
+" search for ruby in backward direction. Hit n to go to next occurrence
+?ruby
+
 " find three consecutive blank lines. notice the weirdness about escaping only
 " the first curly brace
 :/^\n\{3}
@@ -43,7 +49,7 @@
 /ruby/s-2
 
 " search for ruby and move cursor three cursors down
-/ruby/+3
+/ruby/3
 
 " delete three consecutive blank lines
 :%s/^\n\{3}//
@@ -322,3 +328,66 @@ dt:
 " delete until : but also delete :
 df:
 
+" delete the {} region around your cursor including {}
+da{
+
+" delete everything inside {} but do not delete {}
+di{
+
+" toggle between the code version and test version
+:A
+
+" split the screen vertically showing code version and test version 
+:AV
+
+" If you've selected a block of text visually, you can delete it all with x or d
+
+" select a line visually and then multiples of it
+shift v
+
+" search for word with word boundary. search 'for'. It should not match
+" california.  \<  \>
+:/\<for\> 
+
+" list of all marks set
+:marks
+
+" show all the mappings
+:map
+
+" find the first occurence of character 'd' going backward
+shift t d
+
+" delete rest of line and go into insert mode
+c$
+
+" delete word and go into insert mode
+cw
+
+" delete upto next r but do not delete r
+ctr
+
+" move the cursor forward by a word
+w
+
+" move the cursor backward by a word
+b
+
+" move cursor to the beginning of line
+0
+
+" move cursor to the first non blank character
+shift^
+
+" move cursor to the end of line
+$
+
+" move cursor to the beginning of line
+0
+
+" w b e - they all move to next word. w moves to next word in forward
+" direction. b moves to next word in backward direction. e moves to the end of
+" next word in forward direction.
+"
+" W B E - they do the same thing. However move along WORD. A WORD is a
+" sequence of non blank characters.
