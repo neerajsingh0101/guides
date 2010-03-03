@@ -94,7 +94,7 @@ shift a
 
 
 # show all the indentation rules mvim is shipped with
-: e $VIMRUNTIME/indent 
+:e $VIMRUNTIME/indent 
 
 # custom indentation rules can be addded to indent directory next to vimrc
 # file
@@ -372,9 +372,6 @@ w
 
 # move the cursor backward by a word
 b
-
-# move cursor to the beginning of line
-0
 
 # move cursor to the first non blank character
 shift^

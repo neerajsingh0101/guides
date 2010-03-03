@@ -29,11 +29,11 @@ git reset --hard HEAD^
 git reflog
 git reflog --all
 
-$ git branch -d docs
 # error: The branch 'docs' is not an ancestor of your current HEAD.
 # If you are sure you want to delete it, run 'git branch -D docs'
 # you get this error because branch docs is not merged into the branch
 # you are currently in . git is just trying to make sure that data is not lost
+git branch -d docs
 
 # find all the commits that are in staging but not in master
 git cherry -v master staging
