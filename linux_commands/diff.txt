@@ -1,2 +1,2 @@
-diff between two directories
->diff -r dir1 dir2
+# diff between two directories
+diff -r dir1 dir2

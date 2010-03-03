@@ -1,76 +1,76 @@
-Search only through .erb files
+# Search only through .erb files
 # for the below solution to work setup .ackrc file with erb type
 # http://github.com/neerajdotname/dotfiles/blob/master/ackrc
->ack foo --type=erb
->ack foo --erb
+ack foo --type=erb
+ack foo --erb
 
-ignore .erb files but search through all other file types
->ack foo --noerb
+# ignore .erb files but search through all other file types
+ack foo --noerb
 
-whole world search. I am looking for create_tab. However it should NOT match create_table.
->ack -w create_tab
+# whole world search. I am looking for create_tab. However it should NOT match create_table.
+ack -w create_tab
 
-list all files
->ack -f
+# list all files
+ack -f
 
-list all files with extension haml
->ack -f --type=haml
+# list all files with extension haml
+ack -f --type=haml
 
-List all javascript files
->ack -f --js
+# List all javascript files
+ack -f --js
 
-List all the file names where the either the file name or the content has given string. 
-It will look at both the content and the filenames.
->ack -l form
+# List all the file names where the either the file name or the content has given string. 
+# It will look at both the content and the filenames.
+ack -l form
 
-Ignore case while searching
->ack -i neeraj
+# Ignore case while searching
+ack -i neeraj
 
-Print line number 2 of every file
->ack --line=2
+# Print line number 2 of every file
+ack --line=2
 
-Print line 2 to 10 of every file
->ack --line=2-10
+# Print line 2 to 10 of every file
+ack --line=2-10
 
-Pring line 2 3 and 5 of every file
->ack --line=2,3,5
+# Pring line 2 3 and 5 of every file
+ack --line=2,3,5
 
-Stop reading a file after certain number of matches are found in that file
-I don't want ack to search in a file after 2 matches are found in a file
->ack --max-count=2 foo
+# Stop reading a file after certain number of matches are found in that file
+# I don't want ack to search in a file after 2 matches are found in a file
+ack --max-count=2 foo
 
-Stop searching after 1 file is found matching the criteria. This is different from max-count 
-in which case search continues for all the files
->ack foo -1
+# Stop searching after 1 file is found matching the criteria. This is different from max-count 
+# in which case search continues for all the files
+ack foo -1
 
-Prints all lines, whether or not they match the expression. It can be used to highlight matches 
-while still seeing the entire file
->tail -f development.log | ack --passthru foo
+# Prints all lines, whether or not they match the expression. It can be used to highlight matches 
+# while still seeing the entire file
+tail -f development.log | ack --passthru foo
 
--v is to invert the search. Get the list of all the files which do not have foo
->ack -ivl foo
+# -v is to invert the search. Get the list of all the files which do not have foo
+ack -ivl foo
 
-Do not print the filename in the result
->ack -h foo
+# Do not print the filename in the result
+ack -h foo
 
-I want to search for clean? . Notice the question mark at the end. I don't want 
-to search for clean. only words matching clean? should be in the result
->ack --literal clean?
->ack --literal .git
+# I want to search for clean? . Notice the question mark at the end. I don't want 
+# to search for clean. only words matching clean? should be in the result
+ack --literal clean?
+ack --literal .git
 
-Search for 'Completed On' without the quotes
->ack --literal 'Completed on'
+# Search for 'Completed On' without the quotes
+ack --literal 'Completed on'
 
-Search all file types including a file called foo.bar. Note that it will still ignore files like .svn etc.
->ack -a neeraj
+# Search all file types including a file called foo.bar. Note that it will still ignore files like .svn etc.
+ack -a neeraj
 
-Search all types of files including files like .svn . In this case all files residing in that directory
-will be searched through.
->ack neeraj -u
+# Search all types of files including files like .svn . In this case all files residing in that directory
+# will be searched through.
+ack neeraj -u
 
-Search through only .rb files and make the search case insensitive and file name or directory name
-should have test string.
->ack -i neeraj --type=rb -G test
+# Search through only .rb files and make the search case insensitive and file name or directory name
+# should have test string.
+ack -i neeraj --type=rb -G test
 
-List all files which has script name either in the file name or in the directory name
-> ack -f -G script
+# List all files which has script name either in the file name or in the directory name
+ack -f -G script

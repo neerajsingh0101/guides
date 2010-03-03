@@ -1,19 +1,19 @@
-the default command of xargs is echo
->echo 1 2 3 4 | xargs
+# the default command of xargs is echo
+echo 1 2 3 4 | xargs
 
-one can force xargs to accept a maximum number of arguments per line by option -n
->echo 1 2 3 4 | xargs -n 2
+# one can force xargs to accept a maximum number of arguments per line by option -n
+echo 1 2 3 4 | xargs -n 2
 
-list all the items in a directory with line break
->ls | xargs -n 1
+# list all the items in a directory with line break
+ls | xargs -n 1
 
-delete all the files listed in foo.txt
->cat foo.txt | xargs rm
+# delete all the files listed in foo.txt
+cat foo.txt | xargs rm
 
-delete all the directories with name abc*
->rm abc*
+# delete all the directories with name abc*
+rm abc*
 rm: arg list too long if there are too many directories. xargs can help by processing 20 directories at a time
-> ls | grep '^abc' | xargs -n 20 rm
+ls | grep '^abc' | xargs -n 20 rm
 
 # xargs: Newbies often us loops or variables when xargs would suffice. 
 # xargs reads standard input, splits the input by whitepsace (spaces and newlines) and then 
@@ -22,14 +22,13 @@ rm: arg list too long if there are too many directories. xargs can help by proce
 # word ‘Synergy’. However, the third is the simplest and most concise. Its the UNIX 
 # solution.Using a variable:
 
->export FILES=`find . -type f -name 'mess*' -exec grep -q 'Synergy' {} \; -print`
->rm -f $FILES
+export FILES=`find . -type f -name 'mess*' -exec grep -q 'Synergy' {} \; -print`
+rm -f $FILES
 
-Using a loop:
+# Using a loop:
+for FILE in `find . -type f -name 'mess*' -exec grep -q 'Synergy' {} \; -print`
+do rm -f $FILE; done
 
->for FILE in `find . -type f -name 'mess*' -exec grep -q 'Synergy' {} \; -print`
->do rm -f $FILE; done
-
-Using xargs:
->find . -type f -name 'mess*' -exec grep -q 'Synergy' {} \; -print | xargs rm -f 
+# Using xargs:
+find . -type f -name 'mess*' -exec grep -q 'Synergy' {} \; -print | xargs rm -f 
 

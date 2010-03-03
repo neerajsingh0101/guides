@@ -1,18 +1,18 @@
-apt stands for advanced packaging tools
+# apt stands for advanced packaging tools
 
-lists all the installed packages
->dpkg -l 
+# lists all the installed packages
+dpkg -l 
 
-lists all packages with name 'vi*'
->dpkg -l "vi*" 
+# lists all packages with name 'vi*'
+dpkg -l "vi*" 
 
->sudo apt-get install package
->sudo apt-get remove package
->sudo apt-get remove --purge package-name
+sudo apt-get install package
+sudo apt-get remove package
+sudo apt-get remove --purge package-name
 
-uptodate all the packages
->sudo apt-get update 
+# uptodate all the packages
+sudo apt-get update 
 
->sudo apt-get dist-upgrade
+sudo apt-get dist-upgrade
 
->sudo shutdown -r now
+sudo shutdown -r now

@@ -1,15 +1,13 @@
 # sometimes this command does not work. In that case just create the tar file without zipping it
+# c : create
+# v : verbose
+# f : output should be a file. Without f the output will go to terminal
+# z : gzip the tar file after it's create
+# x : extract
 tar -cvfz home.tar.gz /home
-c : create
-v : verbose
-f : output should be a file. Without f the output will go to terminal
-z : gzip the tar file after it's create
 
 
 # extracting the foo.tar.gz file
 tar -zxvf home.tar.gz #=> use -z option for .gz file
 
 tar -xvf home.tar
-x : extract
-v : verbose
-f : file

@@ -12,23 +12,23 @@ sed -i 's/ugly/beautiful/gI' /tmp/foo.txt
 sed "s/foo/bar/g" README > README2
 
 
-find the text between the strings FOO and BAR inclusive
->sed -n '/FOO/,/BAR/p' test.txt
+# find the text between the strings FOO and BAR inclusive
+sed -n '/FOO/,/BAR/p' test.txt
 
 
-find out all virtual host entries from httpd.conf
->sed -n '/<VirtualHost*/,/<\/VirtualHost>/p' /etc/httpd/conf/httpd.conf
+# find out all virtual host entries from httpd.conf
+sed -n '/<VirtualHost*/,/<\/VirtualHost>/p' /etc/httpd/conf/httpd.conf
 
 
-Deleting the first line in the input file
-> sed '1d' textfile.txt
+# Deleting the first line in the input file
+sed '1d' textfile.txt
 
-Deleting the last line in the input file
-> sed '$d' textfile.txt
+# Deleting the last line in the input file
+sed '$d' textfile.txt
 
 
-Delete lines 2 through 4 in the file
-> sed '2,4d' textfile.txt
+# Delete lines 2 through 4 in the file
+sed '2,4d' textfile.txt
 
 
 # find and replace in all files 

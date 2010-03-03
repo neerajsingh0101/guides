@@ -1,2 +1,2 @@
-Perform syntax check of configuration file without restarting
->sudo httpd -t
+# Perform syntax check of configuration file without restarting
+sudo httpd -t

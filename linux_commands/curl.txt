@@ -1,22 +1,22 @@
---url just indicates that it is url. 
--d pass extra parameters
-because of -d option the data will be send in POST as oppossed to GET
->curl --url http://neeraj.name -d foo=1 -d bar=rocks
+# --url just indicates that it is url. 
+# -d pass extra parameters
+# because of -d option the data will be send in POST as oppossed to GET
+curl --url http://neeraj.name -d foo=1 -d bar=rocks
 
-only show the response header 
->curl -I http://www.neeraj.name 
+# only show the response header 
+curl -I http://www.neeraj.name 
 
-show the response header along with the body text
->curl -i http://www.neeraj.name 
+# show the response header along with the body text
+curl -i http://www.neeraj.name 
 
-what the page looks like to a google bot
->curl --user-agent 'GoogleBot' http://www.eventsinindia.com 
+# what the page looks like to a google bot
+curl --user-agent 'GoogleBot' http://www.eventsinindia.com 
 
--L : if the initial web server response indicates that the requested page has moved to a new 
-location (redirect), CURL’s default behavior is not to request the page at that new location, but just 
-print the HTTP error message. This switch instructs CURL to make another request asking for the page at 
-the new location whenever the web server returns a 3xx HTTP code.
->curl -L http://neeraj.name
+# -L : if the initial web server response indicates that the requested page has moved to a new 
+# location (redirect), CURL’s default behavior is not to request the page at that new location, but just 
+# print the HTTP error message. This switch instructs CURL to make another request asking for the page at 
+# the new location whenever the web server returns a 3xx HTTP code.
+curl -L http://neeraj.name
 
-download a file
->curl -o http://neeraj.name/file1.txt
+# download a file
+curl -o http://neeraj.name/file1.txt
