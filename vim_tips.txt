@@ -131,7 +131,7 @@ zO
 # ctags ---------------------------------------------------------------
 # after ctags are installed run following command on command prompt to create
 # tags
-ctags -R -exclude=*.js
+ctags -R --exclude=*.js
 
 # move the cursor over to a method and hit ctrl ] . Hit ctrl t to go backward
 

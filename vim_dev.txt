@@ -1,0 +1,29 @@
+# where is vim installed
+:echo $VIM
+
+# what vim considers to be your home directory
+:echo $HOME
+
+# set font to be Arial 12 every time a text file is opened 
+autocmd BufEnter *.txt set guifont=Arial\ 12
+
+# move to the beginning of paragraph
+{
+
+# move to the end of paragraph
+}
+
+# last few places where you were editing
+g;
+g,
+
+# move to end of next word
+we
+
+# list of all defined colors
+:highlight
+
+# list of all color groups
+:syntax
+
+
