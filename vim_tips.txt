@@ -101,6 +101,12 @@ shift a
 
 
 # Folding in vim  ----------------------------------------------------------------
+
+# fold the whole method
+za
+# pressing za again will unfold the method
+
+
 # fold next 10 lines
 zf10j 
 
@@ -388,3 +394,6 @@ $
 "
 # W B E - they do the same thing. However move along WORD. A WORD is a
 # sequence of non blank characters.
+
+# convert all existing tabs to spaces
+:retab
