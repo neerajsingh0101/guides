@@ -1,3 +1,11 @@
+# copying files from folder
+find . -ctime 15 -print0 | xargs -0 -I % cp % destination_folder
+
+
+#This causes find to output a null character after each filename and tells xargs to break up names based on null characters instead of whitespace or other tokens.
+find . -name vmware-*.log -print0 | xargs -0 rm
+
+
 # the default command of xargs is echo
 echo 1 2 3 4 | xargs
 
@@ -31,4 +39,9 @@ do rm -f $FILE; done
 
 # Using xargs:
 find . -type f -name 'mess*' -exec grep -q 'Synergy' {} \; -print | xargs rm -f 
+
+--interactive mode will prompt for operation on each line
+--a filename
+-L number of lines to be taken rather than words separated by spaces
+--verbose
 

@@ -1,3 +1,6 @@
+# create a new branch on remote
+git push origin experiment
+
 # bring all the changes from experiment branch in file app.js to master
 git co experiment -- app.js
 

@@ -1,3 +1,8 @@
+# extracting the foo.tar.gz file
+# use -z option to filter through gzip
+# output would be home directory
+tar -zxvf home.tar.gz 
+
 # sometimes this command does not work. In that case just create the tar file without zipping it
 # c : create
 # v : verbose
@@ -6,8 +11,5 @@
 # x : extract
 tar -cvfz home.tar.gz /home
 
-
-# extracting the foo.tar.gz file
-tar -zxvf home.tar.gz #=> use -z option for .gz file
 
 tar -xvf home.tar

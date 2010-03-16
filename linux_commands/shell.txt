@@ -1,3 +1,25 @@
+# find out what linux flavor is running
+cat /proc/version
+
+
+# I have a custom shell command gi. However following command will not work
+find -name \*bar\* | xargs gi foo
+# it will not work because shell specific command works only bash script is executed
+# meaning when .bash_profile or .bashrc is execute. In order to make above code work do this
+find -name \*bar\* | xargs bash -ic gi foo
+
+# copy all the files from a particular directory to here
+find /path -type f | xargs -I % cp % .
+# notice that in the above case the command should have been
+find /path -type f | xargs cp -I % .
+# However above command will fail saying that -I is not a legal value for cp
+# so the trick is to store the file name in a temporary variable called %
+# variable name could be anything; it does not have to be %. following command will work too
+find /path -type f | xargs -I k cp k .
+
+
+
+
 # go through the command history in an easier manner
 # type history
 # hit Ctrl R and then type hi

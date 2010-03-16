@@ -397,3 +397,16 @@ $
 
 # convert all existing tabs to spaces
 :retab
+
+# create a macro
+# qw
+# do your thing
+# q to quit
+#
+# execute macro by typing @w
+#
+# map space bar to @w so that you don't have to keep typing @w
+# :nnoremap <space> @w
+
+
+

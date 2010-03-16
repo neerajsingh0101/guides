@@ -1,0 +1,8 @@
+# how much space each file takes
+du
+
+# how much space current directory is taking . -s is for summary
+du -sh
+
+# sort from items taking most space to least space
+ du -sh * | sort -r -k1 -n
