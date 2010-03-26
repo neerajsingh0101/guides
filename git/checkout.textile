@@ -46,14 +46,12 @@ h2. reset everything or a file
 Get rid of all the working and staged changes from the current branch.
 
 <pre>
-# reset --hard is a dangerous operation. If mistakenly you did reset --hard HEAD^ then you loose a commit
-git reset --hard HEAD 
-
-git co -f        # a safe option is
-got co app.js    # get rid of local changes in app.js and reset it from current HEAD
-
-# discard all the changes in the current branch and switch to lab branch. this is same as git co -f; git co lab
-git co -f lab    
+git reset --hard HEAD # reset --hard is a dangerous operation. If mistakenly you 
+                      # did reset --hard HEAD^ then you loose a commit
+git co -f             # this is a safer option 
+got co app.js         # get rid of local changes in app.js and reset it from current HEAD
+git co -f lab         # discard all the changes in the current branch and switch 
+                      # to lab branch. this is same as git co -f; git co lab
 </pre>
 
 
