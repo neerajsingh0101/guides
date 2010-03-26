@@ -1,0 +1,5 @@
+
+# find all the commits that are yet to be sent to remote branch. These are the commits that would be sent to
+# remote branch if git push is done
+# tbd explain both + and - sign
+git cherry -v origin/master master

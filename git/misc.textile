@@ -1,0 +1,51 @@
+
+# Directed Acyclic Graph
+# http://en.wikipedia.org/wiki/Directed_acyclic_graph
+#
+#
+#
+
+
+h2. You have local changes to 'foo.txt'; cannot switch branches.
+
+You might have seen similar message before. I get that message sometimes and sometimes I do not get that message. Here is an analysis.
+
+I have one single file <tt>foo.txt</tt> .
+
+<pre>
+$ git co -b lab
+$ git co master
+$ echo change something in foo.txt > foo.txt
+
+$ git status
+modified foo.txt
+
+$ git co lab  
+Switched to lab
+</pre>
+
+In the above case I am able to checkout lab. That is because the checked in file foo.txt is same in both master and in lab.
+
+<pre>
+$ git co master
+git add .
+git commit -m 'changed foo'
+</pre>
+
+Now I have committed a change in foo.txt in master. So now there is a difference between foo.txt of master and foo.txt of lab.
+
+Now change something in foo.txt and do not stage it.
+
+<pre>
+$ echo change something2 > foo.txt
+$ git co lab
+error: You have local changes to 'foo.txt'; cannot switch branches.
+</pre>
+
+git complains only if the committed verion of the changed file is different between the two branches. Another way to look at it is if
+
+<pre>
+git diff master lab foo.txt
+</pre>
+
+is empty then changing foo.txt will cause error.

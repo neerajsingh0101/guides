@@ -1,0 +1,8 @@
+
+# git creates new objects all the time. If a single line is added to a file then git will create a brand
+# new object. However one can ask git to use previous object and to store only incremental difference.
+# this is called packing.
+git gc
+
+# After the packing is done one can verify packing by running following command 
+git verify-pack -v .git/objects/pack/pack-108ebf6abb50656e7aa5695314a47c3fc1e23f90.idx 

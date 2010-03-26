@@ -13,26 +13,6 @@ git symbolic-ref HEAD refs/heads/staging
 # list chronological history of things that happened
 git reflog --all
 
-# error: The branch 'docs' is not an ancestor of your current HEAD.
-# If you are sure you want to delete it, run 'git branch -D docs'
-# you get this error because branch docs is not merged into the branch
-# you are currently in . git is just trying to make sure that data is not lost
-git branch -d docs
-
-# find all the commits that are in staging but not in master
-git cherry -v master staging
-
-
-# Directed Acyclic Graph
-# http://en.wikipedia.org/wiki/Directed_acyclic_graph
-
-# remove a file from repository but keep it in the working directory.
-# after this operation foo.txt will become untracked file
-git rm --cached foo.txt
-
-
-
-
 #-----------------------------------------------------------------------------------
 # How to find if a file has merge issue
 git ls-files --unmerged
@@ -54,13 +34,7 @@ git diff --theirs
 # those changed would be left staged.
 # -----------------------------------------------------------------------------------
 
-# git creates new objects all the time. If a single line is added to a file then git will create a brand
-# new object. However one can ask git to use previous object and to store only incremental difference.
-# this is called packing.
-git gc
 
-# After the packing is done one can verify packing by running following command 
-git verify-pack -v .git/objects/pack/pack-108ebf6abb50656e7aa5695314a47c3fc1e23f90.idx 
 
 # git stores the 40 digit SHA1_HASH of the content. for foo.txt if the 40 char hash is
 # 16ffbb1d57bfbf28a5b4da9ea71faf1c73b92272 then this content would be stored at
@@ -145,33 +119,6 @@ git co foo.txt
 git co -b production origin/production
 git co --track -b production origin/production
 
-# create a new branch called experiment
-git branch experiment 
-
-# list all local branches and indicate which branch I am currently in
-git branch 
-
-# all branch info with last commit
-git branch -v
-
-# list all local and remote branches
-git branch -a
-
-# list only the remote branches ( does not include local branches)
-git branch -r
-
-# show all the branches from which merge is yet to be done
-git branch --no-merged
-
-# delete the staging branch
-git branch -d staging 
-
-# show branches and display more info about them
-git show-branch 
-
-# show branches and display more info about them also lists directories from remote
-git show-branch -a
-
 # delete untracked files. 
 # -d removes untracked directories in addition to untracked files.
 # -f force
@@ -189,17 +136,11 @@ git log --oneline
 # show all log messages for foo.txt
 git log foo.txt
 
-# view a remote file
-git show origin/master:README
-
 # show each line and the commit that last changed that line
 git blame foo.txt
 
 # show git blame only for certain number of lines
 git blame -L 2,25 foo.txt
-
-# info about a commit
-git show SHA1_HASH
 
 # if you are getting merge error while rebasing then try interactive rebase and leave out the code 
 # that is causing merge error.

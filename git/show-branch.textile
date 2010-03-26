@@ -1,0 +1,7 @@
+
+# show branches and display more info about them
+git show-branch 
+
+# show branches and display more info about them also lists directories from remote
+git show-branch -a
+

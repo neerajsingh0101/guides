@@ -1,5 +1,11 @@
 h2. git show
 
 <pre>
-git show --pretty=medium --name-only 79f6a0b # list all the files changed in a commit
+git show SHA1_HASH                             # information about a commit
+git show --name-only SHA1_HASH                 # list all the files changed in a commit
+git show --pretty=medium --name-only SHA1_HASH # it takes --pretty option
+
+git show origin/experiment:foo.txt             # see the contents of a remote file
 </pre>
+
+
