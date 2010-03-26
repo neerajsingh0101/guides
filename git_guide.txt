@@ -3,7 +3,6 @@ git push origin experiment
 
 # bring all the changes from experiment branch in file app.js to master
 git co experiment -- app.js
-
 # other varieties
 git checkout v1.2.3 -- filename         # tag v1.2.3
 git checkout stable -- filename         # stable branch
@@ -11,8 +10,14 @@ git checkout origin/master -- filename  # upstream master
 git checkout HEAD -- filename           # the version from the most recent commit
 git checkout HEAD^ -- filename          # the version before the most recent commit
 
-# remote tags and branches
->git ls-remote origin
+# list of all remote branches and their last SHA
+# ls is for list references
+git ls-remote origin
+
+# list references only for tags
+git ls-remote --tags origin
+
+
 
 # when a commit is done then HEAD is changed. One can manually change the HEAD like this
 echo 5f1bc85745dcccce6121494fdd37658cb4ad441f > .git/refs/heads/master
@@ -30,6 +35,8 @@ git reset --hard HEAD^
 # accidentally and now you want to recover the last commit then 
 # reflog will come in handy. That's all for now.
 git reflog
+
+# list chronological history of things that happened
 git reflog --all
 
 # error: The branch 'docs' is not an ancestor of your current HEAD.
@@ -55,12 +62,19 @@ git co ./lab
 # Directed Acyclic Graph
 # http://en.wikipedia.org/wiki/Directed_acyclic_graph
 
-# remove a file from repository but keep it in the working directory
+# remove a file from repository but keep it in the working directory.
+# after this operation foo.txt will become untracked file
 git rm --cached foo.txt
+
+#******************************************************************************************************
+# stash
+#******************************************************************************************************
 
 # better stash messages
 git stash save 'writing test for user model'
-git stash list # this list will have better messages
+
+# this list will have better messages
+git stash list 
 
 # diff with stashed items
 git diff stash@{3}
@@ -575,3 +589,24 @@ git rebase -i HEAD~2 will let merge last two commits into a single commit.
 
 # Also note that rebase provides and option to edit a commit where a single commit can be split
 # into multiple commits.
+
+# find all branches which are already merged in master
+git co master
+git branch --merged
+
+# find all branches which are not yet merged in master
+git co master
+git branch --no-merged
+
+git add --patch
+
+# incase of merge if there is conflict and if I want to retain my copy of earth.txt and theirs
+# copy of sun.txt then do this
+gi co --ours earth.txt
+git co --theirs sun.txt
+
+# for all the files make my file take precedence
+git co --ours *.*
+
+
+

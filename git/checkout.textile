@@ -1,0 +1,10 @@
+
+h2.  detached head
+
+* "http://sitaramc.github.com/concepts/detached-head.html":http://sitaramc.github.com/concepts/detached-head.html
+
+Certain operations will put you in no branch. In this branch which is no branch you can do  your experiment like adding a few commits etc. When you get out of branch then all those  changes are discarded. 
+
+<pre>
+git co v0.1.15
+</pre>
