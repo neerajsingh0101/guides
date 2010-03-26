@@ -14,8 +14,6 @@ git ls-remote origin
 # list references only for tags
 git ls-remote --tags origin
 
-
-
 # when a commit is done then HEAD is changed. One can manually change the HEAD like this
 echo 5f1bc85745dcccce6121494fdd37658cb4ad441f > .git/refs/heads/master
 git update-ref refs/heads/master 5f1bc857
@@ -26,12 +24,6 @@ git update-ref refs/heads/master 5f1bc857
 .git/HEAD => refs/heads/master ( in master branch)
 git symbolic-ref HEAD refs/heads/staging
 
-
-# reflog keeps track of every single object created. In case you have done something like
-git reset --hard HEAD^ 
-# accidentally and now you want to recover the last commit then 
-# reflog will come in handy. That's all for now.
-git reflog
 
 # list chronological history of things that happened
 git reflog --all
@@ -53,25 +45,8 @@ git cherry -v master staging
 # after this operation foo.txt will become untracked file
 git rm --cached foo.txt
 
-#******************************************************************************************************
-# stash
-#******************************************************************************************************
 
-# better stash messages
-git stash save 'writing test for user model'
 
-# this list will have better messages
-git stash list 
-
-# diff with stashed items
-git diff stash@{3}
-
-# get rid of last commit
-git reset --hard HEAD^
-
-# get rid of last commit but leave all the changes in the working tree
-# http://henrik.nyh.se/2009/02/git-reset-soft-as-stash-replacement-and-undo
-git reset --soft HEAD^
 
 #-----------------------------------------------------------------------------------
 # How to find if a file has merge issue
@@ -89,11 +64,6 @@ git diff --ours
 #all the changes compared to theirs can be seen as
 git diff --theirs
 
-# After a successful merge operation if you want to discard the merge operation then just use
-# ORIG_HEAD to rollback changes. If you use HEAD then it will have no impact. Also note that
-# reset --hard ORIG_HEAD should be the very first operation after the merge if you want to
-# discard it.
-git reset --hard ORIG_HEAD
 
 # Instead of --hard if you say --soft then all the changes will be removed from commit but
 # those changed would be left staged.
@@ -178,8 +148,6 @@ git status
 # How to do commit
 git commit -m 'bug fixes for upload'
 
-# Reset all the local changes
-git reset --hard HEAD
 
 # How to rename a file
 git mv foo.txt bar.txt
@@ -226,8 +194,6 @@ git show-branch -a
 # -X remove only files ignored by git
 git clean -n -d
 
-# unstaging a staged file
-git reset HEAD README
 
 # show all the diff from last two log messages
 git log -p -n 2
@@ -296,12 +262,6 @@ git checkout -b experiment
 git push origin experiment
 git push --all # it pushes all the branches 
 
-# I have five commits I want to totally discard last two commits and start from third commit
-# both the commits after the 3rd commit will be gone permanently. It is different from revert 
-# where a reversal is another 
-# commit. In this case the last two commits were just deleted. They are gone.
-git log -n 5 #it will display all the five logs
-git reset --hard SHA1_HASH (SHA1-HASH of the third commit)
 
 # improve performance
 git gc
@@ -394,8 +354,6 @@ git show d921970^2
 # -n is for the dry run
 git add -n -u 
 
-# undo the last commit and keep the changes in the working tree
-git reset --soft HEAD^
 
 # show the -1 version of admin_controller.rb
 git show HEAD^:app/controllers/admin_controller.rb 
@@ -405,9 +363,6 @@ git show HEAD^:app/controllers/admin_controller.rb
 git checkout HEAD^ app/controllers/admin_controller.rb
 
 
-git remote
-git remote -v
-git remote show origin
 
 # get the commit info about the 3rd grandparent
 git rev-prase master~3
@@ -482,16 +437,6 @@ git log --abbrev-commit
 
 # get the names of all commits for HEAD
 git reflog
-
-git stash
-git stash list
-git stash apply #applies the most recent one
-git stash apply stash@{2}
-git stash apply --index #applies changes to index
-
-#create a branch off of stash and if branch is successfully created then stash is dropped.
-#in this way one can work on stashed data in a branch
-git stash branch filterWork
 
 # rebase is useful not only for rebasing stuff from other branches but also squashing various
 # commits into a single commit in a branch

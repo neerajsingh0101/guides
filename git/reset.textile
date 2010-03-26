@@ -1,0 +1,38 @@
+h2. git reset
+
+<pre>
+git reset --soft HEAD^     # undo the last commit and keep the changes in the working tree
+git reset --hard HEAD^     # get rid of last commit
+git reset --hard HEAD      # Reset all the local changes
+git reset HEAD foo.txt     # unstage a staged file
+git reset --hard ORIG_HEAD # After a successful merge operation if you want to discard 
+                           # the merge operation then just use  ORIG_HEAD to rollback 
+                           # changes. If you use HEAD then it will have no impact. Also note 
+                           # that reset --hard ORIG_HEAD should be the very first operation 
+                           # after the merge if you want to discard it.
+
+</pre>
+
+
+h2. Reverting to a particular commit
+
+I have five commits I want to totally discard last two commits and start from third. I want last two commits to be totally gone. 
+
+<pre>
+> git log -n 5 --pretty=oneline                # display last 5 commits
+47fe5e36d5f5591e2d1a9d5f700187371e70fe8f c5
+4e00ed451fa677f66a674925e51162c022a4e8a5 c4
+53954a12d9f9cde98a2cab8bd90812c6cd36a990 c3
+031b16d70b8e2a3b7d2238afd36bcd0743ab67d8 c2
+4988ee1b65a33e003d8177708b769cf55727dc88 c1
+
+git reset --hard 53954a12d9f9cde98a2cab8bd90812c6cd36a990 (SHA1-HASH of c3)
+HEAD is now at 53954a1 c3
+
+> git log -n 5 --pretty=oneline                  # notice that c4 and c5 are gone from the log
+53954a12d9f9cde98a2cab8bd90812c6cd36a990 c3
+031b16d70b8e2a3b7d2238afd36bcd0743ab67d8 c2
+4988ee1b65a33e003d8177708b769cf55727dc88 c1
+235b6272e18c6d2fb75c98f73e09c16fad777f0d master
+0505f0202025c2d948416ca00f903b22182b190a done
+</pre>

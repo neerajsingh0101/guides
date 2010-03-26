@@ -68,11 +68,11 @@ git co -b lab origin/lab # pull a remote branch called lab
 h2. Recovering a deleted file
 
 <pre>
-rm app.js        # delete a file
-git co app.js    # recover the deleted file
+rm app.js              # delete a file
+git co app.js          # recover the deleted file
 
-git rm app.js    # git delete a file
-tbd              # recover that file
+git rm app.js          # git delete a file
+git reset HEAD app.js  # recover that file
 </pre>
 
 List of files deleted using rm

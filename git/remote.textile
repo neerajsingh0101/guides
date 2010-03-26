@@ -1,0 +1,7 @@
+h2. git remote
+
+<pre>
+git remote             # check if this project is attached any remote git server or not
+git remote -v          # information about remote server
+git remote show origin # show how current branches stack up against remote counterparts
+</pre>
