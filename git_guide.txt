@@ -1,18 +1,3 @@
-# git does not allow to switch to a different branch is a file that is being tracked is modified. However
-# -m option tells git to checkout the other branch and then merge with the local changes. In this way
-# your current branch is left as it is and all the changes are in different branch.
-git co -m staging
-
-# create a new branch on remote
-git push origin experiment
-
-
-# list of all remote branches and their last SHA
-# ls is for list references
-git ls-remote origin
-
-# list references only for tags
-git ls-remote --tags origin
 
 # when a commit is done then HEAD is changed. One can manually change the HEAD like this
 echo 5f1bc85745dcccce6121494fdd37658cb4ad441f > .git/refs/heads/master
@@ -460,3 +445,9 @@ git co --theirs sun.txt
 
 # for all the files make my file take precedence
 git co --ours *.*
+
+# git does not allow to switch to a different branch is a file that is being tracked is modified. However
+# -m option tells git to checkout the other branch and then merge with the local changes. In this way
+# your current branch is left as it is and all the changes are in different branch.
+git co -m staging
+

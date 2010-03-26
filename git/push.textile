@@ -1,0 +1,7 @@
+h2. git push
+
+<pre>
+git co master                  # make sure that you are in master branch
+git co -b experiment           # create a new branch called experiment
+git push origin experiment     # create a new remote branch called experiment
+</pre>
