@@ -232,9 +232,6 @@ git show-branch -a
 # -X remove only files ignored by git
 git clean -n -d
 
-# push tags to remote server
-git push origin --tags
-
 # unstaging a staged file
 git reset HEAD README
 
@@ -363,14 +360,6 @@ git diff --cached
 # bar.txt even though foo.txt has already been added to the index
 git diff HEAD
 
-git tag 'filter work done'
-git push --tags
-
-# create a tag for a commit which was done in the past
-git tag -a v1.2 xxxxxxx
-
-# tags list
-git tag
 
 # delete a remote tag
 git push origin :experiment 
