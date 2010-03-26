@@ -1,14 +1,11 @@
+# git does not allow to switch to a different branch is a file that is being tracked is modified. However
+# -m option tells git to checkout the other branch and then merge with the local changes. In this way
+# your current branch is left as it is and all the changes are in different branch.
+git co -m staging
+
 # create a new branch on remote
 git push origin experiment
 
-# bring all the changes from experiment branch in file app.js to master
-git co experiment -- app.js
-# other varieties
-git checkout v1.2.3 -- filename         # tag v1.2.3
-git checkout stable -- filename         # stable branch
-git checkout origin/master -- filename  # upstream master
-git checkout HEAD -- filename           # the version from the most recent commit
-git checkout HEAD^ -- filename          # the version before the most recent commit
 
 # list of all remote branches and their last SHA
 # ls is for list references
@@ -48,16 +45,6 @@ git branch -d docs
 # find all the commits that are in staging but not in master
 git cherry -v master staging
 
-# revert everything
-git reset --hard HEAD
-git co -f
-
-# revert a file in staging area
-git co lab
-# above command will fail if there is branch named lab. To enforce that lab is a file not 
-# a branch do this
-git co -- lab
-git co ./lab
 
 # Directed Acyclic Graph
 # http://en.wikipedia.org/wiki/Directed_acyclic_graph
@@ -85,11 +72,6 @@ git reset --hard HEAD^
 # get rid of last commit but leave all the changes in the working tree
 # http://henrik.nyh.se/2009/02/git-reset-soft-as-stash-replacement-and-undo
 git reset --soft HEAD^
-
-# git does not allow to switch to a different branch is a file that is being tracked is modified. However
-# -m option tells git to checkout the other branch and then merge with the local changes. In this way
-# your current branch is left as it is and all the changes are in different branch.
-git co -m staging
 
 #-----------------------------------------------------------------------------------
 # How to find if a file has merge issue
@@ -164,8 +146,6 @@ git log --follow foo2 #this will also display log messages associated with foo1 
 # show all the diff between the current and master~2 version for all files under app directory
 git diff master~2 master app
 
-# create a branch from one commit prior to master branch
-git co -b staging master^
 
 # When a commit occurs, Git records a snapshot of the index and places that snapshot 
 # in the object store.  This snapshot does not contain a copy of every file and 
@@ -201,9 +181,6 @@ git commit -m 'bug fixes for upload'
 # Reset all the local changes
 git reset --hard HEAD
 
-# How do I revert a particular file which is not yet committed but has been locally changed
-git co foo.txt
-
 # How to rename a file
 git mv foo.txt bar.txt
 
@@ -214,14 +191,8 @@ git commit -m 'adding foo.txt'
 # add multiple files at the same time
 git add foo.txt, bar.txt
 
-# delete a file from git
-git rm foo.txt
-
 # I have deleted a file using rm but not yet committed. How do I retrieve the file.
 git co foo.txt
-
-# get list of all the files deleted using rm. Note it is not git rm
-git ls-files --delete (-d)
 
 # checkout production branch of a project
 git co -b production origin/production
@@ -229,9 +200,6 @@ git co --track -b production origin/production
 
 # create a new branch called experiment
 git branch experiment 
-
-# create a new branch called experiment and switch to that branch
-git checkout -b experiment
 
 # list all local branches and indicate which branch I am currently in
 git branch 
@@ -245,9 +213,6 @@ git branch -a
 # list only the remote branches ( does not include local branches)
 git branch -r
 
-# have some local changes that I want to throwaway and I want to get back to branch master
-git co -f master
-
 # show all the branches from which merge is yet to be done
 git branch --no-merged
 
@@ -259,9 +224,6 @@ git show-branch
 
 # show branches and display more info about them also lists directories from remote
 git show-branch -a
-
-# switch to the master branch
-git checkout master 
 
 # delete untracked files. 
 # -d removes untracked directories in addition to untracked files.
@@ -410,14 +372,8 @@ git tag -a v1.2 xxxxxxx
 # tags list
 git tag
 
-# checkout a branch from a tag
-git checkout -b v1.0
-
 # delete a remote tag
 git push origin :experiment 
-
-# make a branch from a tag
-git checkout -b <tag name>
 
 gitk
 gitk &
@@ -495,9 +451,6 @@ git checkout HEAD^ app/controllers/admin_controller.rb
 git remote
 git remote -v
 git remote show origin
-
-# co-worked has put up a new branch called experiment. How do I pull that branch.
-git checkout -b experiment origin/experiment
 
 # get the commit info about the 3rd grandparent
 git rev-prase master~3
@@ -607,6 +560,3 @@ git co --theirs sun.txt
 
 # for all the files make my file take precedence
 git co --ours *.*
-
-
-
