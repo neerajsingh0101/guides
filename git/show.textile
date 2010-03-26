@@ -1,0 +1,5 @@
+h2. git show
+
+<pre>
+git show --pretty=medium --name-only 79f6a0b # list all the files changed in a commit
+</pre>

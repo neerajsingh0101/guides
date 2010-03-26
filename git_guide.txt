@@ -184,12 +184,6 @@ git reset --hard HEAD
 # How to rename a file
 git mv foo.txt bar.txt
 
-# add a new file called foo.txt and just commit this file
-git add foo.txt
-git commit -m 'adding foo.txt'
-
-# add multiple files at the same time
-git add foo.txt, bar.txt
 
 # I have deleted a file using rm but not yet committed. How do I retrieve the file.
 git co foo.txt
@@ -277,32 +271,6 @@ git rev-prase tag_1 # 54dedfd8e1c5bc00f3dfabfd77f87286c04901f2
 git commit -m 'initial commit'
 git add forgotten_file
 git commit --amend
-
-# global settings
-git config --global user.name “Neeraj Singh”
-git config --global user.email "neerajdotname@gmail.com" 
-
-# use --unset option to remove a setting
-git config --unset --global user.name
-
-# just for this project
-git config 
-git config user.name 'John doe'
-git config user.email 'john@doe.com'
-
-# I want to change my user name and email address just for one single project. This change should
-# not be global but just for one git project
-cd demo
-git config --list
-git config -l
-# Notice that user.name and user.email lines at the bottom of the list.
-# this will supercede the user.email and user.email listed at the top
-# of the list
-
-cat ~/.gitconfig
-
-# More information about a git project can also be seen by
-cat .git/config
 
 # log of changes made in staging branch over master branch
 git log master..staging
@@ -539,8 +507,6 @@ git branch --merged
 # find all branches which are not yet merged in master
 git co master
 git branch --no-merged
-
-git add --patch
 
 # incase of merge if there is conflict and if I want to retain my copy of earth.txt and theirs
 # copy of sun.txt then do this

@@ -1,0 +1,9 @@
+h2. git show-ref
+
+"http://www.wikux.com/index.php/Man/git-show-ref_1": http://www.wikux.com/index.php/Man/git-show-ref_1
+
+<pre>
+git show-ref -h      # show references for both heads and tags 
+git show-ref --heads # only heads no tags
+git show-ref --tags  # only tags no heads
+</pre>
