@@ -1,15 +1,3 @@
-
-# when a commit is done then HEAD is changed. One can manually change the HEAD like this
-echo 5f1bc85745dcccce6121494fdd37658cb4ad441f > .git/refs/heads/master
-git update-ref refs/heads/master 5f1bc857
-
-# One can also manually change the branch from master to staging like this
-.git/HEAD contains the reference to the current branch
-.git/HEAD => refs/heads/production ( in production branch)
-.git/HEAD => refs/heads/master ( in master branch)
-git symbolic-ref HEAD refs/heads/staging
-
-
 # list chronological history of things that happened
 git reflog --all
 
@@ -36,11 +24,6 @@ git diff --theirs
 
 
 
-# git stores the 40 digit SHA1_HASH of the content. for foo.txt if the 40 char hash is
-# 16ffbb1d57bfbf28a5b4da9ea71faf1c73b92272 then this content would be stored at
-# .git/objects/16/ffbb1d57bfbf28a5b4da9ea71faf1c73b92272 . If you cat this file then
-# you will see garbage. However you can  run below command to see the content
-git cat-file -p 16ffbb1d57bfbf28a5b4da9ea71faf1c73b92272
 
 # A branch in Git is nothing more than a file in the .git/refs/heads/ directory that 
 # contains the SHA-1 of the most recent commit of that branch.
@@ -76,13 +59,6 @@ git log --follow foo2 #this will also display log messages associated with foo1 
 git diff master~2 master app
 
 
-# When a commit occurs, Git records a snapshot of the index and places that snapshot 
-# in the object store.  This snapshot does not contain a copy of every file and 
-# directory in the index. Instead, Git compares the current state of the index to 
-# the previous snapshot and so derives a list of affected files and directories. 
-# Git creates new blobs for any file that has changed and new trees for any directory 
-# that has changed, and it reuses any blob or tree object that has not changed.
-
 # caret is used to select a different parent. Given a commit, C, C^1 is the first parent,
 # C^2 is the second parent, C^3 is the third parent
 
@@ -94,18 +70,6 @@ git diff master~2 master app
 # branch of where you copied it from automatically added as origin by default.
 
 # The tilde character, followed by a number, refers to the Nth genera- tion grandparent of that commit. 
-
-# HEAD is nothing else but refers to a commit. find out the commit HEAD points to
-git show HEAD
-
-# .gitignore file can be any directory
-# if you want to ignore something local to youself then use .git/info/exclude
-
-# How to get the status
-git status
-
-# How to do commit
-git commit -m 'bug fixes for upload'
 
 
 # How to rename a file
@@ -119,37 +83,10 @@ git co foo.txt
 git co -b production origin/production
 git co --track -b production origin/production
 
-# delete untracked files. 
-# -d removes untracked directories in addition to untracked files.
-# -f force
-# -x do not use ignore rules. This allows removing all untracked files
-# -X remove only files ignored by git
-git clean -n -d
-
-
-# show all the diff from last two log messages
-git log -p -n 2
-
-# git log in oneline
-git log --oneline
-
-# show all log messages for foo.txt
-git log foo.txt
-
-# show each line and the commit that last changed that line
-git blame foo.txt
-
-# show git blame only for certain number of lines
-git blame -L 2,25 foo.txt
 
 # if you are getting merge error while rebasing then try interactive rebase and leave out the code 
 # that is causing merge error.
 git rebase -i master
-
-# find out if a commit is of type commit or tree
-# -t is for type. it could be blob or tree
-git cat-file -t ae850bd698b2b5dfbac 
-
 
 # find longer version of the commit name
 git rev-parse 54dedfd # 54dedfd8e1c5bc00f3dfabfd77f87286c04901f2
@@ -163,12 +100,6 @@ git rev-prase tag_1 # 54dedfd8e1c5bc00f3dfabfd77f87286c04901f2
 git commit -m 'initial commit'
 git add forgotten_file
 git commit --amend
-
-# log of changes made in staging branch over master branch
-git log master..staging
-git log --stat master..staging
-# note that if staging is has some changes over master then git log the other way round does not work
-git log staging..master #=> nil
 
 # merge the changes from staging to master branch
 git co master # make sure that I am in master branch
@@ -221,55 +152,12 @@ git push origin :experiment
 gitk
 gitk &
 
-git log --stat production..master
-
 # figure out which branch is where
 git log --pretty=oneline --graph --all
 
-# information about each commit and the number of files changed
-git log --stat
-
-# log information in one line
-git log --shortstat 
-
-# names of all files along with modified or added
-git log --name-status 
-
-# just the title
-git log --pretty=short 
-
-# one line log information
-git log --pretty=oneline
-
-git log --since="3 weeks"
-
-git log --pretty=oneline --since="2007-12-01" --until='two months ago'
-
-# do not list logs from merges 
-git log --no-merges 
-
-git log --pretty=oneline | wc -l
-
-git log --no-merges --pretty=oneline | wc -l
-
-# all the commits which had something to do with a file
-git log --pretty=oneline db/schema.rb
-
-# all the commits which had something to do with that file. limit the log to just 2 entries
-git log -n 2 app/models/user.rb 
-
-# lists all the diffs for every commit of that file
-git log -p app/models/user.rb 
-
-# looking for string ror_rocks in the diff. It was there in the file and then it got deleted.
-git log -Sror_rocks
-git log -Sror_rocks README
 
 # find all the commits that have not been pushed to remote server
 git cherry -v origin/master
-
-# in the log show the diff
-git log -p
 
 # d921970^2 means “the second parent of d921970.” This syntax is only useful for merge 
 # commits, which have more than one parent. The first parent is the branch you were on 
@@ -358,8 +246,6 @@ git rebase --continue
 git rebase --abort
 git rebase --skip
 
-# make the commit name short
-git log --abbrev-commit
 
 # get the names of all commits for HEAD
 git reflog

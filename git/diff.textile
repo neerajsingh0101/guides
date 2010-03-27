@@ -1,0 +1,5 @@
+<pre>
+git diff          # diff from index
+git diff --cached # diff between HEAD and staged
+git diff HEAD     # git diff + git diff --cached
+</pre>

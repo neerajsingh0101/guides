@@ -1,0 +1,9 @@
+h2. git clean
+
+
+# delete untracked files. 
+# -d removes untracked directories in addition to untracked files.
+# -f force
+# -x do not use ignore rules. This allows removing all untracked files
+# -X remove only files ignored by git
+git clean -n -d

@@ -1,0 +1,6 @@
+h2. git cat-file 
+
+<pre>
+git cat-file -p SHA1_HASH        # lists tree and other commit info
+git cat-file -t SHA1_HASH        # type of commit: commit or tree
+</pre>

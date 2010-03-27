@@ -1,0 +1,76 @@
+h2. git has index
+
+Unlike cvs or svn git has index that is in between user and the final code base. When you do git add then you are adding to the index. When you commit then git does following thing.
+
+* git compares the commit state of the index and the current state of index. By doing the diff git finds out list of all the file that are new, changed or deleted.
+
+* git creates new blob for every single new file.
+
+* git creates new blob for every single changed file.
+
+* git updates the index marking that all those files have been committed.
+
+Notice that git does not store diff. git creates a new blob of the full file every single time that file changes. Every single time a new blob is created a new tree is created. To that tree this new blob is attached. This tree attaches old blobs for the file that did not change.
+
+
+h2. How git works
+
+HEAD tells which branch you are currently in.
+
+Curretly I am in master branch.
+
+<pre>
+(master)$ cat .git/HEAD
+ref: refs/heads/master
+</pre>
+
+Now I will switch to lab branch and notice the new value of HEAD.
+
+<pre>
+(master)$ git co lab
+Switched to branch 'lab'
+
+(lab)$ cat .git/HEAD
+ref: refs/heads/lab
+</pre>
+
+There is a command to change HEAD which could be used if I am writing a script.
+
+<pre>
+# change HEAD to lab branch
+$ git symbolic-ref HEAD refs/heads/lab
+</pre>
+
+h2. When you commit then HEAD changes
+
+HEAD points to a branch. When a commit is made in that branch then .git/refs/heads/<branch_name> gets wupdated with the last commit SHA1_HASH .
+
+You can update the branch HEAD with new commit SHA1_HASH yourself like this
+
+<pre>
+echo 5f1bc85745dcccce6121494fdd37658cb4ad441f > .git/refs/heads/master
+</pre>
+
+There is a git command for perforoming the same task
+
+<pre>
+git update-ref refs/heads/master 5f1bc85745dcccce6121494fdd37658cb4ad441f
+</pre>
+
+h2. What gets stored at .git/objects
+
+ git stores the 40 digit SHA1_HASH of the content. for foo.txt if the 40 char hash is 16ffbb1d57bfbf28a5b4da9ea71faf1c73b92272 then this content would be stored at below mentioned location.
+ 
+<pre>
+.git/objects/16/ffbb1d57bfbf28a5b4da9ea71faf1c73b92272 
+</pre> 
+
+If you cat this file then you will see garbage. However you can  run below command to see the content
+
+<pre>
+git cat-file -p 16ffbb1d57bfbf28a5b4da9ea71faf1c73b92272
+</pre>
+
+h2. .gitignore
+
+.gitignore file can be in any directory. If you want to ignore something local to youself then use .git/info/exclude

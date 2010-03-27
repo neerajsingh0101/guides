@@ -1,0 +1,23 @@
+h2. git log
+
+<pre>
+
+git log -n 2                      # show log for last two committs
+git log -p -n 2                   # show the patch along with log info
+git log --name-only -n 2          # list all the files involved in the committs
+git log --name-status -n 2        # list all the files involved in the commits. also show status of the file name
+git log --stat -n 2               # list all the files changed and next to each file show a 
+                                  # stat of how many lines were added and how many were removed
+git log --pretty=oneline          # log info in one line
+git log --pretty=oneline foo.txt  # list all committs in which foo.txt was involved
+git log master..lab               # list all committs which are in lab but not in master 
+git log --stat master..lab        # along with committs list stat of changed files 
+git log --shortstat               # commit info with shortstat
+git log --stat                    # commit info with stat
+git log --since="3 weeks"
+git log --no-merges               # do not list logs from merges 
+git log --abbrev-commit           # make the commit name short
+
+git log -Sgit_rocks               # look for string git_rocks in all diff of all the committs
+git log -Sror_rocks foo.txt       # look for string git_rocks in all diff of foo.txt
+</pre>
