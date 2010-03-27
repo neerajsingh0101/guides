@@ -138,14 +138,6 @@ git diff master experiment
 
 git diff --cached
 
-# I have two files foo.txt and bar.txt
-# I made changes to both the files
-# now I added foo.txt to index ( git add foo.txt)
-# I want to see all the changes from the HEAD. It should incluce the changes incurred in foo.txt and 
-# bar.txt even though foo.txt has already been added to the index
-git diff HEAD
-
-
 # delete a remote tag
 git push origin :experiment 
 
@@ -165,18 +157,12 @@ git cherry -v origin/master
 git show d921970^
 git show d921970^2
 
-# -n is for the dry run
-git add -n -u 
-
-
 # show the -1 version of admin_controller.rb
 git show HEAD^:app/controllers/admin_controller.rb 
 
 # if you want to replace the current content with the old one then do this
 # note that there is no colon before app in this case
 git checkout HEAD^ app/controllers/admin_controller.rb
-
-
 
 # get the commit info about the 3rd grandparent
 git rev-prase master~3
@@ -246,8 +232,6 @@ git rebase --continue
 git rebase --abort
 git rebase --skip
 
-
-# get the names of all commits for HEAD
 git reflog
 
 # rebase is useful not only for rebasing stuff from other branches but also squashing various
