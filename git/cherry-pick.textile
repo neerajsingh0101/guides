@@ -1,0 +1,6 @@
+h1. git cherry-pick
+
+# cherry-picking is to apply one commit from source to the target
+# in this case #ABCDEFG is the SHA-1 of the commit hash. One can
+# stage multiple cherry-pickekd merges by adding the -n argument
+git cherry-pick SHA1_HASH

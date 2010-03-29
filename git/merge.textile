@@ -1,5 +1,11 @@
 h1. git merge
 
+<pre>
+git merge --squash staging        # In squashed merge all the commits from lab would appear as one single commit in master branch.
+                                  # Note that squash merge operations leaves the changes in working 
+                                  # directory. You need to commit the changes yourself.
+</pre>
+
 h2. Conflict resolution while merging
 
 While merging if there is any conflict then following command will tell you which all committs from what branch is causing the merge conflict.

@@ -1,8 +1,10 @@
+h1. git basics
+
 h2. git has index
 
 Unlike cvs or svn git has index that is in between user and the final code base. When you do git add then you are adding to the index. When you commit then git does following thing.
 
-* git compares the commit state of the index and the current state of index. By doing the diff git finds out list of all the file that are new, changed or deleted.
+* git compares the commit state of the index and the current state of index. By doing the diff, git finds list of all the file that are new, changed or deleted.
 
 * git creates new blob for every single new file.
 
@@ -10,10 +12,10 @@ Unlike cvs or svn git has index that is in between user and the final code base.
 
 * git updates the index marking that all those files have been committed.
 
-Notice that git does not store diff. git creates a new blob of the full file every single time that file changes. Every single time a new blob is created a new tree is created. To that tree this new blob is attached. This tree attaches old blobs for the file that did not change.
+Notice that git does not store diff. git creates a new blob of the full file every single time a file changes. Every single time a new blob is created a new tree is also created. To that tree this new blob is attached. This tree attaches old blobs for the file that did not change.
 
 
-h2. How git works
+h2. How HEAD is tracked
 
 HEAD tells which branch you are currently in.
 
@@ -37,13 +39,12 @@ ref: refs/heads/lab
 There is a command to change HEAD which could be used if I am writing a script.
 
 <pre>
-# change HEAD to lab branch
-$ git symbolic-ref HEAD refs/heads/lab
+$ git symbolic-ref HEAD refs/heads/lab         # change HEAD to lab branch
 </pre>
 
 h2. When you commit then HEAD changes
 
-HEAD points to a branch. When a commit is made in that branch then .git/refs/heads/<branch_name> gets wupdated with the last commit SHA1_HASH .
+HEAD points to a branch. When a commit is made in that branch then file .git/refs/heads/<branch_name> gets wupdated with the last commit SHA1_HASH .
 
 You can update the branch HEAD with new commit SHA1_HASH yourself like this
 
@@ -59,7 +60,7 @@ git update-ref refs/heads/master 5f1bc85745dcccce6121494fdd37658cb4ad441f
 
 h2. What gets stored at .git/objects
 
- git stores the 40 digit SHA1_HASH of the content. for foo.txt if the 40 char hash is 16ffbb1d57bfbf28a5b4da9ea71faf1c73b92272 then this content would be stored at below mentioned location.
+git stores the 40 digit SHA1_HASH of the content as the file name. For foo.txt if the 40 char hash is 16ffbb1d57bfbf28a5b4da9ea71faf1c73b92272 then this content would be stored at below mentioned location. Notice that first two characters are taken for directory name and rest 38 characters are the file name for the object.
  
 <pre>
 .git/objects/16/ffbb1d57bfbf28a5b4da9ea71faf1c73b92272 
@@ -71,23 +72,36 @@ If you cat this file then you will see garbage. However you can  run below comma
 git cat-file -p 16ffbb1d57bfbf28a5b4da9ea71faf1c73b92272
 </pre>
 
+A tree contains the information that maps a blob to a file. The tree itself is also stored at .git/objects .
+
+<pre>
+$ git count-objects 
+36
+$ echo I am foo > foo.txt
+$ git add foo.txt
+
+$ git count-objects
+37
+
+$ git commit -m 'adding foo.txt'
+$ git count-objects
+39
+</pre>
+
+After committing the number of count-objects increased by two: one was a commit object itself and the second was a tree object.
+
 h2. .gitignore
 
 .gitignore file can be in any directory. If you want to ignore something local to youself then use .git/info/exclude
 
-# A branch in Git is nothing more than a file in the .git/refs/heads/ directory that 
-# contains the SHA-1 of the most recent commit of that branch.
+h2. index
 
-# The index is found in .git/index and keeps track of file pathnames and corresponding blobs. Each time 
-# you run commands such as git add, git rm, or git mv, Git updates the index with the new pathname 
-# and blob information.
+The index is found in .git/index and keeps track of file pathnames and corresponding blobs. Each time 
+you run commands such as git add, git rm, or git mv, Git updates the index with the new pathname 
+and blob information.
 
-# Every single time something is added using git add, a new blob object is created at
-# .git/objects. The path information about this blob at index. If user ends up not commiting
-# the file after adding it then that blob stay there unless a cleanup action is done. That is how
-# the number of blobs keep growing.
 
-# A commit blob contains the name of tree that identifies it.
 
-# A tree contains the information that maps a blob to a file. The tree itself is also stored
-# at .git/objects .
+
+
+# a branch in git is nothing more than a file in .git/refs/heads

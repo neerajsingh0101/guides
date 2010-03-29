@@ -9,9 +9,9 @@ git co lab
 </pre>
 
 <pre>
-git co -- lab # this will act on file named lab
-git co ./lab  # this will act of file named lab
-git co lab    # this will act on branch named lab
+git co -- lab       # this will act on file named lab
+git co ./lab        # this will act of file named lab
+git co lab          # this will act on branch named lab
 </pre>
 
 h2.  detached head
@@ -21,16 +21,16 @@ h2.  detached head
 Certain operations will put you in no branch. In this branch which is no branch you can do  your experiment like adding a few commits etc. When you get out of branch then all those  changes are discarded. 
 
 <pre>
-git co v0.1.15        # checkout tag v0.1.15
+git co v1.25          # checkout tag v1.25
 git co master^        # parent of master
 git co HEAD~2         # grandparent of current HEAD
 git co origin/master  # checkout a remote branch
 </pre>
 
-However during the experiment you did something and if you would like to preserve that work then you can checkout a new branch.
+Let's say that you checkoued tag v1.25 . You have been placed in no branch. In this branch you did some development and liked your work. You would like to preverse your work. If you checkout to master then all your work will be lost. In this case you can checkout a new branch as given below and all your work will be preserved.
 
 <pre>
-git co -b algorithm_works
+git co -b quick_sort
 </pre>
 
 h2. checking out a particular file
@@ -67,19 +67,10 @@ git co -b lab            # create a new branch called lab and switch to that bra
 git co -b lab origin/lab # pull a remote branch called lab
 </pre>
 
-h2. Recovering a deleted file
+h2. checking with your changes
+
+You made some changes in the lab  branch and you like your changes. However you would like these changes to be applied to master branch and not to lab branch. Note that you are in lab branch. Following command will checkout master branch and will apply unstaged changes to master.
 
 <pre>
-rm app.js              # delete a file
-git co app.js          # recover the deleted file
-
-git rm app.js          # git delete a file
-git reset HEAD app.js  # recover that file
-</pre>
-
-List of files deleted using rm
-
-<pre>
-rm *.txt                     # delete all files with extension .txt
-git ls-files --deleted (-d)  # get the list of files deleted from index
+git co -m master
 </pre>

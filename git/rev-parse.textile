@@ -1,12 +1,17 @@
 h1. git rev-parse
 
-Used in converting quick names intto commit SHA1_HASH.
+This method is used to get the longer 40 digit commit SHA1_HASH. 
 
 <pre>
 git rev-parse --verify master
 git rev-parse --verify lab
 git rev-parse --verify origin/master
 git rev-parse --verify origin/lab
+git rev-prase --verify v1.25                 
+
+git rev-parse --verify 54dedfd                  # find the longer version of the commit SHA1_HASH
+git rev-parse --verify master~4
 </pre>
 
 The "documentation of rev-parse":http://www.kernel.org/pub/software/scm/git/docs/git-rev-parse.html has a nice diagram illustrating the caret and how to travel to father and grand father.
+

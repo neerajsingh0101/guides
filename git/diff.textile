@@ -3,9 +3,20 @@ h1. git diff
 h2. common usage
 
 <pre>
-git diff          # diff from index
-git diff --cached # diff between HEAD and staged
-git diff HEAD     # git diff + git diff --cached
+git diff                            # diff from index
+git diff --cached                   # diff between HEAD and staged
+git diff HEAD                       # git diff + git diff --cached
+git diff --unified=10               # by default the diff shows 2 lines above and below. 
+                                    # To have 10 lines above and below use --unified option
+git diff lib
+git diff master~2                   # show diff between current version and master~2 version
+git diff master~2 lib               # show diff for all files in lib directory
+
+git diff --name-only                # list only the names of the file impacted in the relevant committs
+git diff --name-status              # list only the name and the status of the file impacted
+git diff --stat                     # show the stat of the files changed 
+git diff master~10 master~3 foo.txt # show diff between two paricular points for a particular file
+git diff master~3 foo.txt           # show difference between current state and the last three commits for foo.txt
 </pre>
 
 h2. What is the difference between double dot and triple dot

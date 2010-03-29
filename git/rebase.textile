@@ -5,3 +5,14 @@ quick_sort branch was created out of lab. There are few committs on quick_sort b
 <pre>
 git rebae --onto master lab quick_sort 
 </pre>
+
+
+# rebase is useful not only for rebasing stuff from other branches but also squashing various
+# commits into a single commit in a branch
+git rebase -i HEAD~2 will let merge last two commits into a single commit.
+
+# Also note that rebase provides and option to edit a commit where a single commit can be split
+
+git rebase --continue
+git rebase --abort
+git rebase --skip

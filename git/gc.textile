@@ -1,0 +1,8 @@
+h1. git gc
+
+<pre>
+git gc                # cleanup unnecessary files and optimize the local repository
+git gc --no-prune     # do not prune dangling objects
+git gc --prune=<date> # rune loose objects older than date (default is 2 weeks ago). It means object 
+                      # dangling objects older than 2 weeks get cleaned up by gc in default mode
+</pre>
