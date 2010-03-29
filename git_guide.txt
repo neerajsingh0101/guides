@@ -25,22 +25,6 @@ git diff --theirs
 
 
 
-# A branch in Git is nothing more than a file in the .git/refs/heads/ directory that 
-# contains the SHA-1 of the most recent commit of that branch.
-
-# The index is found in .git/index and keeps track of file pathnames and corresponding blobs. Each time 
-# you run commands such as git add, git rm, or git mv, Git updates the index with the new pathname 
-# and blob information.
-
-# Every single time something is added using git add, a new blob object is created at
-# .git/objects. The path information about this blob at index. If user ends up not commiting
-# the file after adding it then that blob stay there unless a cleanup action is done. That is how
-# the number of blobs keep growing.
-
-# A commit blob contains the name of tree that identifies it.
-
-# A tree contains the information that maps a blob to a file. The tree itself is also stored
-# at .git/objects .
 
 # get list of all files in the index and their SHA1_HASH
 git ls-files --stage
@@ -96,11 +80,6 @@ git rev-parse master
 # rev-parse also works with tag names
 git rev-prase tag_1 # 54dedfd8e1c5bc00f3dfabfd77f87286c04901f2
 
-# add a file to a commit afterwards
-git commit -m 'initial commit'
-git add forgotten_file
-git commit --amend
-
 # merge the changes from staging to master branch
 git co master # make sure that I am in master branch
 git merge staging
@@ -114,18 +93,10 @@ git revert SHA1_HASH
 # revert a commit but do not commit the revert commit
 git revert --no-commit SHA1_HASH
 
-# push local branch to github
-git checkout -b experiment
-git push origin experiment
-git push --all # it pushes all the branches 
-
-
 # improve performance
 git gc
 git fsck
 
-# delete remote branch experiment
-git push origin :experiment 
 
 # squashed merge from staging. In squashed merge all the commits in staging would appear as
 # single commit in master. Note that squash merge operations leaves the changes in working directory. 
@@ -137,9 +108,6 @@ git diff --stat master experiment
 git diff master experiment
 
 git diff --cached
-
-# delete a remote tag
-git push origin :experiment 
 
 gitk
 gitk &

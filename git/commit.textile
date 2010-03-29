@@ -1,0 +1,3 @@
+
+
+git commit -v  # add diff to the commit message

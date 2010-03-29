@@ -1,0 +1,8 @@
+h2. git ls-tree
+
+<pre>
+git ls-tree -r HEAD       # lists each and every single file and directory of the project and the SHA1_HASH against 
+                          # for each of them
+
+git ls-tree HEAD lib/*.rb # lists all the .rb files in lib directory and SHA1_HASH of each file
+</pre>

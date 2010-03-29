@@ -74,3 +74,20 @@ git cat-file -p 16ffbb1d57bfbf28a5b4da9ea71faf1c73b92272
 h2. .gitignore
 
 .gitignore file can be in any directory. If you want to ignore something local to youself then use .git/info/exclude
+
+# A branch in Git is nothing more than a file in the .git/refs/heads/ directory that 
+# contains the SHA-1 of the most recent commit of that branch.
+
+# The index is found in .git/index and keeps track of file pathnames and corresponding blobs. Each time 
+# you run commands such as git add, git rm, or git mv, Git updates the index with the new pathname 
+# and blob information.
+
+# Every single time something is added using git add, a new blob object is created at
+# .git/objects. The path information about this blob at index. If user ends up not commiting
+# the file after adding it then that blob stay there unless a cleanup action is done. That is how
+# the number of blobs keep growing.
+
+# A commit blob contains the name of tree that identifies it.
+
+# A tree contains the information that maps a blob to a file. The tree itself is also stored
+# at .git/objects .

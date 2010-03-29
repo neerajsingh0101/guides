@@ -2,6 +2,10 @@ h2. git push
 
 <pre>
 git co master                  # make sure that you are in master branch
-git co -b experiment           # create a new branch called experiment
-git push origin experiment     # create a new remote branch called experiment
+git co -b lab                  # create a new branch called lab
+git push origin lab            # create a new remote branch called lab
+git push --all                 # creates new branches on remote server for all local branches and pushes 
+                               # all local branches to server
+
+git push origin :lab           # delete remote branch lab
 </pre>

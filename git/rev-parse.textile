@@ -1,0 +1,12 @@
+h2. git rev-parse
+
+Used in converting quick names intto commit SHA1_HASH.
+
+<pre>
+git rev-parse --verify master
+git rev-parse --verify lab
+git rev-parse --verify origin/master
+git rev-parse --verify origin/lab
+</pre>
+
+The "documentation of rev-parse":http://www.kernel.org/pub/software/scm/git/docs/git-rev-parse.html has a nice diagram illustrating the caret and how to travel to father and grand father.

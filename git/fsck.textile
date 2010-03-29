@@ -1,0 +1,21 @@
+h1. git fsck
+
+h2. What happens to unreference blob
+
+Every single time you do git add, a blob is created for all changed file. Now if you don't commit and make some further changes to the files and then you do git add, then new blobs are created. If you commit now then commit will refer to the blobs created second time.
+
+What happens to the blobs that were created the first time. Well they are there just dangling. No one can reach them and they are of no use.
+
+git fsck identifies those blobs.
+
+<pre>
+$ git fsck
+dangling commit 7281251ddd2a61e38657c827739c57015671a6b3
+dangling commit 2706a059f258c6b245f298dc4ff2ccd30ec21a63
+dangling commit 13472b7c4b80851a1bc551779171dcb03655e9b5
+dangling blob 218761f9d90712d37a9c5e36f406f92202db07eb
+dangling commit bf093535a34a4d35731aa2bd90fe6b176302f14f
+dangling commit 8e4bec7f2ddaa268bef999853c25755452100f8e
+dangling tree d50bb86186bf27b681d25af89d3b5b68382e4085
+dangling tree b24c2473f1fd3d91352a624795be026d64c8841f
+</pre>

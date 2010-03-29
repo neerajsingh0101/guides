@@ -3,7 +3,17 @@ h2. git show-ref
 "http://www.wikux.com/index.php/Man/git-show-ref_1": http://www.wikux.com/index.php/Man/git-show-ref_1
 
 <pre>
-git show-ref -h      # show references for both heads and tags 
+$ git show-ref -h      # show references for both heads and tags 
+f7b97abf2c8e8c0d7aa03bf933ad35ad7cccde91 HEAD
+a8690311e955c98318e04d0d97f1dda3c0afa3be refs/heads/lab
+f7b97abf2c8e8c0d7aa03bf933ad35ad7cccde91 refs/heads/master
+f7b97abf2c8e8c0d7aa03bf933ad35ad7cccde91 refs/remotes/origin/HEAD
+7f086d8f86905a7eb73bf0ad53acbeba3a9938ff refs/remotes/origin/lab
+b5dd18af699e5399fe74b3461e9e18698e35a93f refs/tags/v0.1.23
+ee5eb3e761ef4c85e8d0bb6ea8c3d4a87bdc10df refs/tags/v0.1.24
+</pre>
+
+<pre>
 git show-ref --heads # only heads no tags
 git show-ref --tags  # only tags no heads
 </pre>
