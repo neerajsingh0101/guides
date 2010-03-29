@@ -1,4 +1,4 @@
-h2. git name-rev
+h1. git name-rev
 
 Someone fixed an algorithm which commit id 33db5f4d9027a10e477ccf054b2c1ab94f74c85a. I want to know where that commit is right now.
 

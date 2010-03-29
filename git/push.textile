@@ -1,4 +1,4 @@
-h2. git push
+h1. git push
 
 <pre>
 git co master                  # make sure that you are in master branch

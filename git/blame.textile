@@ -1,4 +1,4 @@
-h2. git blame
+h1. git blame
 
 git blame helps you identify the author for each line of code.
 

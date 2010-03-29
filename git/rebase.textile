@@ -1,4 +1,4 @@
-h2. git rebase --onto option
+h1. git rebase --onto option
 
 quick_sort branch was created out of lab. There are few committs on quick_sort branch. Now user wants to apply the same changes to master branch. --onto option can help. In the below case by applying --onto option branches master and lab remain untouched. However quick_sort branch rather than being on top of lab, not it attaches itself to master. Look at the documention which has "nice visual diagrams":http://www.kernel.org/pub/software/scm/git/docs/git-rebase.html to assit in understanding.
 

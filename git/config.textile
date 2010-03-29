@@ -1,4 +1,4 @@
-h2. git config
+h1. git config
 
 Use global option to change global setting
 

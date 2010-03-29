@@ -1,4 +1,4 @@
-h2. git remote
+h1. git remote
 
 <pre>
 git remote             # check if this project is attached any remote git server or not

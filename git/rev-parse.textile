@@ -1,4 +1,4 @@
-h2. git rev-parse
+h1. git rev-parse
 
 Used in converting quick names intto commit SHA1_HASH.
 

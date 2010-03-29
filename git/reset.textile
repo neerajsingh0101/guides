@@ -1,4 +1,4 @@
-h2. git reset
+h1. git reset
 
 <pre>
 git reset --soft HEAD^     # undo the last commit and keep the changes in the working tree

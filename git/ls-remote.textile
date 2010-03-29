@@ -1,4 +1,4 @@
-h2. git ls-remote
+h1. git ls-remote
 
 ls stands for list reference.
 

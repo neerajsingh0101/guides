@@ -28,5 +28,3 @@ Result of above command will look at committs (D and E) and will diff that again
 The triple dot version will not even look at D and E. Triple dot version will take ( F and G) and it will diff that against common ancestor (C). 
 
 Triple dot version is a good way to find out what all changed in a branch since it was branched off. Once again git won't even look at commit D and E in case of triple dot diff.
-
-

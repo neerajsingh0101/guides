@@ -1,4 +1,7 @@
+h1. git rm
 
+<pre>
 # remove a file from repository but keep it in the working directory.
 # after this operation foo.txt will become untracked file
 git rm --cached foo.txt
+</pre>

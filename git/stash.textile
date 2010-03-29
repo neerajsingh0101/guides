@@ -1,4 +1,5 @@
-h2. git stash
+h1. git stash
+
 <pre>
 git stash                                    # same as git stash save without any argument
 git stash list                               # list all the stashes

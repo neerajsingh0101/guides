@@ -1,4 +1,4 @@
-h2. git show
+h1. git show
 
 <pre>
 git show HEAD                                  # information about last commit

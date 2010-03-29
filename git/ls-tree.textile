@@ -1,4 +1,4 @@
-h2. git ls-tree
+h1. git ls-tree
 
 <pre>
 git ls-tree -r HEAD       # lists each and every single file and directory of the project and the SHA1_HASH against 

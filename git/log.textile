@@ -1,4 +1,4 @@
-h2. git log
+h1. git log
 
 <pre>
 

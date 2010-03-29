@@ -1,4 +1,4 @@
-h2. git show-ref
+h1. git show-ref
 
 "http://www.wikux.com/index.php/Man/git-show-ref_1": http://www.wikux.com/index.php/Man/git-show-ref_1
 

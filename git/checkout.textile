@@ -1,3 +1,5 @@
+h1. git checkout
+
 h2. file and branch name is same
 
 Let's say that I have a file called lab and I have a branch called lab. In the following case which operation will be performed.

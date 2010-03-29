@@ -1,4 +1,4 @@
-h2. git ls-file
+h1. git ls-file
 
 This command shows information about file from index.
 
@@ -7,7 +7,4 @@ rm foo.txt
 git ls-files --deleted    # this will list foo.txt
 
 git ls-files -t           # show the status of the each listed file
-
 </pre>
-
-

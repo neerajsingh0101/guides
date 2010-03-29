@@ -1,4 +1,4 @@
-h2. git describe
+h1. git describe
 
 git describe finds the nearest tag that is reachable from a commit.
 
