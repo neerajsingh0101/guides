@@ -1,5 +1,32 @@
+h1. git diff
+
+h2. common usage
+
 <pre>
 git diff          # diff from index
 git diff --cached # diff between HEAD and staged
 git diff HEAD     # git diff + git diff --cached
 </pre>
+
+h2. What is the difference between double dot and triple dot
+
+There is a difference between <tt>git diff master..lab</tt> and <tt>git diff master...lab</tt> . Here is an attempt to understand the difference.
+
+Assume that there are two branches: master and lab. And this is the current status.
+
+A - B - C - D - E (master)
+         \
+          \
+            F - G (lab)
+
+<pre>
+git diff master..lab
+</pre>
+
+Result of above command will look at committs (D and E) and will diff that against (F and G).
+
+The triple dot version will not even look at D and E. Triple dot version will take ( F and G) and it will diff that against common ancestor (C). 
+
+Triple dot version is a good way to find out what all changed in a branch since it was branched off. Once again git won't even look at commit D and E in case of triple dot diff.
+
+
