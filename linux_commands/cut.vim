@@ -3,7 +3,7 @@
 " -f fields specified by delimiter
 
 " show all the file names
-ls -l | cut -c 50-100
+ls -l | cut -c 49-100
 
 
 " show all the file names without extension

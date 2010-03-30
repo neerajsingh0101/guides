@@ -1,5 +1,0 @@
-h1. git commit
-
-<pre>
-git commit -v  # add diff to the commit message
-</pre>

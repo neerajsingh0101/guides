@@ -1,8 +1,0 @@
-h1. git prune
-
-git fsck lists dangling objects. git prune will delete dangling objects.
-
-<pre>
-git prune      # remove all dangling objects
-git fsck       # now the result of git fsck should be empty
-</pre>

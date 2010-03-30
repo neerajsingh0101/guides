@@ -1,8 +1,0 @@
-h1. git describe
-
-git describe finds the nearest tag that is reachable from a commit.
-
-<pre>
-git describe --all 84554be
-tags/c2-1-g84554be
-</pre>
