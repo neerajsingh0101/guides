@@ -1,3 +1,15 @@
+# update a user
+curl -X POST -d "user[name]=John" -d "_method=PUT" http://localhost:3000/users/1
+
+# this command will cause this error
+# Only get, put, and delete requests are allowed  
+curl  -H "X-Http-Method-Override: put" -H 'Accept: application/xml' -H 'Content-type: application/xml' http://localhost:3000/users/1.xml -d '<user><name>raj</name></user>' -X POST
+
+# this will work
+curl   -H 'Accept: application/xml' -H 'Content-type: application/xml' http://localhost:3000/users/1.xml -d '<user><name>raj</name></user>' -X POST
+
+
+
 # --url just indicates that it is url. 
 # -d pass extra parameters
 # because of -d option the data will be send in POST as oppossed to GET

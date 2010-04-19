@@ -63,7 +63,10 @@
 
 # highlight all terms and then search for all occurrences of word under the
 # cursor in reverse order. Hit n to go to next occurence
-#
+*
+:? # now hit n to go to next in backward direction
+
+
 
 
 
