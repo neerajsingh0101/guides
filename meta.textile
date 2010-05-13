@@ -1,0 +1,65 @@
+#
+What is $LOADED_FEATURES . http://neeraj.name/2010/05/12/require-load-loaded_features.html
+
+#
+require loads only once
+
+#
+require 'foo' works
+
+#
+load 'foo' fails
+
+#
+load 'foo.rb' works
+
+#
+If you inlcude a module twice then what happens. If a module has already been included by the current entity or by one of the ancestors of the current entity then the second statement to include module is ignored.
+
+#
+Best way to add a new method to String and Hash class.
+p = Proc.new do
+  def hello
+    puts 'hello'
+  end
+end
+
+String.module_eval &p
+Hash.module_eval &p
+
+Note that module_eval acceps both proc and string. Above case could also be written as
+
+p = %Q{
+ def hello
+   puts 'hello'
+ end
+}
+
+String.module_eval p
+Hash.module_eval p
+
+
+#
+In the above case method hello was added from outside the class. What if you are inside the class and you want to add a method called hello.
+
+class String
+  include Module.new {
+    def hello
+      puts 'hello'
+    end
+  }
+end
+
+Note that Module.new only accepts block. Unlike module_eval it does not accept string. So if you have string then you can do something like this inside the class.
+
+class String
+  p = %{ def hello; puts 'hello'; end }
+  self.module_eval p
+end
+
+#
+module.constants returns all the constants defined in a module.
+
+#
+module.ancestors rerturns all the module included in the module ( including self ). Don't be fooled by the name. This method has nothing to do with ancestors.
+

@@ -1,0 +1,59 @@
+h1. netnews wire
+
+expand: command right arrow
+
+collapse : command left arrow
+
+
+
+
+
+h2. Chrome
+
+cmd 0       : set the size of text to default text
+delete      : go back to last page
+cmd o       : open a file
+cmd shift T : reopen the last closed tab ( chrome remembers last 10 closed tabs )
+
+h2. Mac
+
+f12 : widgets
+f11 : desktop
+f10 : all windows of the current app
+f9 : all apps
+
+shift command a : open applications folder
+
+shift commad d : desktop folder
+
+shift command n : create a new folder
+
+control f3 : move focus to Deck   
+
+h2. screen
+
+A session consists of many windows.
+
+do not go and type just screen . Instead type <tt>screen -S admin_data</tt> if you are working on admin_data project.
+
+c-a A : give the current window a name
+
+c-a c : create a new window
+
+c-a c-a : toggle between two windows
+
+c-a S : split the window
+        and c-a tab to cycle between the two windows
+        by default the new window will be empty but that could be filled by another window by using c-a repeatedly
+
+c-a " : list all the windows
+
+screen -t gem_bundler : this command will assign gem_bundler name to the new window
+
+c-a C : clear the screen
+
+c-a d : detach the window from the screen
+ 
+
+
+http://www.debian-administration.org/articles/34
