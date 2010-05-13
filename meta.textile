@@ -1,3 +1,5 @@
+h2. Read this file in raw to get formatting right.
+
 #
 What is $LOADED_FEATURES . http://neeraj.name/2010/05/12/require-load-loaded_features.html
 
@@ -58,8 +60,28 @@ class String
 end
 
 #
-module.constants returns all the constants defined in a module.
+module.constants returns all the constants defined in a module. The list includes the constants defined in the included module.
 
 #
+Unbound method works for both Class and Module.
+module Lab
+  def foo
+    puts 'foo'
+  end
+end
+puts Lab.instance_method(:foo).class
+
+class Hello
+  def foo
+    puts 'foo'
+  end
+end
+puts Hello.instance_method(:foo).class
+
+Also Remember that unbound method values are preserverd forever. After having the unbound method the original method can be changed and it will have no impact on unbound method.
+Look at an example here http://ruby-doc.org/core/classes/UnboundMethod.html
+
+#
+
 module.ancestors rerturns all the module included in the module ( including self ). Don't be fooled by the name. This method has nothing to do with ancestors.
 
