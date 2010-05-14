@@ -5,10 +5,8 @@ What is $LOADED_FEATURES . http://neeraj.name/2010/05/12/require-load-loaded_fea
 
 # Q
 require loads only once
-
 # Q
 require 'foo' works
-
 # Q
 load 'foo' fails
 
