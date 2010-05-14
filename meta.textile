@@ -7,34 +7,46 @@ What is $LOADED_FEATURES . http://neeraj.name/2010/05/12/require-load-loaded_fea
 require loads only once. True or False.
 
 ##
-I have <tt>foo.rb</tt> . require 'foo' will return ? .
+I have foo.rb . require 'foo' will return true or false .
 
 ##
-I have <tt>foo.rb</tt> . load 'foo' will return ? .
-# Q
+I have foo.rb . load 'foo' will return true or false .
+
+##
 If you inlcude a module twice then what happens. 
- If a module has already been included by the current entity or by one of the ancestors of the current entity then the second statement to include module is ignored.
-# Q
+
+###
+If a module has already been included by the current entity or by one of the ancestors of the current entity then the second statement to include module is ignored.
+
+##
 module_eval accepts both proc and string. True or False.
-  Best way to add a new method to String and Hash class.
-  p = Proc.new do
-    def hello
-      puts 'hello'
-    end
+
+###
+p = Proc.new do
+  def hello
+    puts 'hello'
   end
-  String.module_eval &p
-  Hash.module_eval &p
-  Note that module_eval acceps both proc and string. Above case could also be written as
-  p = %Q{
-   def hello
-     puts 'hello'
-   end
-  }
-  String.module_eval p
-  Hash.module_eval p
+end
+
+String.module_eval &p
+Hash.module_eval &p
+
+Note that module_eval acceps both proc and string. Above case could also be written as
+
+p = %Q{
+ def hello
+   puts 'hello'
+ end
+}
+
+String.module_eval p
+Hash.module_eval p
 
 
-#
+##
+Module.new accepts both string and proc. True or false.
+
+###
 In the above case method hello was added from outside the class. What if you are inside the class and you want to add a method called hello.
 
 class String
@@ -52,11 +64,19 @@ class String
   self.module_eval p
 end
 
-#
-module.constants returns all the constants defined in a module. The list includes the constants defined in the included module.
+##
+module.constants returns all the constnats defined in a module. The list includes all the constants defined in the included module. True or False.
 
-#
-Unbound method works for both Class and Module.
+###
+True
+
+##
+Unbound method works for both Class and Module. True or False.
+
+##
+Unbound method retains its value even after original method has been altered. True or False.
+
+###
 module Lab
   def foo
     puts 'foo'
@@ -74,10 +94,15 @@ puts Hello.instance_method(:foo).class
 Also Remember that unbound method values are preserverd forever. After having the unbound method the original method can be changed and it will have no impact on unbound method.
 Look at an example here http://ruby-doc.org/core/classes/UnboundMethod.html
 
-#
+##
+What is the name of method which returns the list and order in which a method is searched through all the way to Object.
+
+###
 module.ancestors rerturns all the module included in the module ( including self ). Don't be fooled by the name. This method has nothing to do with ancestors.
 
-#
+##
+What will be the output in the following case.
+
 def proc_return
   Proc.new { return "Proc.new"}.call
   return "proc_return method finished"
@@ -91,12 +116,17 @@ end
 puts proc_return
 puts lambda_return
 
-# => Proc.new
-# => lambda_return method finished
+###
+First case => Proc.new
+Second case => lambda_return method finished
+
 http://www.robertsosinski.com/2008/12/21/understanding-ruby-blocks-procs-and-lambdas/
 lambdas have diminutive returns. What this means is that while a Proc return will stop a method and return the value provided, lambdas will return their value to the method and let the method continue on. 
 
-#
+##
+Name another method which behaves close to UnboundMethod.
+
+###
 class Array
   def iterate!(code)
     self.each_with_index do |n, i|
