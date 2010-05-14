@@ -1,9 +1,9 @@
 h2. Read this file in raw to get formatting right.
 
-#
+*
 What is $LOADED_FEATURES . http://neeraj.name/2010/05/12/require-load-loaded_features.html
 
-#
+*
 require loads only once
 
 #
@@ -82,6 +82,46 @@ Also Remember that unbound method values are preserverd forever. After having th
 Look at an example here http://ruby-doc.org/core/classes/UnboundMethod.html
 
 #
-
 module.ancestors rerturns all the module included in the module ( including self ). Don't be fooled by the name. This method has nothing to do with ancestors.
+
+#
+def proc_return
+  Proc.new { return "Proc.new"}.call
+  return "proc_return method finished"
+end
+
+def lambda_return
+  lambda { return "lambda" }.call
+  return "lambda_return method finished"
+end
+
+puts proc_return
+puts lambda_return
+
+# => Proc.new
+# => lambda_return method finished
+http://www.robertsosinski.com/2008/12/21/understanding-ruby-blocks-procs-and-lambdas/
+lambdas have diminutive returns. What this means is that while a Proc return will stop a method and return the value provided, lambdas will return their value to the method and let the method continue on. 
+
+#
+class Array
+  def iterate!(code)
+    self.each_with_index do |n, i|
+      self[i] = code.call(n)
+    end
+  end
+end
+
+def square(n)
+  n ** 2
+end
+m = method(:square)
+
+def square(n)
+ n ** 3
+end
+
+array = [1, 2, 3, 4]
+array.iterate!(m)
+puts array.inspect
 
