@@ -11,30 +11,23 @@ I have <tt>foo.rb</tt> . require 'foo' will return ? .
 I have <tt>foo.rb</tt> . load 'foo' will return ? .
 # Q
 If you inlcude a module twice then what happens. 
-
  If a module has already been included by the current entity or by one of the ancestors of the current entity then the second statement to include module is ignored.
 # Q
 module_eval accepts both proc and string. True or False.
-
-
   Best way to add a new method to String and Hash class.
   p = Proc.new do
     def hello
       puts 'hello'
     end
   end
-
   String.module_eval &p
   Hash.module_eval &p
-
   Note that module_eval acceps both proc and string. Above case could also be written as
-
   p = %Q{
    def hello
      puts 'hello'
    end
   }
-
   String.module_eval p
   Hash.module_eval p
 
