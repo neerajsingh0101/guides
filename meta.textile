@@ -4,19 +4,17 @@ h2. Read this file in raw to get formatting right.
 What is $LOADED_FEATURES . http://neeraj.name/2010/05/12/require-load-loaded_features.html
 
 # Q
-require loads only once
+require loads only once. True or False.
 # Q
-require 'foo' works
+I have <tt>foo.rb</tt> . require 'foo' will return ? .
 # Q
-load 'foo' fails
+I have <tt>foo.rb</tt> . load 'foo' will return ? .
+# Q
+If you inlcude a module twice then what happens. 
 
-#
-load 'foo.rb' works
-
-#
-If you inlcude a module twice then what happens. If a module has already been included by the current entity or by one of the ancestors of the current entity then the second statement to include module is ignored.
-
-#
+If a module has already been included by the current entity or by one of the ancestors of the current entity then the second statement to include module is ignored.
+# Q
+module_eval accepts both proc and string. True or False.
 Best way to add a new method to String and Hash class.
 p = Proc.new do
   def hello
