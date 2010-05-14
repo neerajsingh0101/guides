@@ -3,13 +3,13 @@ h2. Read this file in raw to get formatting right.
 *
 What is $LOADED_FEATURES . http://neeraj.name/2010/05/12/require-load-loaded_features.html
 
-*
+# Q
 require loads only once
 
-#
+# Q
 require 'foo' works
 
-#
+# Q
 load 'foo' fails
 
 #
