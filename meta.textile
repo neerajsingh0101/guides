@@ -148,3 +148,86 @@ array = [1, 2, 3, 4]
 array.iterate!(m)
 puts array.inspect
 
+
+##
+module_eval is an alias  to instance_eval. True or False
+
+###
+?
+
+##
+instance_eval creates an instance method. True or False.
+class User
+end
+User.instance_eval do
+  def skill
+    'programming'
+  end
+end
+
+###
+Above method creates a class method on Person.
+
+##
+class_eval creates an instance_method. True or False.
+class User
+end
+User.class_eval do
+  def skill
+   'programming'
+  end
+end
+
+###
+Ironically class_eval creates an instance method and instance_eval creates a class method.
+
+##
+What's the output in this case.
+class Person
+end
+
+p = Person.new
+
+puts p.ancestors
+
+###
+undefined method ancestors for p
+
+
+##
+What is the output in this case
+class Person
+  def self.hello
+    'hi'
+  end
+end
+
+class << Person
+  def hello
+    'hey'
+  end
+end
+
+puts Person.hello
+
+###
+hey . Because metaclass is accessed first.
+
+## 
+What is the output in this case. Notice that there is super in second hello method.
+
+class Person
+  def self.hello
+    'hi'
+  end
+end
+
+class << Person
+  def hello
+    'hey'
+    super
+  end
+end
+
+###
+no super class method hello
