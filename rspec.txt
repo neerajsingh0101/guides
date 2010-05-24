@@ -1,0 +1,103 @@
+context is an alias for describe. Usually you mix context and describe like this
+
+describe User do 
+  context "with no roles assigned" do
+    it "should not be allowed to view protected content" do
+
+--format nested
+--format diff
+--format specfoc
+--format html:/report.html
+
+PENDING
+==============
+describe "onion rings" do 
+  it "should not be mixed with french fries" do
+    pending "cleaning out the fryer"
+    fryer_with(:onion_rings).should_not include(:french_fry)
+  end 
+end
+
+In the following case rspec will actually run the test inside pending. If the test
+passes then rspec will tell you that an unnecessary pending
+describe "an empty array" do 
+  it "should be empty" do
+    pending("bug report 18976") do 
+      [].should be_empty
+    end
+  end
+end
+
+
+SHARE methods in rspec 
+Spec::Runner.configure do |config| 
+  config.include(UserExampleHelpers)
+end
+
+shared_examples_for "Any Pizza" do 
+  it "should taste really good" do
+    @pizza.should taste_really_good
+  end 
+  it "should be available by the slice" do
+    @pizza.should be_available_by_the_slice
+  end 
+end
+
+describe "New York style thin crust pizza" do 
+  it_should_behave_like "Any Pizza"
+  before(:each) do 
+    @pizza = Pizza.new(:region => 'New York', :style => 'thin crust')
+  end
+  it "should have a really great sauce" do 
+    @pizza.should have_a_really_great_sauce
+  end
+end
+
+describe "Chicago style stuffed pizza" do 
+  it_should_behave_like "Any Pizza"
+  before(:each) do 
+    @pizza = Pizza.new(:region => 'Chicago', :style => 'stuffed')
+  end
+  it "should have a ton of cheese" do 
+    @pizza.should have_a_ton_of_cheese
+  end 
+end
+
+share_as :AnyPizza do
+...
+end
+describe "New York style thin crust pizza" do 
+  include AnyPizza ...
+end
+describe "Chicago style stuffed pizza" do 
+  include AnyPizza ...
+end
+
+user.should be_in_role("admin")
+user.in_role?("admin")
+
+request_parameters.should have_key(:id)
+request_parameters.has_key?(:id)
+
+
+
+implicit subject
+describe RSpecUser do 
+  it { should be_happy }
+end
+
+
+
+describe Person do 
+  subject { Person.new(:birthdate => 19.years.ago) } 
+  specify { subject.should be_eligible_to_vote }
+end
+
+describe Person do 
+  subject { Person.new(:birthdate => 19.years.ago) } 
+  it { should be_eligible_to_vote }
+end
+
+
+
+

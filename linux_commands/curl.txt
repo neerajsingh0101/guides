@@ -10,7 +10,7 @@ curl  -H "X-Http-Method-Override: put" -H 'Accept: application/xml' -H 'Content-
 # this will work
 curl   -H 'Accept: application/xml' -H 'Content-type: application/xml' http://localhost:3000/users/1.xml -d '<user><name>raj</name></user>' -X POST
 
-
+curl -H "X-Requested-With: XMLHttpRequest"
 
 # --url just indicates that it is url. 
 # -d pass extra parameters

@@ -19,12 +19,11 @@ ack -f --type=haml
 # List all javascript files
 ack -f --js
 
-# List all the file names where the either the file name or the content has given string. 
-# It will look at both the content and the filenames.
-ack -l form
+# only print the filenames matching the content
+ack -l before_save
 
 # Ignore case while searching
-ack -i neeraj
+ack -i before_save
 
 # Print line number 2 of every file
 ack --line=2

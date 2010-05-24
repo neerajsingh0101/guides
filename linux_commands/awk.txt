@@ -1,2 +1,45 @@
+# Usage
+awk <pattern> '{print <stuff>}' <file>
+
+# words.data
+nail hammer wood
+pedal foot car
+clown pie circus
+> awk '{print "Hit the",$1,"with your",$2}' words.data
+Hit the nail with your hammer
+Hit the pedal with your foot
+Hit the clown with your pie
+
+# use pattern to restrict the search criteria. Only process files beginning with clown.
+awk /^clown/'{print "See the",$1,"at the",$3}' words.data
+See the clown at the circus
+
+# grades.data
+Rogers 87 100 95
+Lambchop 66 89 76
+Barney 12 36 27
+>awk '{print "Avg for",$1,"is",($2+$3+$4)/3}' grades.data
+Avg for Rogers is 94
+Avg for Lambchop is 77
+Avg for Barney is 25
+
+# awk reads the whole line into $0
+
+
+# Multiple commands for the same set of data can be separated with a semicolon (;).
+# In the following case two lines will be printed for each processed record.
+awk '/AL/ {print $3,$2 ; print $4,$5}' emp_names
+
+# Adding a blank line
+$ awk '/AL/ {print $3,$2 ; print $4", "$5"\n"}' emp_names
+
+# separate columns by tab
+$ awk '{print $1"\t"$2"\t"$3"\t"$4"\t"$5}' emp_names
+
+
 # List of all authors on a git repo
-git log --pretty=short | grep Author: | awk '{print $2}' | sort | uniq
+# The result of ack Author: is given below
+#Author: Peter Jackson <pjackson@ares.local> 
+git log --pretty=short | ack Author: | awk '{print $2}' | sort | uniq
+
+

@@ -1,7 +1,10 @@
 h2. Read this file in raw to get formatting right.
 
-*
-What is $LOADED_FEATURES . http://neeraj.name/2010/05/12/require-load-loaded_features.html
+##
+What is $LOADED_FEATURES . 
+
+###
+http://neeraj.name/2010/05/12/require-load-loaded_features.html
 
 ## 
 require loads only once. True or False.
@@ -231,3 +234,60 @@ end
 
 ###
 no super class method hello
+
+##
+class Person
+  def hello
+    'hi'
+  end
+end
+
+Person.class_eval do
+  include Module.new {
+    def hello
+      'hello'
+    end    
+  }
+end
+
+puts Person.new.hello
+
+###
+???
+
+
+##
+class Person
+end
+
+Person.instance_eval do
+  include Module.new {
+    def hello
+      'hello'
+    end    
+  }
+end
+
+puts Person.new.hello
+
+###
+??
+
+##
+class Person
+end
+
+Person.class_eval do
+  include Module.new {
+    def hello
+      'hello'
+    end    
+  }
+end
+
+puts Person.hello
+puts Person.new.hello
+
+###
+
+
