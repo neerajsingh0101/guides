@@ -1,3 +1,5 @@
+it and specify are alias of example
+
 context is an alias for describe. Usually you mix context and describe like this
 
 describe User do 
@@ -100,4 +102,14 @@ end
 
 
 
+describe User do 
+  context "create a user" do 
+    subject { User.create(:email => 'sec...@example.com') } 
+    
+    # in the below case either one can use specify or its. its does not work out in all
+    # conditions but in some conditions it read better
+    specify { subject.id.should_not be_nil} 
+    its(:id) { should_not be_nil} 
+  end 
+end 
 
