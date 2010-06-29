@@ -1,0 +1,15 @@
+h1. How to parse request url
+
+<pre>
+var sys = require('sys');
+var url= require('url');
+var query = url.parse('http://www.freddymac.com?name=freddy&lastname=mac', true).query;
+sys.puts(query.name); // -> freddy
+
+
+// or use querystring directly:
+var querystring = require("querystring");
+var query = querystring.parse("name=joe&lastname=schmoe");
+sys.puts(query.name); // -> joe
+</pre>
+

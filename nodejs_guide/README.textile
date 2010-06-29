@@ -1,0 +1,2 @@
+h3. "How to prompt user for input":http://github.com/neerajdotname/nodejs_guide/blob/master/cookbook/prompt.textile
+
