@@ -1,0 +1,27 @@
+---
+layout: nil
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>www.neeraj.name</title>
+ <link href="http://neeraj.name/atom.xml" rel="self"/>
+ <link href="http://neeraj.name/"/>
+ <updated>{{ site.time | date_to_xmlschema }}</updated>
+ <id>http://neeraj.name/</id>
+ <author>
+   <name>Neeraj</name>
+   <email>neeraj.cmu@gmail.com</email>
+ </author>
+ 
+ {% for post in site.posts limit: 2 %}
+ <entry>
+   <title>{{ post.title }}</title>
+   <link href="http://neeraj.name{{ post.url }}"/>
+   <updated>{{ post.date | date_to_xmlschema }}</updated>
+   <id>http://neeraj.name{{ post.id }}</id>
+   <content type="html">{{ post.content | xml_escape }}</content>
+ </entry>
+ {% endfor %}
+ 
+</feed>

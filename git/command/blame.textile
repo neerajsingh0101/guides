@@ -1,0 +1,27 @@
+h1. git blame
+
+git blame helps you identify the author of each line of code.
+
+h2. common usage
+
+<pre>
+(master)$ git blame config/environment.rb 
+49b8798d (Neeraj Singh  2010-03-17 17:09:24 -0400   1) # Copyright neeraj
+49b8798d (Neeraj Singh  2010-03-17 17:09:24 -0400   2) 
+^08dfbff (John Doe      2009-11-25 10:39:05 -0500   3) # Be sure to restart your server when you modify this file
+^08dfbff (John Doe      2009-11-25 10:39:05 -0500   4) 
+^08dfbff (John Doe      2009-11-25 10:39:05 -0500   5) # Specifies gem version of Rails to use when vendor/rails is no
+647bdb7f (John Doe      2009-11-30 18:50:01 -0500   6) RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
+</pre>
+
+You can see that first two lines were changed by Neeraj. Rest of the lines were committed by John Doe. Some of the commits by John Doe have commit SHA1_HASH starting with <tt>^</tt>. In this context a <tt>^</tt> indicates that the corresponding line is part of very first initial commit.
+
+h2. other usage
+
+<pre>
+git blame -l foo.txt                # show 40 digit SHA1_HASH
+git blame -L 40,60 foo.txt          # show blame info only for line numbers between 40 and 60
+git blame -L 40,+21 foo.txt         # show blame info for 21 lines after line number 40
+</pre>
+
+

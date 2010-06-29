@@ -1,0 +1,53 @@
+h1. Execution Context
+
+h1. Closure
+
+If the variable x referenced at run time why the result is not 20 in this case.
+...example
+
+Also mention that two closures can possibly change the data .
+
+
+function funky(o) {
+  o = null;
+}
+
+var x = 'hello';
+funky(x);
+
+console.log(x);
+
+this is how it works
+x is a variable. great.
+get me the memory address x is pointing to
+pass that memory address to the function
+that is why inside the function you can't change
+anything about x. Note that the memory address of 
+the value held by x is passed and not the memory address of 
+x itself.
+</pre>
+
+
+Objects aren't passed by reference, they are passed value-by-reference. If they were passed by reference, you would be able to change the variable itself - not just the properties. – Andy E's head Mar 11 at 9:43
+6	
+"Passing in an object, however, passes it in by reference." No, this is a common misconception. JavaScript only has pass-by-value. It's just that the value, in the case of an object reference, is an object reference (pointer). That's completely different from "pass by reference" which allows you to update the caller's copy of the actual parameter from within the callee. If you can't change the thing being passed in (for instance, to make it point to a different object), it's pass-by-value. You can change the properties of the object, but not the value of the caller's reference to it. – 
+
+
+http://stackoverflow.com/questions/2423868/pass-variables-by-reference-in-javascript/2423892#2423892
+
+http://snook.ca/archives/javascript/javascript_pass
+pick more examples from this one.
+http://snook.ca/archives/javascript/javascript_pass
+
+
+
+Reference:
+
+http://dmitrysoshnikov.com/ecmascript/chapter-2-variable-object/
+
+http://dmitrysoshnikov.com/ecmascript/chapter-4-scope-chain/
+
+h2. Answer 1
+
+Scope is saved at function creation time. Scope property is already written and stored in function object.
+

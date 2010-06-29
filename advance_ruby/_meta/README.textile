@@ -1,0 +1,1 @@
+I wrote "a blog post":http://tagaholic.me/2009/02/19/meta-templates-for-github-pages.html on the files in this directory.

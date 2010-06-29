@@ -1,3 +1,30 @@
+# add text vertically to a block
+ctrl v and vertically select a few line
+shift i
+start typing and then hit escape
+same text will be prepended to a lot of lines
+
+
+:Rinvert => to generate the down part of a migration
+
+gi => go to the last place I was inserting something
+
+H puts cursor to the top of page. H is for High.
+M puts cursor to the middle of page. M is for Middle.
+L puts cursor to the bottom of page. L is for Low.
+
+
+yank line which says "aa"
+delete line which says "bb"
+now if I want to insert yanked linke then the line inserted is "bb". In order to insert line "aa" I need
+to tell vim to insert from 0 registry which is where line was yanked. Type following. Note that you also need to type double quote.
+"0p
+
+
+
+:source ~/.vimrc to reload .vimrc file
+
+
 # repeat search in backward
 ? or N
 
@@ -76,11 +103,11 @@ M
 /index\|show/
 
 # highlight all terms and then search for all occurrences of word under the
-# cursor. Hit n to go to next occurence
+# cursor. Hit n to go to next occurrence
 *
 
 # highlight all terms and then search for all occurrences of word under the
-# cursor in reverse order. Hit n to go to next occurence
+# cursor in reverse order. Hit n to go to next occurrence
 *
 :? # now hit n to go to next in backward direction
 
@@ -117,7 +144,7 @@ shift a
 # show all the indentation rules mvim is shipped with
 :e $VIMRUNTIME/indent 
 
-# custom indentation rules can be addded to indent directory next to vimrc
+# custom indentation rules can be added to indent directory next to vimrc
 # file
 
 
@@ -159,6 +186,8 @@ zO
 # after ctags are installed run following command on command prompt to create
 # tags
 ctags -R --exclude=*.js
+or just run
+:Rtags
 
 # move the cursor over to a method and hit ctrl ] . Hit ctrl t to go backward
 
@@ -287,8 +316,12 @@ bye
 # set a mark called q
 mq 
 
-# go to mark q
+# go to mark q . If mark was set in the middle of line then this will take you to the middle of line
 `q 
+
+# go to mark q but then take the cursor to the beginning of line
+'q
+
 
 # marks a–z are local to the file. In other words, you can place a mark a in file one.c and 
 # another mark a infiletwo.c.These marks are separate and have nothing to do with each other. 
@@ -425,6 +458,9 @@ $
 # q to quit
 #
 # execute macro by typing @w
+# repeat the macro 30 times by doing 30@w
+# also @@ triggers the last macro command
+# 30@@ will trigger the last macro command 30 times
 #
 # map space bar to @w so that you don't have to keep typing @w
 # :nnoremap <space> @w

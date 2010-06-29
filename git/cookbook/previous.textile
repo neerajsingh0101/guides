@@ -1,0 +1,13 @@
+h1. Looking at the previous version of a file
+
+If you just want to look at a previous version of file then git show will do the job.
+
+<pre>
+git show v1.15:foo.txt
+</pre>
+
+If you want to replace current file with previous file then use git checkout.
+
+<pre>
+git co v1.15:foo.txt
+</pre>

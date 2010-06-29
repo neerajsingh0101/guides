@@ -1,3 +1,13 @@
+# at the end of file add 'Hello World'
+echo "Hello World" >> file
+
+# create a file with three lines
+cat > foo.txt
+line1
+line2
+line3
+^D
+
 # find out what linux flavor is running
 cat /proc/version
 
@@ -71,12 +81,3 @@ cat /etc/services
 # update this file to resolve a hostname to an IP address
 /etc/hosts 
 
-# at the end of file add 'Hello World'
-echo "Hello World" >> file
-
-# create a file with three lines
-cat > foo.txt
-line1
-line2
-line3
-^D

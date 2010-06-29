@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>{{ page.title }}</title>
+    {% include meta_seo.html %}
+    <link rel="stylesheet" href="/stylesheets/master.css" type="text/css" media="screen" charset="utf-8"/>
+    <link rel="stylesheet" href="/stylesheets/syntax.css" type="text/css" />
+    <link rel='alternate' type='application/rss+xml' href='http://feeds.feedburner.com/ARandomPixel' title="All posts"/>
+  </head>
+
+  <body>
+    <div id='wrapper'>
+      
+      <div id='header'>
+        <h1 style='width:400px;'><a href='/'>advance ruby</a></h1>
+        <div class='clear'></div>
+      </div>
+
+      <hr />
+      
+      <div id='content'>
+        {{ content }}
+        <div class='clearfix'></div>
+      </div>
+
+      <div id='footer'>
+      </div>
+
+    </div>
+
+  </body>
+</html>

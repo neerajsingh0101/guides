@@ -1,0 +1,65 @@
+h2. Question 1
+
+What is $LOADED_FEATURES ?
+
+http://neeraj.name/2010/05/12/require-load-loaded_features.html
+
+h2. Question 2
+
+<tt>require</tt> loads a file only once. True or False. 
+
+h2. Question 3
+
+<pre>
+touch foo.rb
+result = require 'foo'
+p result
+</pre>
+
+What is the value of <tt>result</tt> ?
+
+h2. Question 4
+
+<pre>
+touch foo.rb
+result = load 'foo'
+p result
+</pre>
+
+What is the value of <tt>result</tt> ?
+
+h2. Question 5
+
+<pre>
+module M
+  puts 'this module was included'
+end
+class C
+  include M
+  include M
+end
+</pre>
+
+What is the output ?
+
+
+h2. Question 6
+
+<pre>
+module M
+  puts 'this module was included'
+end
+class User
+  include M
+end
+class SuperUser
+  include M
+end
+</pre>
+
+What is the output ?
+
+
+h2. Question 7
+
+

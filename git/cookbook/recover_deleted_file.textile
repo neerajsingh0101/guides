@@ -1,0 +1,17 @@
+
+h1. Recover deleted file
+
+<pre>
+rm foo.txt              # delete a file
+git co foo.txt          # recover the deleted file
+
+git rm foo.txt          # git delete a file
+git reset HEAD foo.txt  # recover that file
+</pre>
+
+List of files deleted using rm
+
+<pre>
+rm *.txt                     # delete all files with extension .txt
+git ls-files --deleted (-d)  # get the list of files deleted from index
+</pre>

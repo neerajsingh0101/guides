@@ -1,0 +1,19 @@
+h1. Fast forward merges
+
+Usually when a merge happens then a commit has two parents. However if the lab branch has certain number of committs and master had no commit then in this case git would just fast forward and the merged commit would have only one parent.
+
+<pre>
+git co -b lab
+echo 'testing fast forward' > foo.txt
+git add foo.txt; git commit -m 'testing fast forward'
+git co master
+git merge lab
+</pre>
+
+Now see the last commit in gitk. You will see that last commit has only one parent. And that is becase git did fast forward which is the default behavior.
+
+However I can ask git to create a commit with two parents and not to do fast forward. Just replace the last command with this one
+
+<pre>
+git merge --no-ff
+</pre>

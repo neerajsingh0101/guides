@@ -1,0 +1,43 @@
+h1. I want to split last commit into two separate committ. However I have already pushed to remote the changes .
+
+h2. Rewriting History
+
+One way to fix this problem is to get rid of last commit like this.
+
+<pre>
+git reset HEAD^
+
+# make changes to foo.txt
+
+git add foo.txt
+git commit -m 'changed foo.txt'
+</pre>
+
+Using above technique last commit was dropped off of HEAD. A new commit was created. However if you try to push your changes git will reject it because you just rewrote history. If you still want to push it then you need to use --force. 
+
+<pre>
+git push --force
+</pre>
+
+This technique is error prone because if someone makes a branch off of your last commit and then if you rewrite history it will create all sorts of problem. 
+
+h2. Do not rewrite history
+
+Here create another commit that is undo of the last commit. And then undo that commit.
+
+<pre>
+git revert --no-edit HEAD
+git revert --no-edit HEAD
+</pre>
+
+Now I am at the same point where I started except that I can reset HEAD because the last two committs are private to me. Now you can do this.
+
+<pre>
+git reset HEAD^
+
+# make changes to foo.txt
+
+git add foo.txt
+git commit -m 'fixed foo.txt without rewriting history'
+</rep>
+

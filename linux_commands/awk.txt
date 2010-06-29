@@ -11,7 +11,7 @@ Hit the pedal with your foot
 Hit the clown with your pie
 
 # use pattern to restrict the search criteria. Only process files beginning with clown.
-awk /^clown/'{print "See the",$1,"at the",$3}' words.data
+>awk /^clown/'{print "See the",$1,"at the",$3}' words.data
 See the clown at the circus
 
 # grades.data
@@ -28,13 +28,13 @@ Avg for Barney is 25
 
 # Multiple commands for the same set of data can be separated with a semicolon (;).
 # In the following case two lines will be printed for each processed record.
-awk '/AL/ {print $3,$2 ; print $4,$5}' emp_names
+>awk '/AL/ {print $3,$2 ; print $4,$5}' emp_names
 
 # Adding a blank line
-$ awk '/AL/ {print $3,$2 ; print $4", "$5"\n"}' emp_names
+>awk '/AL/ {print $3,$2 ; print $4", "$5"\n"}' emp_names
 
 # separate columns by tab
-$ awk '{print $1"\t"$2"\t"$3"\t"$4"\t"$5}' emp_names
+>awk '{print $1"\t"$2"\t"$3"\t"$4"\t"$5}' emp_names
 
 
 # List of all authors on a git repo

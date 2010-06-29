@@ -1,0 +1,307 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #FBFBFB;
+  color: #353B40;
+}
+
+a {
+  color: #3366cc;
+  font-weight: bold;
+}
+
+a:visited {
+  font-weight: normal;
+}
+
+a:hover {
+  color: black;
+}
+
+ol li, ul li { 
+  line-height: 170%;
+}
+
+tt {
+  background-color: #F8F8FF;
+  color: #444;
+  padding: 0 0.2em;
+  font-size: 16px; 
+}
+
+#wrapper {
+  width: 960px;
+  border: 1px solid #eFeFeF;
+  margin: 0 auto;
+  padding: 0;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1.5em;
+}
+
+#header {
+  text-align: left;
+  padding: 1em;
+  float: left;
+}
+
+#header h1 {
+  color: #080000;
+  font-size: 2.9em;
+  display: inline;
+  font-weight: bold;
+  font-family: HeaderFont, Arial, Georgia;
+  margin: 1px;
+  padding: 1px;
+  width: 200px;
+  float: left;
+  letter-spacing: 1px;
+}
+
+#header h1 a {
+  color: black;
+  text-decoration: none;
+}
+
+#header h1 a:hover {
+  color: #2D2D2D;
+}
+
+
+#header h2 {
+  display: inline;
+  margin-left: 0.5em;
+  font-size: 2em;
+  font-weight: normal;
+  color: #fed;
+}
+
+#menu {
+  float: right;
+  margin-left: 300px;
+}
+
+#menu ul {
+  list-style: none;
+  margin: 0;
+  text-align: center;
+}
+
+#menu ul li {
+  display: inline;
+}
+
+#menu ul li a {
+  color: black;
+  font-size: 1.0em;
+  padding: 0 0.5em;
+  line-height: 2.5em;  
+  font-weight: normal;
+}
+
+#content {
+  padding: 0 2em 0 2em;
+}
+
+#content h2 {
+  margin: 1em 0 0.5em 0;
+  color: black;
+  font-size: 1.4em;
+  text-decoration: underline;
+}
+
+#content p {
+  line-height: 160%;
+  letter-spacing: -0.03em;
+}
+
+span.date {
+  padding: 0.2em;
+  color: white;
+  color: dimgray;
+  font-size: 80%;
+}
+
+
+div.post {
+  margin-bottom: 2em;
+}
+
+.post h1 {
+  margin-top: 0.2em;
+}
+
+.post h1 a {
+  text-decoration: underline;
+  clear: left;
+  display: block;
+  padding: 0.3em 0;
+  margin: 0 0 0.2em 0;
+  font-weight: bold;
+}
+
+
+code,pre {
+  background: #fff5dd;
+  font-size: 14px;
+  color:#444444;
+  font-family: "Consolas","Courier New",Courier,monospace;
+}
+
+.console {
+  -x-system-font:none;
+  font-family:"bitstream vera sans mono",monaco,"lucida console","courier new",courier,serif;
+  font-size: 12px;
+  background:#000000 none repeat scroll 0 0;
+  color:#EEEEEE;
+  margin:1em 0;
+  overflow-x:auto;
+  padding:1em;
+  font-size-adjust:none;
+  font-stretch:normal;
+  font-style:normal;
+  font-variant:normal;
+  font-weight:normal;
+  line-height:normal;
+}
+
+.code pre,pre {
+  font-size:100%;
+  overflow:auto;
+  padding:5px;
+}
+
+.highlight pre, .highlight code, pre {
+  overflow:auto;
+  line-height:1.4em;
+  background-color:#F8F8FF;
+  color:#444444;
+}
+
+.highlight pre,pre {
+  margin:1em 0;
+  padding:0.5em;
+  border:1px solid #DEDEDE;
+}
+
+table.post-list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table.post-list a {
+  color: #0E51A7;
+  font-weight: bold;
+}
+
+table.post-list th {
+  text-align: left;
+}
+
+table.post-list td, table.post-list th {
+  padding: 0.5em 0.3em;
+  border-bottom: 1px solid #dba;
+}
+
+table.post-list tr:last-child td, table.post-list tr:last-child th {
+  border-bottom: 0;
+}
+
+div.related {
+  margin-bottom: 2em;
+}
+
+#share_actions {
+  border-top: 1px solid black;
+  padding-top: 1em;
+}
+
+#footer {
+  margin: 1em;
+  font-size: 100%;
+  padding: 0.5em;
+  text-align: left;
+  background: #cfcfcf;
+}
+
+.home_box {
+  float: left;
+  margin-bottom: 15px;
+}
+
+#home_left {
+  width: 100%;
+}
+
+.clearfix { clear: both;}
+
+#footer a {
+  color: #353b40;
+  font-weight: normal;
+}
+
+.home_box #search {
+  width: 220px;
+}
+
+#search .gsc-control {
+  width: 220px;
+}
+
+.repo h3 {
+  margin: 0 0 0.3em 0;
+}
+.repo h3 a, .repo ul li a {
+  font-weight: bold;
+  color: black;
+  letter-spacing: 0;
+  font-size: 1.1em;
+}
+#latest_posts ul li a {
+  font-size: 1.0em;
+}
+.repo ul {
+  margin: 0;
+  padding-left: 0.3em;
+}
+
+
+.float-left { float: left; }
+.float-right { float: right; }
+
+a img { border: 0; }
+
+
+.table_post_description {
+  display: none;
+  padding: 15px 0px;
+  border-bottom: 1px dotted black;
+  max-width: 340px;
+}
+
+.table_tag_description {
+  font-size: 90%;
+  font-style: italic;
+}
+
+.clear {
+  clear: both;
+}
+
+hr {
+background:none repeat scroll 0 0 #DDDDDD;
+border:medium none;
+clear:both;
+color:#DDDDDD;
+float:none;
+height:0.1em;
+margin:0 0 1.45em;
+width:100%;
+}
+
+blockquote {
+border:1px dotted #575757;
+color:#575757;
+font-size:15px;
+margin:20px;
+padding:10px;
+}

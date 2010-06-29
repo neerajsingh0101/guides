@@ -1,0 +1,18 @@
+h1.  detached head
+
+Reference: "http://sitaramc.github.com/concepts/detached-head.html":http://sitaramc.github.com/concepts/detached-head.html
+
+Certain operations will put you in no branch. In this branch which is no branch you can do  your experiment like adding a few commits etc. When you get out of branch then all those  changes are discarded. 
+
+<pre>
+git co v1.25          # checkout tag v1.25
+git co master^        # parent of master
+git co HEAD~2         # grandparent of current HEAD
+git co origin/master  # checkout a remote branch
+</pre>
+
+Let's say that you checkoued tag v1.25 . You have been placed in no branch. In this branch you did some development and liked your work. You would like to preverse your work. If you checkout to master then all your work will be lost. In this case you can checkout a new branch as given below and all your work will be preserved.
+
+<pre>
+git co -b quick_sort
+</pre>

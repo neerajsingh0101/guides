@@ -1,0 +1,10 @@
+h1. Why git log foo.txt is slow
+
+git does not track changes at a file level. In this case git has to check with every single commit in the repository to find if a commit changed a file or not. Basically git runs following command on every single commit and hence it is slow.
+
+<pre>
+git show --name-only SHA1_HASH
+</pre>
+
+
+"reference":https://git.wiki.kernel.org/index.php/GitFaq#Why_is_.22git_log_.3Cfilename.3E.22_slow.3F

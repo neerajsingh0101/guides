@@ -1,0 +1,35 @@
+# Directed Acyclic Graph
+# http://en.wikipedia.org/wiki/Directed_acyclic_graph
+
+# After the packing is done one can verify packing by running following command 
+git verify-pack -v .git/objects/pack/pack-108ebf6abb50656e7aa5695314a47c3fc1e23f90.idx 
+
+# list chronological history of things that happened
+git reflog --all
+
+#-----------------------------------------------------------------------------------
+# How to find if a file has merge issue
+git ls-files --unmerged
+git diff # it will list diff with <<<< or >>>>
+git ls-files --stage # notice number greater than zero close to end
+git ls-files -t #notice M next to files yet to be merged
+git mergetool # it will list files that need merging
+
+# If a git merge is failing then use following technique to get more log info
+git log --merge --left-right -p
+
+# all the changes compared to ours can ben seen as
+git diff --ours
+#all the changes compared to theirs can be seen as
+git diff --theirs
+
+# compute the hash of a file. This hash value will be same as the hash value that is shown
+# in git ls-files --stage
+git hash-object Rakefile
+
+# tracking changes after renaming a file
+git mv foo1 foo2
+git log foo2 # this will display all the log messages associated with foo2 but none with foo1
+git log --follow foo2 #this will also display log messages associated with foo1 since foo1 and foo2 are same
+
+git co --track -b production origin/production

@@ -1,0 +1,32 @@
+---
+layout: master
+---
+<div class='post'>
+  <span class='date'>{{page.date | date_to_string}}</span>
+  {% if page.time %}
+  <span class='date'>at {{page.time}}</span>
+  {% endif %}
+  <h1><a href='{{page.url}}'>{{page.title}}</a></h1>
+  <div class='body'>{{ content }}</div>
+</div>
+
+<script>
+var idcomments_acct = '6917d95122da3c12341ebf41b6dea11a';
+var idcomments_post_id;
+var idcomments_post_url;
+</script>
+<span id="IDCommentsPostTitle" style="display:none"></span>
+<script type='text/javascript' src='http://www.intensedebate.com/js/genericCommentWrapperV2.js'></script>
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1793147-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>

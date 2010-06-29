@@ -113,3 +113,8 @@ describe User do
   end 
 end 
 
+= use as_*
+def null_object(*args) 
+  double(*args).as_null_object 
+end 
+

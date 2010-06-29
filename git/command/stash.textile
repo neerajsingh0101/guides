@@ -1,0 +1,13 @@
+h1. git stash
+
+<pre>
+git stash                                    # same as git stash save without any argument
+git stash list                               # list all the stashes
+git stash apply                              # applies the most recent one but leaves the 
+                                             # stash as it is. stash is not dropped
+git stash apply stash@{2}                    # apply the third stash in the list
+git stash save 'writing test for user model' # list will have this friendly message
+git stash pop                                # apply the most recent stash and drop the stash from the list
+</pre>
+
+

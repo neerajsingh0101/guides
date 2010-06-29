@@ -1,0 +1,21 @@
+h1. Personally I never use git stash
+
+Problem with stash is that I forget that I have stashed something. Here is another technique that I have been using and it has been working out quite well for me.
+
+I learned this technique from "http://henrik.nyh.se/2009/02/git-reset-soft-as-stash-replacement-and-undo":http://henrik.nyh.se/2009/02/git-reset-soft-as-stash-replacement-and-undo . In stead of git statsh I just commit with message WIP.
+
+<pre>
+git commit -m 'WIP'
+</pre>
+
+When I come back to continue the work I see that last mesage was WIP. Then I the following and I get my changes in staged area.
+
+<pre>
+git reset --soft HEAD^ 
+
+# or 
+
+git reset HEAD^
+</pre>
+
+Be very careful with the above operation. If mistakenly instead of soft you typed hard then you will loose the most recent commit.  I don't use reset --hard much as "illustrated in this article":http://github.com/neerajdotname/git_guide/blob/master/cookbook/do_not_use_reset.textile .

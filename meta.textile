@@ -1,24 +1,5 @@
-h2. Read this file in raw to get formatting right.
+Answer 5/6
 
-##
-What is $LOADED_FEATURES . 
-
-###
-http://neeraj.name/2010/05/12/require-load-loaded_features.html
-
-## 
-require loads only once. True or False.
-
-##
-I have foo.rb . require 'foo' will return true or false .
-
-##
-I have foo.rb . load 'foo' will return true or false .
-
-##
-If you inlcude a module twice then what happens. 
-
-###
 If a module has already been included by the current entity or by one of the ancestors of the current entity then the second statement to include module is ignored.
 
 ##

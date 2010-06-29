@@ -1,0 +1,16 @@
+h1. git name-rev
+
+Someone fixed an algorithm which commit id 33db5f4d9027a10e477ccf054b2c1ab94f74c85a. I want to know where that commit is right now.
+
+<pre>
+git name-rev 33db5f4d9027a10e477ccf054b2c1ab94f74c85a
+33db5f4d9027a10e477ccf054b2c1ab94f74c85a tags/v0.99~940
+</pre>
+
+That tells me that the commit happpend 940 revisions before v0.99 .
+
+Another way to look at it would be using gitk. gitk will bring up visual diagram to what happened in application after this commit.
+
+<pre>
+gitk 33db5f4d9027a10e477ccf054b2c1ab94f74c85a..
+</pre>

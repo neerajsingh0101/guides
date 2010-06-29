@@ -1,0 +1,6 @@
+h1. If I do git pull what committs will be pulled in
+
+<pre>
+git fetch
+git log master..origin/master --pretty=oneline
+</pre>

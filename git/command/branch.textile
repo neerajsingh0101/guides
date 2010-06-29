@@ -1,0 +1,10 @@
+h1. git branch
+
+<pre>
+git branch                    # list all local branches and indicate which branch I am currently in
+git branch -v                 # all branch info with last commit
+git branch -a                 # list all local and remote branches
+git branch -r                 # list only the remote branches ( does not include local branches)
+git branch --no-merged        # list all the branches from which merge is yet to be done
+git branch --merged           # list all the branches which are already merged
+</pre>

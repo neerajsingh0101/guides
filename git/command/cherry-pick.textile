@@ -1,0 +1,7 @@
+h1. git cherry-pick
+
+I have committed something in lab branch which I want in master branch too. In this case I want to bring only a commit from lab branch to master.
+
+<pre>
+git cherry-pick SHA1_HASH
+</pre>

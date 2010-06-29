@@ -1,0 +1,19 @@
+h1. git ls-remote
+
+ls stands for list reference.
+
+<pre>
+$ git ls-remote origin                    # all remote branches and remote tags and their SHA1_HASH
+
+43a61f4049e5c4f492b7d66ef1d19909e30eda3c	HEAD
+43a61f4049e5c4f492b7d66ef1d19909e30eda3c	refs/heads/master
+43a61f4049e5c4f492b7d66ef1d19909e30eda3c	refs/heads/production
+47b5986e5851190b3e1b9489866f85ab4b12164a	refs/heads/staging
+987efd16e9dc20ba44c19ce1313b4e5997404567	refs/tags/v1.1
+7a3319ba72b670c830a01cf07654c470ea66e3a7	refs/tags/v1.2
+</pre>
+
+<pre>
+git ls-remote --tags origin               # lists only tags  no heads
+git ls-remote --heads origin              # lists only heads no tags
+</pre>

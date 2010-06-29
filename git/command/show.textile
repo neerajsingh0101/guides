@@ -1,0 +1,13 @@
+h1. git show
+
+<pre>
+git show HEAD                                  # information about last commit
+git show SHA1_HASH                             # information about a commit
+git show --name-only SHA1_HASH                 # list all the files changed in a commit
+git show --pretty=medium --name-only SHA1_HASH # it takes --pretty option
+
+git show origin/experiment:foo.txt             # see the contents of a remote file
+git show v1.25:foo.txt                         # see the content of a file from a tag
+</pre>
+
+

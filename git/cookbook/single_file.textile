@@ -1,0 +1,18 @@
+h1. Resolving a conflict in merge or rebase for one single file
+
+You are doing either rebase or merge and you have a conflict. It is a complicted conflict and all you want is your version to take precedence over the branch stuff.
+
+<pre>
+git checkout --ours foo.txt
+git add foo.txt
+git diff # to go to the next conflicting file
+</pre>
+ 
+In the above case the merged version will have foo.txt from master branch.
+
+Similary if I want their version to take precedence then the command would be 
+
+<pre>
+git checkout --theirs foo.txt
+</pre>
+

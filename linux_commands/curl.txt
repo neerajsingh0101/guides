@@ -3,7 +3,7 @@ curl -X POST -d "user[name]=John" -d "_method=PUT" http://localhost:3000/users/1
 
 curl -H 'Accept: application/xml' http://localhost:3000/users/1
 
-# this command will cause this error
+# this command will cause error
 # Only get, put, and delete requests are allowed  
 curl  -H "X-Http-Method-Override: put" -H 'Accept: application/xml' -H 'Content-type: application/xml' http://localhost:3000/users/1.xml -d '<user><name>raj</name></user>' -X POST
 

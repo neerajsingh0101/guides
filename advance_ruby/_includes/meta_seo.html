@@ -1,0 +1,8 @@
+{% if page.keywords %}
+  {% assign keywords = page.keywords %}
+{% else %}
+  {% assign keywords = 'Neeraj, neerajdotname, rails, ruby, JavaScript, jQuery' %}
+{% endif %}
+{% capture description %}{% if page.description %}{{page.description}}{% else %}www.neeraj.name - {{page.title }} - Neeraj's thoughts on ruby, rails, JavaScript and jQuery  {% endif %}{% endcapture %}
+<meta name="keywords" content="{{keywords | xml_escape| truncate: 160}}" />
+<meta name="description" content="{{description | strip_html | xml_escape| truncate: 200}}" />

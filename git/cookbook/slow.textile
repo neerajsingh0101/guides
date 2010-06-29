@@ -1,0 +1,8 @@
+h1. git is too slow and it is counting many objects
+
+<pre>
+git count-objects
+git gc
+git count-objects
+</pre>
+

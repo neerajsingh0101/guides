@@ -1,0 +1,16 @@
+h1. git cat-file 
+
+<pre>
+$ git cat-file -p 092b81b # lists tree and other commit info
+tree c77ac2b94a50da5ff3b54a6ec3e0be6eac536ee3
+parent 721f6bc7a9ee16a9dc244ddbc21f63c296ab9173
+author Neeraj Singh <neeraj.cmu@gmail.com> 1269944652 -0400
+committer Neeraj Singh <neeraj.cmu@gmail.com> 1269944652 -0400
+
+fixed jQuery bug
+</pre>
+
+<pre>
+$ git cat-file -t SHA1_HASH        # type of commit: commit or tree
+commit
+</pre>

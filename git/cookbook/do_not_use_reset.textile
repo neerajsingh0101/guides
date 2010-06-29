@@ -1,0 +1,11 @@
+h1. Do not use git reset --hard HEAD to reset everything
+
+Problem with reset --hard it is hard reset. You will loose a few committs if you make a mistake. Well in git nothing is lost. You can still reclaim your committs but that is not desirable.
+
+I try to avoind reset --hard as much as possible.
+
+To reset everything I just use
+
+<pre>
+git co -f
+</pre>
