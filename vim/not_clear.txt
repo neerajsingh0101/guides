@@ -1,0 +1,12 @@
+
+# last few places where you were editing
+g;
+g,
+
+
+
+# fix the indentation inside curly braces
+=i}
+
+# find the first occurence of character 'd' going backward
+shift t d

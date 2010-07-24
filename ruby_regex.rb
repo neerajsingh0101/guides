@@ -43,7 +43,7 @@ method_sym.to_s =~ /^find_by_(.*)$/
 # extract phone numbers from given string
 s = %Q{  (123) 555-1234. }
 r = /\((\d{3})\)\s+(\d{3})-(\d{4})/
-m = r.match(s)
+m = s.match(r)
 puts m.to_a
 
 

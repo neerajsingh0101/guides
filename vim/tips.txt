@@ -1,3 +1,186 @@
+
+You can combine :read with a call to UNIX, to read the results of a UNIX command into your file. As a very simple example:
+:r !date
+
+:sh  to get into a shell
+
+:!command
+
+Show current line info    (not a movement command).^G
+
+
+Typing two backquotes (` `) returns you to your original position (the position where you issued the last G command), unless you have done some edits in the meantime. If you have made an edit, and then moved the cursor using some command other than G, ` ` will return the cursor to the site of your last edit. If you have issued a search command (/ or ?), ` ` will return the cursor to its position when you started the search. A pair of apostrophes (' ') works much like two backquotes, except that it returns the cursor to the beginning of the line instead of the exact position on that line where your cursor had been.
+
+dfx deletes up to and including the named character x. This command is useful in deleting or yanking partial lines. You might need to use dfx instead of dw if there were symbols or punctuation within the line that made counting words difficult. The t command works just like f, except that it positions the cursor before the character searched for. For example, the command ct. could be used to change text up to the end of a sentence, leaving the period.
+
+
+The command fx moves the cursor to the next instance of the character x (where x stands for any character). The command tx moves the cursor to the character before the next instance of x. Semicolons can then be used repeatedly to "find" your way along.The command fx moves the cursor to the next instance of the character x (where x stands for any character). The command tx moves the cursor to the character before the next instance of x. Semicolons can then be used repeatedly to "find" your way along.
+
+
+n to repeat search forward
+
+
+N to repeat search backward
+
+
+z RETURN - make current line top line
+z - ( it is z dash) make current line bottom line
+z .  make current line center of the screen
+
+
+>>>>>>>>>>>
+you have deleted line1
+then delete line2
+then deleted line3
+now you want the first line that was deleted2
+"3p
+will restore the third deleted line . Note that it only works with delete line. will not work with deleted word or fragment of word
+>>>>>>>>>>>
+
+50i*ESC inserts 50 asterisks
+
+25a*- ESC appends 50 characters (25 pairs of asterisk and hyphen).
+
+to change || to &&, you would place the cursor on the first pipe character, and type 2r&.
+
+ea is useful for appending new text to the end of a word
+
+you could have joined three lines by using the command 3J.
+
+# delete until :
+dt:
+
+# delete until : but also delete :
+df:
+
+
+
+capital x delete the character before the cursor
+
+
+d$ will delete till the end of line
+d0 will delete till the beginning of line
+
+dw will delete the word and the spaces after that
+de will delete the word and will stop
+dE will delete till the end of WORD( which includes punctuations)
+db will delete backward
+
+
+
+3w will take you to third word
+
+
+:Rlog
+
+:AckFile READ*
+
+comment a block of code by visually selecting a block of code and then ,c space.
+now find out how to visually select block from line number 10 to 20 or from mark a to mark b
+
+
+I_ love " ruby
+how to delete upt to " but preserve "
+
+
+I love " ruby and _rails
+how to delete upto " but preserve "
+
+
+
+# to go to the middle of line
+gm
+
+# if a long line has wrapping and if you want to go to end of first visible line then do
+g$
+gm for middle
+g0 for column 0
+g^ for first non blank char
+
+ft - find first character 't'
+;  repeat the last f command in forward direction
+, repeat the last f command in backward direction
+
+
+ctrl b
+ctrl f
+ctrl u - half screen up
+ctrl d - half screen down
+ctrl y - one line up
+
+
+
+zt - make the current line top of screen
+zz - make the current line middle of screen
+zb - make the current line bottom of screen
+
+
+42gg - go to line 42
+42G
+:42 - go to line 42
+
+
+ctrl g - show the status of current file and where I am
+
+d'a will delete from current line to mark a
+
+
+'0 should open the last opened file after starting vim. does not work for me
+
+
+'. will take you to the place where last some editing was done in a file
+
+'' that is two single quotes to toggle between two places easily
+
+shift a - go to the end of line and then go into insert mode
+shift i - go to the beginning of line ( non blank character) and then go into insert mode
+
+g shift j - to join two lines without any space in between
+
+
+)  vim knows about sentences. Use ) or ( to jump to sentences.
+
+vit - visually select elements within html tag
+vat - visually select element within html tag and the html tag
+
+:substitute command changes only the first occurrence unless the g flag is present.
+following command deletes starting from the first line with hello to the first line that contains goodbye.
+:/hello/,/goodbye/ delete
+
+
+# split horizontally
+Ctrl w s
+
+# split vertically
+Ctrl w v
+
+# Decrement a number under the cursor. 100 becomes 99
+CTRL x
+
+# Increment a number under the cursor. 99 becomes 100
+CTRL a
+
+# delete the {} region around your cursor including {}
+da{
+
+# split the screen vertically showing code version and test version
+:AV
+
+
+# search for word with word boundary. search 'for'. It should not match
+# california.  \<  \>
+:/\<for\>
+
+# replace first five characters with a
+5ra
+
+# delete two words
+d2w
+
+# delete upto second ,
+hellod2t,
+
+
 # add text vertically to a block
 ctrl v and vertically select a few line
 shift i
@@ -49,7 +232,7 @@ M
 :%s/^M//g
 
 # move 10 lines from where you are
-10$
+10j
 
 # show all lines containing ruby
 :g/ruby
@@ -125,8 +308,7 @@ vi'y
 :! touch foo/bar.txt
 
 
-# add something to the beginning of line. Beginning of line means the first
-# non blank character
+# add something to the beginning of line. Beginning of line means the first non blank character
 shift i
 
 # delete all the lines from current line and upto mark q.
@@ -142,7 +324,7 @@ shift a
 
 
 # show all the indentation rules mvim is shipped with
-:e $VIMRUNTIME/indent 
+:e $VIMRUNTIME/indent
 
 # custom indentation rules can be added to indent directory next to vimrc
 # file
@@ -156,27 +338,25 @@ za
 
 
 # fold next 10 lines
-zf10j 
+zf10j
 
 # create a fold from current line until next <string> is found in search
-zf/ <string> 
+zf/ <string>
 
 # moves the cursor to the next fold
 zj
 
 # moves the cursor to the previous fold
-zk 
+zk
 
 # opens a fold at the cursor
-zo 
+zo
 
 # open all folds at the cursor
-zO 
+zO
 
 
 
-# fix the indentation inside curly braces
-=i}
 
 # test changes in .vimrc file. This might not work in all cases so the best
 # strategy is to close all windows and start a new window
@@ -185,9 +365,9 @@ zO
 # ctags ---------------------------------------------------------------
 # after ctags are installed run following command on command prompt to create
 # tags
-ctags -R --exclude=*.js
-or just run
 :Rtags
+or
+ctags -R --exclude=*.js
 
 # move the cursor over to a method and hit ctrl ] . Hit ctrl t to go backward
 
@@ -201,9 +381,9 @@ or just run
 # toggle between visible and invisible characters
 :set list!
 
-:set ignorecase 
+:set ignorecase
 
-:set noignorecase 
+:set noignorecase
 
 :set wrap
 
@@ -213,10 +393,10 @@ or just run
 :set hlsearch
 
 # set line numbers in the left margin
-:set nu 
+:set nu
 
 # remove line numbers from the left margin
-:set nonu 
+:set nonu
 
 # no highlight search
 :set nohlsearch
@@ -226,43 +406,37 @@ or just run
 :set nonumber
 
 # get rid of highlighted text after search
-:noh 
+:noh
 
 
 # insert above/before
 P
 
 # inserts below/after
-p 
+p
 
 # insert a line after the current one
-o 
+o
 
 # insert before the current line
-O 
+O
 
 # delete lines from 10 to 12. including line numbers 10 and 12. total 3 lines will be deleted
 :10,12 delete
 
 # go to the top of the document
-gg 
+gg
 
 # go to the bottom of the document
-shift g 
+shift g
 
 #  find the end of a class or method or the end of a curly brace
 shift  %
 
-# Increment a number under the cursor. 99 becomes 100
-CTRL a
-
-# Decrement a number under the cursor. 100 becomes 99
-CTRL x
-
 # move to the first non blank character of the current line
-shift ^ 
+shift ^
 
-# search the first character 'h' in line 
+# search the first character 'h' in line
 fh
 
 # repeat the command
@@ -272,22 +446,16 @@ fh
 Fd
 
 # find 5th 'h' in the current line
-5fh 
-
-# split horizontally
-Ctrl w s 
-
-# split vertically
-Ctrl w v 
+5fh
 
 # Uppercase the current line
-gUU 
+gUU
 
 # lowercase the current line
-guu 
+guu
 
 # join the current line with the next line with a single space
-shift j 
+shift j
 
 # join 3 lines with a single space
 3(shift j)
@@ -295,41 +463,41 @@ shift j
 # change the case of the letter
 ~
 
-# delete from cursor to the end of the word
+# delete from cursor to the end of the word but do not delete the space after the word
 de
 
 # delete from cursor to the end of the word and all the blank spaces after the word
-dw 
+dw
 
 # delete until next dot
-dt. 
+dt.
 
 # yank text from here to the end of the word
 ye
 
 
 # copy current word. put cursor on a word
-bye 
+bye
 
 # if you want to replace all occurrences in a file then instead of :1,$s just say :%s
 
 # set a mark called q
-mq 
+mq
 
 # go to mark q . If mark was set in the middle of line then this will take you to the middle of line
-`q 
+`q
 
 # go to mark q but then take the cursor to the beginning of line
 'q
 
 
-# marks a–z are local to the file. In other words, you can place a mark a in file one.c and 
-# another mark a infiletwo.c.These marks are separate and have nothing to do with each other. 
-# If you execute a go-to-mark command, such as‘a, you will jump within that file to the given mark. 
-# The uppercase marks (A–Z) differ.They are global.They mark not only the location within the file, but also the file itself. 
-# You are editing the file one.c and place the mark A in it. You then go on to edit filetwo.c. 
-# When you execute the jump to mark A command (‘A), theVim editor will switch you from filetwo.c to file one.c and 
-# position the cursor on the mark. 
+# marks a–z are local to the file. In other words, you can place a mark a in file one.c and
+# another mark a infiletwo.c.These marks are separate and have nothing to do with each other.
+# If you execute a go-to-mark command, such as‘a, you will jump within that file to the given mark.
+# The uppercase marks (A–Z) differ.They are global.They mark not only the location within the file, but also the file itself.
+# You are editing the file one.c and place the mark A in it. You then go on to edit filetwo.c.
+# When you execute the jump to mark A command (‘A), theVim editor will switch you from filetwo.c to file one.c and
+# position the cursor on the mark.
 
 # delete a word and type in a new one
 cw
@@ -337,26 +505,24 @@ cw
 # show number of lines in file and the file name
 ctrl g
 
-# page up
-ctrl u 
+# half page up
+ctrl u
 
-# page down
-ctrl d 
+# half page down
+ctrl d
 
 # delete rest of line from the point of cursor
-d$ 
+d$
 
 # delete the entire line and then go into insert mode
-cc 
+cc
 
-# replace first five characters with a
-5ra 
 
 # move current line one row down
-ddp 
+ddp
 
 # move current character one position to the right
-xp 
+xp
 
 # delete the current word
 bde
@@ -370,26 +536,13 @@ e
 # go to next starting of word
 w
 
-# delete two words
-d2w
-
-# delete upto second ,
-d2t,
-
 # insert a blank line before the current line
 shift o
 
 #  paste above the current line
 shift p
-  
-# delete until :
-dt:
 
-# delete until : but also delete :
-df:
 
-# delete the {} region around your cursor including {}
-da{
 
 # delete everything inside {} but do not delete {}
 di{
@@ -397,17 +550,12 @@ di{
 # toggle between the code version and test version
 :A
 
-# split the screen vertically showing code version and test version 
-:AV
 
 # If you've selected a block of text visually, you can delete it all with x or d
 
 # select a line visually and then multiples of it
 shift v
 
-# search for word with word boundary. search 'for'. It should not match
-# california.  \<  \>
-:/\<for\> 
 
 # list of all marks set
 :marks
@@ -415,8 +563,6 @@ shift v
 # show all the mappings
 :map
 
-# find the first occurence of character 'd' going backward
-shift t d
 
 # delete rest of line and go into insert mode
 c$
@@ -445,8 +591,10 @@ $
 # w b e - they all move to next word. w moves to next word in forward
 # direction. b moves to next word in backward direction. e moves to the end of
 # next word in forward direction.
-"
-# W B E - they do the same thing. However move along WORD. A WORD is a
+
+
+# W B E - they do the same thing. However move along 
+# WORD. A WORD is a
 # sequence of non blank characters.
 
 # convert all existing tabs to spaces

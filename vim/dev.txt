@@ -83,12 +83,6 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 # move to the end of paragraph
 }
 
-# last few places where you were editing
-g;
-g,
-
-# move to end of next word
-we
 
 # list of all defined colors
 :highlight
