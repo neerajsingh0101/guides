@@ -1,24 +1,16 @@
 h1. git reset
 
-<pre>
 git reset --soft HEAD^     # undo the last commit and keep the changes in the working tree
 git reset --hard HEAD^     # get rid of last commit
 git reset --hard SHA1_HASH # reset to to a particular commit. Note that it will get rid of all the committs after this commit and it 
                            # will cause loss of data
 git reset --hard HEAD      # Reset all the local changes
 git reset HEAD foo.txt     # unstage a staged file
-git reset --hard ORIG_HEAD # After a successful merge operation if you want to discard 
-                           # the merge operation then just use  ORIG_HEAD to rollback 
-                           # changes. If you use HEAD then it will have no impact. Also note 
-                           # that reset --hard ORIG_HEAD should be the very first operation 
-                           # after the merge if you want to discard it.
-
-</pre>
 
 
 h2. Getting rid of certain committs 
 
-I have five commits I want to totally discard last two commits and start from third. I want last two commits to be totally gone. 
+I have five commits I want to totally discard last two commits and start from third.
 
 <pre>
 > git log -n 5 --pretty=oneline                # display last 5 commits

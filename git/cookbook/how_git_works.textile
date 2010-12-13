@@ -2,7 +2,7 @@ h1. git basics
 
 h2. git has index
 
-Unlike cvs or svn git has index that is in between user and the final code base. When you do git add then you are adding to the index. When you commit then git does following thing.
+Unlike cvs or svn git has index that is in between user and the final code base. When you do git add then you are adding to the index. When you commit then git does following things.
 
 * git compares the commit state of the index and the current state of index. By doing the diff, git finds list of all the file that are new, changed or deleted.
 
@@ -22,17 +22,17 @@ HEAD tells which branch you are currently in.
 Curretly I am in master branch.
 
 <pre>
-(master)$ cat .git/HEAD
+$ cat .git/HEAD
 ref: refs/heads/master
 </pre>
 
 Now I will switch to lab branch and notice the new value of HEAD.
 
 <pre>
-(master)$ git co lab
+$ git co lab
 Switched to branch 'lab'
 
-(lab)$ cat .git/HEAD
+$ cat .git/HEAD
 ref: refs/heads/lab
 </pre>
 
@@ -44,7 +44,7 @@ $ git symbolic-ref HEAD refs/heads/lab         # change HEAD to lab branch
 
 h2. When you commit then HEAD changes
 
-HEAD points to a branch. When a commit is made in that branch then file .git/refs/heads/<branch_name> gets wupdated with the last commit SHA1_HASH .
+HEAD points to a branch. When a commit is made in that branch then file .git/refs/heads/<branch_name> gets updated with the last commit SHA1_HASH .
 
 You can update the branch HEAD with new commit SHA1_HASH yourself like this
 
@@ -96,12 +96,6 @@ h2. .gitignore
 
 h2. index
 
-The index is found in .git/index and keeps track of file pathnames and corresponding blobs. Each time 
-you run commands such as git add, git rm, or git mv, Git updates the index with the new pathname 
-and blob information.
+The index is found in .git/index and keeps track of file pathnames and corresponding blobs. Each time you run commands such as git add, git rm, or git mv, git updates the index with the new pathname and blob information.
 
-
-
-
-
-# a branch in git is nothing more than a file in .git/refs/heads
+A branch in git is nothing more than a file in .git/refs/heads

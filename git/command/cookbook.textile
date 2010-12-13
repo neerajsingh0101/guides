@@ -41,5 +41,3 @@ git diff master lab foo.txt
 </pre>
 
 is empty then changing foo.txt will cause error.
-
-

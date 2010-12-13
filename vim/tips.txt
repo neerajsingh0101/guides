@@ -1,62 +1,12 @@
+ea => append new text to the end of a word
 
-You can combine :read with a call to UNIX, to read the results of a UNIX command into your file. As a very simple example:
-:r !date
+3J => join three lines with space between them
 
-:sh  to get into a shell
+dt: => delete until :
 
-:!command
-
-Show current line info    (not a movement command).^G
-
-
-Typing two backquotes (` `) returns you to your original position (the position where you issued the last G command), unless you have done some edits in the meantime. If you have made an edit, and then moved the cursor using some command other than G, ` ` will return the cursor to the site of your last edit. If you have issued a search command (/ or ?), ` ` will return the cursor to its position when you started the search. A pair of apostrophes (' ') works much like two backquotes, except that it returns the cursor to the beginning of the line instead of the exact position on that line where your cursor had been.
-
-dfx deletes up to and including the named character x. This command is useful in deleting or yanking partial lines. You might need to use dfx instead of dw if there were symbols or punctuation within the line that made counting words difficult. The t command works just like f, except that it positions the cursor before the character searched for. For example, the command ct. could be used to change text up to the end of a sentence, leaving the period.
-
-
-The command fx moves the cursor to the next instance of the character x (where x stands for any character). The command tx moves the cursor to the character before the next instance of x. Semicolons can then be used repeatedly to "find" your way along.The command fx moves the cursor to the next instance of the character x (where x stands for any character). The command tx moves the cursor to the character before the next instance of x. Semicolons can then be used repeatedly to "find" your way along.
-
-
-n to repeat search forward
-
-
-N to repeat search backward
-
-
-z RETURN - make current line top line
-z - ( it is z dash) make current line bottom line
-z .  make current line center of the screen
-
-
->>>>>>>>>>>
-you have deleted line1
-then delete line2
-then deleted line3
-now you want the first line that was deleted2
-"3p
-will restore the third deleted line . Note that it only works with delete line. will not work with deleted word or fragment of word
->>>>>>>>>>>
-
-50i*ESC inserts 50 asterisks
-
-25a*- ESC appends 50 characters (25 pairs of asterisk and hyphen).
-
-to change || to &&, you would place the cursor on the first pipe character, and type 2r&.
-
-ea is useful for appending new text to the end of a word
-
-you could have joined three lines by using the command 3J.
-
-# delete until :
-dt:
-
-# delete until : but also delete :
-df:
-
-
+df: => delete until : but also delete :
 
 capital x delete the character before the cursor
-
 
 d$ will delete till the end of line
 d0 will delete till the beginning of line
@@ -66,53 +16,28 @@ de will delete the word and will stop
 dE will delete till the end of WORD( which includes punctuations)
 db will delete backward
 
-
-
 3w will take you to third word
-
-
-:Rlog
-
-:AckFile READ*
 
 comment a block of code by visually selecting a block of code and then ,c space.
 now find out how to visually select block from line number 10 to 20 or from mark a to mark b
 
 
-I_ love " ruby
-how to delete upt to " but preserve "
-
-
-I love " ruby and _rails
-how to delete upto " but preserve "
-
-
-
-# to go to the middle of line
-gm
-
-# if a long line has wrapping and if you want to go to end of first visible line then do
+# if a really really really************************************************************************************************************************************************************************************************************************************************************************************************************************************************************** long line has wrapping and if you want to go to end of first visible line then do
 g$
 gm for middle
 g0 for column 0
 g^ for first non blank char
 
-ft - find first character 't'
+ft => find first character 't'
 ;  repeat the last f command in forward direction
 , repeat the last f command in backward direction
 
 
-ctrl b
-ctrl f
-ctrl u - half screen up
-ctrl d - half screen down
-ctrl y - one line up
-
-
-
-zt - make the current line top of screen
-zz - make the current line middle of screen
-zb - make the current line bottom of screen
+ctrl b => one page backward
+ctrl f => one page forward
+ctrl u => half screen up
+ctrl d => half screen down
+ctrl y => one line up
 
 
 42gg - go to line 42
@@ -120,39 +45,19 @@ zb - make the current line bottom of screen
 :42 - go to line 42
 
 
-ctrl g - show the status of current file and where I am
+ctrl g =>= show the status of current file and where I am
 
-d'a will delete from current line to mark a
+d'a => delete from current line to mark a
 
-
-'0 should open the last opened file after starting vim. does not work for me
-
-
-'. will take you to the place where last some editing was done in a file
-
-'' that is two single quotes to toggle between two places easily
-
-shift a - go to the end of line and then go into insert mode
-shift i - go to the beginning of line ( non blank character) and then go into insert mode
-
-g shift j - to join two lines without any space in between
-
+shift a => go to the end of line and then go into insert mode
+shift i => go to the beginning of line ( non blank character) and then go into insert mode
 
 )  vim knows about sentences. Use ) or ( to jump to sentences.
 
-vit - visually select elements within html tag
-vat - visually select element within html tag and the html tag
-
 :substitute command changes only the first occurrence unless the g flag is present.
+
 following command deletes starting from the first line with hello to the first line that contains goodbye.
 :/hello/,/goodbye/ delete
-
-
-# split horizontally
-Ctrl w s
-
-# split vertically
-Ctrl w v
 
 # Decrement a number under the cursor. 100 becomes 99
 CTRL x
@@ -171,48 +76,24 @@ da{
 # california.  \<  \>
 :/\<for\>
 
-# replace first five characters with a
-5ra
+5ra => replace first five characters with a
 
-# delete two words
-d2w
+2dw => delete two words
 
-# delete upto second ,
-hellod2t,
-
-
-# add text vertically to a block
-ctrl v and vertically select a few line
-shift i
-start typing and then hit escape
-same text will be prepended to a lot of lines
-
+2dt, => delete upto second ,
 
 :Rinvert => to generate the down part of a migration
 
-gi => go to the last place I was inserting something
+gi => go to the last place I was inserting something and get into insert mode. Also the cursor woudld be put at the end of the word so that you can start typing
 
 H puts cursor to the top of page. H is for High.
 M puts cursor to the middle of page. M is for Middle.
 L puts cursor to the bottom of page. L is for Low.
 
-
-yank line which says "aa"
-delete line which says "bb"
-now if I want to insert yanked linke then the line inserted is "bb". In order to insert line "aa" I need
-to tell vim to insert from 0 registry which is where line was yanked. Type following. Note that you also need to type double quote.
-"0p
-
-
-
 :source ~/.vimrc to reload .vimrc file
-
 
 # repeat search in backward
 ? or N
-
-# join without space
-gJ
 
 # 10 lines from the top of the document
 10H
@@ -294,12 +175,6 @@ M
 *
 :? # now hit n to go to next in backward direction
 
-
-
-
-
-# visually select everything inside single quotes
-vi'y
 
 # create a new directory called foo
 :! mkdir foo
@@ -593,7 +468,7 @@ $
 # next word in forward direction.
 
 
-# W B E - they do the same thing. However move along 
+# W B E - they do the same thing. However move along
 # WORD. A WORD is a
 # sequence of non blank characters.
 
@@ -615,3 +490,23 @@ $
 
 
 
+'. will take you to the place where last some editing was done in a file
+
+Typing two backquotes (` `) returns you to your original position (the position where you issued the last G command), unless you have done some edits in the meantime. If you have made an edit, and then moved the cursor using some command other than G, ` ` will return the cursor to the site of your last edit. If you have issued a search command (/ or ?), ` ` will return the cursor to its position when you started the search. A pair of apostrophes (' ') works much like two backquotes, except that it returns the cursor to the beginning of the line instead of the exact position on that line where your cursor had been.
+
+dfx deletes up to and including the named character x. This command is useful in deleting or yanking partial lines. You might need to use dfx instead of dw if there were symbols or punctuation within the line that made counting words difficult. The t command works just like f, except that it positions the cursor before the character searched for. For example, the command ct. could be used to change text up to the end of a sentence, leaving the period.
+
+
+The command fx moves the cursor to the next instance of the character x (where x stands for any character). The command tx moves the cursor to the character before the next instance of x. Semicolons can then be used repeatedly to "find" your way along.The command fx moves the cursor to the next instance of the character x (where x stands for any character). The command tx moves the cursor to the character before the next instance of x. Semicolons can then be used repeatedly to "find" your way along.
+
+
+n to repeat search forward
+
+
+N to repeat search backward
+
+# add text vertically to a block
+ctrl v and vertically select a few line
+shift i
+start typing and then hit escape
+same text will be prepended to a lot of lines

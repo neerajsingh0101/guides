@@ -1,12 +1,14 @@
-
 # last few places where you were editing
 g;
 g,
 
-
-
 # fix the indentation inside curly braces
 =i}
 
-# find the first occurence of character 'd' going backward
-shift t d
+fx
+shift f x
+tx
+shift t x
+; repeat previous command in the same direction
+, repeat previous command in the backward direction
+
