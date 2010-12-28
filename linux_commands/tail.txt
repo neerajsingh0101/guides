@@ -1,0 +1,5 @@
+# an argument with - means number of lines from bottom.
+# an argument with + means number of lines from top.
+
+# If you want all lines in the file except the first line which is header
+tail +2 file

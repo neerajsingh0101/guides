@@ -1,3 +1,6 @@
+cd - (this is cd dash) takes to the previous directory. it remembers only one directory deep.
+
+
 # at the end of file add 'Hello World'
 echo "Hello World" >> file
 
@@ -44,23 +47,23 @@ cat /dev/null > some_log_file.log
 # lists all variables defined in the shell
 env
 
-# get history 
+# get history
 history
 
 # last command
-!! 
+!!
 
 # command number 45
 !45
 
 # clear history
-history -c 
+history -c
 
 # see last 10 lines
 tail -10 a.out
 
 # see first 10 lines
-head -10 a.out 
+head -10 a.out
 
 # change timestamp for all files
 touch *
@@ -76,8 +79,8 @@ root * 2> error.txt
 root * 1> out.txt
 
 # lists all services with port number
-cat /etc/services 
+cat /etc/services
 
 # update this file to resolve a hostname to an IP address
-/etc/hosts 
+/etc/hosts
 
