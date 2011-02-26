@@ -2,6 +2,7 @@ h1. git add
 
 <pre>
 git add --patch                        # add a file in interative style
+git add -p                             # add a file in interative style
 git add foo.txt, bar.txt               # add multiple files at the same time
 git add -u                             # add only the file git already knows about. will ignore new files
 git add -n                             # dry run

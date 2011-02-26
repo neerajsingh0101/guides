@@ -13,14 +13,14 @@
 M
 
 # 50 th column
-50|
+50| #=> this is 50 and then small l
 
 # get rid of carriage return ^M. You can't type carriage return directly. type
 # Ctrl v m
 :1,$s/^M//g
 :%s/^M//g
 
-# move 10 lines from where you are
+# move 10 lines below from where you are
 10j
 
 # show all lines containing ruby
