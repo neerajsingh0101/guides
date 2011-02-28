@@ -105,14 +105,6 @@ y'q
 shift a
 
 
-
-# show all the indentation rules mvim is shipped with
-:e $VIMRUNTIME/indent
-
-# custom indentation rules can be added to indent directory next to vimrc
-# file
-
-
 # Folding in vim  ----------------------------------------------------------------
 
 # fold the whole method
@@ -137,6 +129,7 @@ zo
 
 # open all folds at the cursor
 zO
+# Folding in vim  ----------------------------------------------------------------
 
 
 
@@ -214,7 +207,7 @@ gg
 shift g
 
 #  find the end of a class or method or the end of a curly brace
-shift  %
+shift %
 
 # move to the first non blank character of the current line
 shift ^
@@ -319,7 +312,7 @@ e
 # go to next starting of word
 w
 
-# insert a blank line before the current line
+# insert a blank line above the current line
 shift o
 
 #  paste above the current line

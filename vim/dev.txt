@@ -1,3 +1,6 @@
+# show all the indentation rules mvim is shipped with
+:e $VIMRUNTIME/indent
+
 #find out version of the vim running
 :! vim --version
 
