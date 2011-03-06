@@ -1,0 +1,10 @@
+# replace can bypass freeze problem
+
+> a =%w(a b c d)
+ => ["a", "b", "c", "d"]
+ > a.freeze
+ > a.frozen? #=> true
+ > a[0] = 'e' #=> TypeError: can't modify frozen array
+ > a[0].replace('e')
+ > a #=> ["e", "b", "c", "d"]
+
