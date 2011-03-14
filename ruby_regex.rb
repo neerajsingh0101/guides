@@ -312,3 +312,23 @@ result = subject.gsub(/before/, 'after')
 #  hello <b> i am boo </b> world
 regex = /foo/
 result = subject.gsub(/<b>.*?<\/b>/) {|match| match.gsub(regex, 'boo') }
+
+
+# use backreference when you need to match something in regex which is previously matched
+# "magical" dates are date like 2008-08-08 or 2009-09-09. Will use regex to find if a date
+# is magical or not
+s = "2008-08-08"
+r = /\d\d(\d\d)-\1-\1/
+s.match(r) #=> true
+
+
+ruby 1.8.7 supports atomic grouping
+http://www.regular-expressions.info/atomic.html
+
+
+be careful with regexp.escape if you are using Regexp.escape('git://github.com/(.*)') .It won't work because . is escape too.
+
+
+non capturing group
+extension.scm_location.match(/(?:git|https):\/\/github.com\/(.*)\/(.*)\.git/)
+

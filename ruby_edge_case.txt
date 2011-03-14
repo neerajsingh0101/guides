@@ -8,3 +8,12 @@
  > a[0].replace('e')
  > a #=> ["e", "b", "c", "d"]
 
+
+
+> A  = %w(a b)
+ => ["a", "b"]
+> A = %w(a b c)
+(irb):6: warning: already initialized constant A
+ => ["a", "b", "c"]
+> A << 'd'
+ => ["a", "b", "c", "d"]
