@@ -38,11 +38,11 @@ ack --line=2,3,5
 # I don't want ack to search in a file after 2 matches are found in a file
 ack --max-count=2 foo
 
-# Stop searching after 1 file is found matching the criteria. This is different from max-count 
+# Stop searching after 1 file is found matching the criteria. This is different from max-count
 # in which case search continues for all the files
 ack foo -1
 
-# Prints all lines, whether or not they match the expression. It can be used to highlight matches 
+# Prints all lines, whether or not they match the expression. It can be used to highlight matches
 # while still seeing the entire file
 tail -f development.log | ack --passthru foo
 
@@ -52,7 +52,7 @@ ack -ivl foo
 # Do not print the filename in the result
 ack -h foo
 
-# I want to search for clean? . Notice the question mark at the end. I don't want 
+# I want to search for clean? . Notice the question mark at the end. I don't want
 # to search for clean. only words matching clean? should be in the result
 ack --literal clean?
 ack --literal .git
@@ -71,5 +71,5 @@ ack neeraj -u
 # should have test string.
 ack -i neeraj --type=rb -G test
 
-# List all files which has script name either in the file name or in the directory name
+# List all files which has "script" word either in the file name or in the directory name
 ack -f -G script

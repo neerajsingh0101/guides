@@ -1,51 +1,7 @@
-if subject =~ /regex pattern/
-  # Successful match
-else
-  # Match attempt failed
-end
-
-#This code does exactly the same thing as above
-if /regex pattern/ =~ subject
-  # Successful match
-else
-  # Match attempt failed
-end
-
-
-
-# two simple ways to get captured value
-s = 'total: 3'
-puts s.match(/(total): (\d+)/)[0] #=> total: 3
-puts s.match(/(total): (\d+)/)[1] #=> total
-puts s.match(/(total): (\d+)/)[2] #=> 3
-puts s[/(total): (\d+)/, 2] #=> 3
-
-
-# find everything within double quotes
-s = %Q{  id: "hello" }
-puts /"(.*)"/.match(s)[0] # will give you the string with the double quotes
-puts /"(.*)"/.match(s)[1] # will give you the string without the double quotes
-
-
-# extract last_name,first_name,country, title from a string
-s = %Q{Clinton,Bill,USA,President}
-m = /([A-Za-z]+),([A-Za-z]+),([A-Za-z]+),([A-Za-z]+)/.match(s)
-puts m
-#Clinton,Bill,USA,President
-#Clinton
-#Bill
-#USA
-#President
-
-
-# dynamic find_by methods in ActiveRecord
-method_sym.to_s =~ /^find_by_(.*)$/
-
-
 # extract phone numbers from given string
 s = %Q{  (123) 555-1234. }
 r = /\((\d{3})\)\s+(\d{3})-(\d{4})/
-m = s.match(r)
+match_data = s.match(r)
 puts m.to_a
 #(123) 555-1234
 #123
@@ -91,6 +47,7 @@ regex = /<p>(.*)<\/p>/
 puts regex.match(s).to_a #=> ["<p>hello</p><p>world</p>", "hello</p><p>world"]
 
 # In the above case if you want to pick just hello then make the regex non-greedy.
+s = '<p>hello</p><p>world</p>'
 regex = /<p>(.*?)<\/p>/
 puts regex.match(s).to_a #=> ["<p>hello</p>", "hello"]
 
@@ -202,12 +159,6 @@ puts s.sub(/(\w+):(\w+)/,'\2, \1') #=> Smith, Mike
 /<\w+\s*>(.*)<\/\w+\s*>/
 <div>Hello World</div>
 <div >Hello World</div>
-
-
-# turning a greedy match into non greedy match with ?
-s = ', 1 , 2 , 3 , 4'
-puts s[/,(.*),/,1] #=> 1 , 2, 3
-puts s[/,(.*?),/,1] #=> 1
 
 
 # usage of look ahead in actionpack. simple_format method uses following regex to
