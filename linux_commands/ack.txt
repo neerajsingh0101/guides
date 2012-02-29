@@ -28,7 +28,7 @@ ack -i before_save
 # Print line number 2 of every file
 ack --line=2
 
-# Print line 2 to 10 of every file
+G# Print line 2 to 10 of every file
 ack --line=2-10
 
 # Pring line 2 3 and 5 of every file
@@ -73,3 +73,6 @@ ack -i neeraj --type=rb -G test
 
 # List all files which has "script" word either in the file name or in the directory name
 ack -f -G script
+
+# copies the entire line
+Y
