@@ -1,17 +1,3 @@
-# repeat search in backward
-# Search for something. Now you want to search backward. Just do
-# ? or N
-# Now you can start hitting n to go to next in backward direction
-
-# 10 lines from the top of the document
-10H
-
-# 20 lines from the bottom
-20L
-
-# middle line of window
-M
-
 # 50 th column
 50| #=> this is 50 and then small l
 
