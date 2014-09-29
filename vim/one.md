@@ -13,5 +13,5 @@ Now you can start hitting `n` to go to next occurrence in backward direction.
 ### 20 lines from the bottom of the viewport
 20L
 
-# Go to the **middle** line of the window
+### Go to the **middle** line of the window
 M
