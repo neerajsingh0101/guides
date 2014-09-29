@@ -9,9 +9,6 @@ ft => find first character 't'
 
 gi => go to the last place I was inserting something and get into insert mode. Also the cursor woudld be put at the end of the word so that you can start typing
 
-H puts cursor to the top of page. H is for High.
-M puts cursor to the middle of page. M is for Middle.
-L puts cursor to the bottom of page. L is for Low.
 
 :source ~/.vimrc to reload .vimrc file
 
@@ -102,10 +99,6 @@ g shift j => join two lines without any space in between
 
 \ c space => toggle comment
 
-:! => drops me at the command line. Now do some command line operation.
-:! ls
-
-
 
 In order to indent large number of lines left or right do. 10>> Next hit dot to do that operation again. Hit u to undo last command.
 
@@ -136,7 +129,6 @@ ea => append new text to the end of a word
 
 3J => join three lines with space between them
 
-dt: => delete until :
 
 df: => delete until : but also delete :
 
