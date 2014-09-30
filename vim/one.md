@@ -41,3 +41,31 @@ M
 #### Move 10 lines below from the current line
 
 10j
+
+# Go to 50th column
+
+50| #=> this is 50 and then small l
+
+#### Two ways to get rid of carriage return ^M. You can't type carriage return directly. Type Ctrl v m .
+
+:1,$s/^M//g
+
+:%s/^M//g
+
+# Show all lines containing ruby
+
+:g/ruby
+
+:g/ruby/p
+
+##### Find version of the vim running
+
+:! vim --version
+
+#### where is vim installed
+
+:echo $VIM
+
+#### What vim considers to be your home directory
+
+:echo $HOME

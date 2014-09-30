@@ -183,10 +183,6 @@ If you are in one of the migration file then you can execute
 
 Put the cursor on a model or a  controller name and hit gf.
 
-
-:Gst for git status
-:Gblame
-
 Add <%= %> arround certain text. Write text first. Then select the text using v. Then hit s =
 http://stackoverflow.com/questions/4275209/how-to-insert-erb-tags-with-vim
 

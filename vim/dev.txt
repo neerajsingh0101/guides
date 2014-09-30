@@ -1,8 +1,6 @@
 # show all the indentation rules mvim is shipped with
 :e $VIMRUNTIME/indent
 
-#find out version of the vim running
-:! vim --version
 
 When executing the map command, Vim will replace "<SID>" with the special
 key code <SNR>, followed by a number that's unique for the script, and an
@@ -71,12 +69,6 @@ Esc key: <Esc>
 # declare a global variable
 :let g:javascript_lint_status = 'enabled'
 
-
-# where is vim installed
-:echo $VIM
-
-# what vim considers to be your home directory
-:echo $HOME
 
 # set font to be Arial 12 every time a text file is opened
 autocmd BufEnter *.txt set guifont=Arial\ 12
