@@ -42,7 +42,7 @@ M
 
 10j
 
-# Go to 50th column
+#### Go to 50th column
 
 50| #=> this is 50 and then small l
 
@@ -52,7 +52,7 @@ M
 
 :%s/^M//g
 
-# Show all lines containing ruby
+#### Show all lines containing ruby
 
 :g/ruby
 
